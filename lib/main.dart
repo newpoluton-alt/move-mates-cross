@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/ui/login_and_signup/login/login_page.dart';
 import 'package:move_mates_android/ui/login_and_signup/login_and_signup_page.dart';
+import 'package:move_mates_android/ui/login_and_signup/signup/signup_page.dart';
 import 'package:move_mates_android/ui/page_view/app_page_view.dart';
 import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
@@ -29,11 +31,17 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
                   backgroundColor: Colors.transparent),
               scaffoldBackgroundColor: Colors.transparent,
               appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                foregroundColor: ValidationColor.signInAndSignup,
                 elevation: 0,
-                backgroundColor: Colors.transparent,
+                // backgroundColor: Colors.transparent,
               )),
           home: const AppPageView(),
-          routes: {LoginAndSignUpPage.id: (context) => const LoginAndSignUpPage()},
+          routes: {
+            LoginAndSignUpPage.id: (context) => const LoginAndSignUpPage(),
+            LoginPage.id: (context) => const LoginPage(),
+            SignupPage.id: (context) => const SignupPage(),
+          },
         );
       },
     );
