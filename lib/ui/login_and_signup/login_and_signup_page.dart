@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/ui/login_and_signup/login/login_page.dart';
 import 'package:move_mates_android/ui/login_and_signup/signup/signup_page.dart';
+import 'package:move_mates_android/ui/login_and_signup/validation_button_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
 class LoginAndSignUpPage extends StatefulWidget {
@@ -13,6 +15,10 @@ class LoginAndSignUpPage extends StatefulWidget {
 }
 
 class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
+  void gotoPage(String id) {
+    Navigator.of(context).pushNamed(id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,29 +26,23 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
         child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          MaterialButton(
-            minWidth: 370.w,
-            height: 60.h,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(), borderRadius: BorderRadius.circular(10.r)),
-            onPressed: () {},
-            child: Text('Вход', style: AppButtonTextStyle.regularButtonBlack),
+          ValidationButtonWidget(
+            name: 'Вход',
+            textStyle: AppButtonTextStyle.regularButtonBlack,
+            onPushing: () {
+              // gotoPage(LoginPage.id);
+            },
           ),
           SizedBox(
             height: 15.h,
           ),
-          MaterialButton(
-            minWidth: 370.w,
-            height: 60.h,
-            color: Colors.black,
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(),
-                borderRadius: BorderRadius.circular(10.r)),
-            onPressed: () {
-              Navigator.of(context).pushNamed(SignupPage.id);
+          ValidationButtonWidget(
+            name: 'Регистрация',
+            textStyle: AppButtonTextStyle.regularButtonWhite,
+            onPushing: () {
+              gotoPage(SignupPage.id);
             },
-            child: Text('Регистрация',
-                style: AppButtonTextStyle.regularButtonWhite),
+            buttonColor: Colors.black,
           ),
         ]),
       ),

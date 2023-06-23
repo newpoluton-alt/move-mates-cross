@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/ui/login_and_signup/constants.dart';
 import 'package:move_mates_android/ui/login_and_signup/signup/asset_icon_widget.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/signup_tab_bar_widget.dart';
+import 'package:move_mates_android/ui/login_and_signup/signup/signup_checkbox_widget.dart';
+import 'package:move_mates_android/ui/login_and_signup/signup/tab_view_widget.dart';
+import 'package:move_mates_android/ui/login_and_signup/validation_button_widget.dart';
 import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
@@ -16,14 +18,22 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  int currentTabBarPage = 0;
-  bool isFirstPage = true;
+  bool _doUserAgree = false;
+  late final GlobalKey<FormState> _textFieldFormKey;
+  late final GlobalKey<FormState> _textFieldFormKeySecond;
 
-  void changePage(int index) {
+  void changeMind() {
     setState(() {
-      isFirstPage = 0 == index;
-      currentTabBarPage = index;
+      _doUserAgree = !_doUserAgree;
     });
+  }
+
+  @override
+  void initState() {
+    _textFieldFormKey = GlobalKey<FormState>();
+    _textFieldFormKeySecond = GlobalKey<FormState>();
+
+    super.initState();
   }
 
   @override
@@ -42,7 +52,8 @@ class _SignupPageState extends State<SignupPage> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.w),
-        child: Column(
+        child: SingleChildScrollView(
+            child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,29 +66,27 @@ class _SignupPageState extends State<SignupPage> {
               'Создайте учетную запись, чтобы начать работу с приложением',
               style: ValidationPageTextStyle.regular,
             ),
-            SizedBox(height: 30.h,),
-            DefaultTabController(
-              length: 2,
-              child: Column(children: [
-                TabBar(
-                    indicatorColor: ValidationColor.indicatorColor,
-                    onTap: changePage,
-                    tabs: [
-                      SignupTabBar(
-                        isFirstPage: isFirstPage,
-                        text: 'Клиент',
-                        path: IconPath.meditationRound,
-                      ),
-                      SignupTabBar(
-                        isFirstPage: !isFirstPage,
-                        text: 'Tренер',
-                        path: IconPath.dumbbellLarge,
-                      ),
-                    ])
-              ]),
+            SizedBox(
+              height: 15.h,
+            ),
+            TabViewWidget(
+                textFieldFormKey: _textFieldFormKey,
+                textFieldFormKeySecond: _textFieldFormKeySecond),
+            SignupCheckboxWidget(
+                doUserAgree: _doUserAgree, changeMind: changeMind),
+            SizedBox(
+              height: 30.h,
+            ),
+            ValidationButtonWidget(
+              name: 'Зарегистрироваться',
+              textStyle: AppButtonTextStyle.regularButtonWhite,
+              buttonColor: Colors.black,
+            ),
+            SizedBox(
+              height: 10.h,
             ),
           ],
-        ),
+        )),
       ),
     );
   }
