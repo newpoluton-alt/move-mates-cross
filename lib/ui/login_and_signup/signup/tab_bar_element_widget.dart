@@ -56,25 +56,23 @@ class TabBarElementWidget extends StatelessWidget {
             height: 20.h,
           ),
           IntlPhoneField(
-
             focusNode: numberNode,
             textInputAction: TextInputAction.next,
             initialCountryCode: 'KG',
             decoration: const InputDecoration(hintText: '999 999 999'),
           ),
           TextFormField(
-            obscureText: isPasswordVisible,
+            obscureText: !isPasswordVisible,
             keyboardType: TextInputType.visiblePassword,
-            onChanged: (value){
-              print(value.trim());
-            },
+
             decoration: InputDecoration(
                 labelText: 'Пароль',
+                hintText: '• • • • • • • •',
                 suffixIcon: IconButton(
                     onPressed: changePasswordVisibility,
                     icon: AssetIcon(
                         path: IconPath.eye,
-                        color: !isPasswordVisible
+                        color: isPasswordVisible
                             ? ValidationColor.signInAndSignup
                             : ValidationColor.checkBoxGrey))),
           )

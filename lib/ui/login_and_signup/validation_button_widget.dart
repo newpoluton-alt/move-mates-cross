@@ -1,18 +1,23 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/ui/login_and_signup/signup/asset_icon_widget.dart';
+
+import 'constants.dart';
 
 class ValidationButtonWidget extends StatelessWidget {
   final String name;
   Color? buttonColor;
-  void Function ()? onPushing;
+  Color? buttonBorderColor;
+  String? iconPath;
+  void Function()? onPushing;
   final TextStyle textStyle;
 
   ValidationButtonWidget({
     super.key,
     this.buttonColor,
     this.onPushing,
+    this.iconPath,
+    this.buttonBorderColor,
     required this.name,
     required this.textStyle,
   });
@@ -20,13 +25,25 @@ class ValidationButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      elevation: 0.0,
       color: buttonColor ?? Colors.white,
       minWidth: 370.w,
       height: 60.h,
       shape: RoundedRectangleBorder(
-          side: BorderSide(), borderRadius: BorderRadius.circular(10.r)),
-      onPressed: onPushing ?? (){},
-      child: Text(name, style: textStyle),
+          side: BorderSide(color: buttonBorderColor?? Colors.black), borderRadius: BorderRadius.circular(10.r)),
+      onPressed: onPushing ?? () {},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          iconPath != null
+              ? Padding(
+                padding: EdgeInsets.only(right: 10.w),
+                child: Image.asset(IconPath.google, height: 24.w,),
+              )
+              : const SizedBox(),
+          Text(name, style: textStyle),
+        ],
+      ),
     );
   }
 }

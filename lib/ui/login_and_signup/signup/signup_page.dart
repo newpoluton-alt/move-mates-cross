@@ -8,6 +8,8 @@ import 'package:move_mates_android/ui/login_and_signup/validation_button_widget.
 import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
+import '../back_button_widget.dart';
+
 class SignupPage extends StatefulWidget {
   static const id = 'signup_page';
 
@@ -41,14 +43,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const AssetIcon(
-              path: IconPath.arrowBack,
-              color: ValidationColor.signInAndSignup,
-            )),
+        leading: const BackButtonWidget(),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -72,6 +67,9 @@ class _SignupPageState extends State<SignupPage> {
             TabViewWidget(
                 textFieldFormKey: _textFieldFormKey,
                 textFieldFormKeySecond: _textFieldFormKeySecond),
+            SizedBox(
+              height: 30.h,
+            ),
             SignupCheckboxWidget(
                 doUserAgree: _doUserAgree, changeMind: changeMind),
             SizedBox(
@@ -91,3 +89,4 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 }
+

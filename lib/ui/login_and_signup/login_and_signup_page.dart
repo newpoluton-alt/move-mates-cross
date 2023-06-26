@@ -30,7 +30,7 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
             name: 'Вход',
             textStyle: AppButtonTextStyle.regularButtonBlack,
             onPushing: () {
-              // gotoPage(LoginPage.id);
+              gotoPage(LoginPage.id);
             },
           ),
           SizedBox(

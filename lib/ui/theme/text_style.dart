@@ -25,9 +25,16 @@ class AppButtonTextStyle {
 
   static TextStyle regularButtonBlack = GoogleFonts.montserrat(
       color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w700);
+  static TextStyle regularButtonBlackMedium = GoogleFonts.montserrat(
+      color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w600);
 }
 
 class ValidationPageTextStyle {
+  static TextStyle signupRegular = GoogleFonts.montserrat(
+      color: Colors.black, fontSize: 14.sp,);
+  static TextStyle signupSemiBold = GoogleFonts.montserrat(
+      color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w600);
+
   static TextStyle checkBoxMedium = GoogleFonts.montserrat(
       color: ValidationColor.signInAndSignup,
       fontSize: 12.sp,
@@ -61,5 +68,10 @@ class ValidationPageTextStyle {
   static TextStyle regular = GoogleFonts.montserrat(
     color: ValidationColor.signInAndSignup,
     fontSize: 14.sp,
+  );
+  static TextStyle loginSemiBold = GoogleFonts.montserrat(
+    color: ValidationColor.signInAndSignup,
+    fontWeight: FontWeight.w600,
+    fontSize: 20.sp,
   );
 }

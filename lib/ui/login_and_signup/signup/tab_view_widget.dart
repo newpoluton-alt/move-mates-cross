@@ -75,24 +75,13 @@ class _TabViewWidgetState extends State<TabViewWidget> {
             SizedBox(
               height: 30.h,
             ),
-            SizedBox(
-              height: 370.h,
-              child: TabBarView(children: [
-                TabBarElementWidget(emailNode: _emailNode,
-                    numberNode: _numberNode,
-                    isPasswordVisible: _isPasswordVisible,
-                    textFieldFormKey: widget.textFieldFormKey,
-                    changePasswordVisibility: changePasswordVisibility,
-                    changeFocus: changeFocus),
+            TabBarElementWidget(emailNode: _emailNode,
+                numberNode: _numberNode,
+                isPasswordVisible: _isPasswordVisible,
+                textFieldFormKey: widget.textFieldFormKey,
+                changePasswordVisibility: changePasswordVisibility,
+                changeFocus: changeFocus),
 
-                TabBarElementWidget(emailNode: _emailNode,
-                    numberNode: _numberNode,
-                    isPasswordVisible: _isPasswordVisible,
-                    textFieldFormKey: widget.textFieldFormKeySecond,
-                    changePasswordVisibility: changePasswordVisibility,
-                    changeFocus: changeFocus)
-              ]),
-            )
           ]),
     );
   }
