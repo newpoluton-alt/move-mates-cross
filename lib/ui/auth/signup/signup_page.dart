@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/ui/login_and_signup/constants.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/asset_icon_widget.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/signup_checkbox_widget.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/tab_view_widget.dart';
-import 'package:move_mates_android/ui/login_and_signup/validation_button_widget.dart';
-import 'package:move_mates_android/ui/theme/colors.dart';
+import 'package:move_mates_android/ui/auth/signup/signup_checkbox_widget.dart';
+import 'package:move_mates_android/ui/auth/signup/tab_view_widget.dart';
+import 'package:move_mates_android/ui/auth/validation_button_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
 import '../back_button_widget.dart';
@@ -22,7 +19,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   bool _doUserAgree = false;
   late final GlobalKey<FormState> _textFieldFormKey;
-  late final GlobalKey<FormState> _textFieldFormKeySecond;
 
   void changeMind() {
     setState(() {
@@ -33,9 +29,19 @@ class _SignupPageState extends State<SignupPage> {
   @override
   void initState() {
     _textFieldFormKey = GlobalKey<FormState>();
-    _textFieldFormKeySecond = GlobalKey<FormState>();
-
     super.initState();
+  }
+
+  void _submit() {
+    if (!mounted) {
+      return;
+    }
+
+    final isValid = _textFieldFormKey.currentState!.validate();
+    if (!isValid && !_doUserAgree) {
+      return;
+    }
+    _textFieldFormKey.currentState!.save();
   }
 
   @override
@@ -65,13 +71,15 @@ class _SignupPageState extends State<SignupPage> {
               height: 15.h,
             ),
             TabViewWidget(
-                textFieldFormKey: _textFieldFormKey,
-                textFieldFormKeySecond: _textFieldFormKeySecond),
+              textFieldFormKey: _textFieldFormKey,
+            ),
             SizedBox(
               height: 30.h,
             ),
             SignupCheckboxWidget(
-                doUserAgree: _doUserAgree, changeMind: changeMind),
+              doUserAgree: _doUserAgree,
+              changeMind: changeMind,
+            ),
             SizedBox(
               height: 30.h,
             ),
@@ -79,6 +87,9 @@ class _SignupPageState extends State<SignupPage> {
               name: 'Зарегистрироваться',
               textStyle: AppButtonTextStyle.regularButtonWhite,
               buttonColor: Colors.black,
+              onPushing: () {
+                _submit();
+              },
             ),
             SizedBox(
               height: 10.h,
@@ -89,4 +100,3 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 }
-

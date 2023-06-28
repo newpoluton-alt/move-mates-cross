@@ -10,4 +10,5 @@ class ValidationColor{
   static const Color checkBoxGrey = Color(0xff909090);
   static const Color indicatorColor = Color(0xff3b608a);
   static const Color textFieldColor = Color(0xffc6c6c6);
+  static const Color errorColor = Color(0xffff4343);
 }

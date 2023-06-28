@@ -10,7 +10,8 @@ class AppTextStyle {
   static TextStyle concernName = GoogleFonts.montserrat(
     color: Colors.white,
     fontWeight: FontWeight.w600,
-    fontSize: 48.sp,);
+    fontSize: 48.sp,
+  );
 
   static TextStyle regularWhite =
       GoogleFonts.montserrat(color: Colors.white, fontSize: 15.sp);
@@ -30,8 +31,12 @@ class AppButtonTextStyle {
 }
 
 class ValidationPageTextStyle {
+  static TextStyle textFieldError = GoogleFonts.montserrat(
+      fontSize: 10.sp, fontWeight: FontWeight.w500);
   static TextStyle signupRegular = GoogleFonts.montserrat(
-      color: Colors.black, fontSize: 14.sp,);
+    color: Colors.black,
+    fontSize: 14.sp,
+  );
   static TextStyle signupSemiBold = GoogleFonts.montserrat(
       color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w600);
 
@@ -48,7 +53,9 @@ class ValidationPageTextStyle {
   static TextStyle toolBarRegularSemiBold = GoogleFonts.montserrat(
       color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.w600);
   static TextStyle toolBarRegularSemiBoldSelected = GoogleFonts.montserrat(
-      color: ValidationColor.indicatorColor, fontSize: 14.sp, fontWeight: FontWeight.w600);
+      color: ValidationColor.indicatorColor,
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w600);
 
   static TextStyle textFieldUp = GoogleFonts.montserrat(
       color: ValidationColor.signInAndSignup,

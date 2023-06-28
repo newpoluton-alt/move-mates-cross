@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/ui/login_and_signup/back_button_widget.dart';
-import 'package:move_mates_android/ui/login_and_signup/login/login_text_form_widget.dart';
+import 'package:move_mates_android/ui/auth/back_button_widget.dart';
+import 'package:move_mates_android/ui/auth/login/login_text_form_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
 import '../../theme/colors.dart';
@@ -28,6 +28,18 @@ class _LoginPageState extends State<LoginPage> {
       _isPasswordVisible = !_isPasswordVisible;
     });
   }
+
+  void _submit(){
+    if(!mounted) {
+      return;
+    }
+    final isValid = _signupFormKey.currentState!.validate();
+    if(!isValid){
+      return;
+    }
+    _signupFormKey.currentState!.save();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +89,9 @@ class _LoginPageState extends State<LoginPage> {
                 name: 'Войти',
                 textStyle: AppButtonTextStyle.regularButtonWhite,
                 buttonColor: Colors.black,
+                onPushing: (){
+                  _submit();
+                },
               ),
               SizedBox(
                 height: 20.h,

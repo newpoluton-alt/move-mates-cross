@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/asset_icon_widget.dart';
 
 import 'constants.dart';
 

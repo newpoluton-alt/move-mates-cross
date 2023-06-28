@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/ui/login_and_signup/login/login_page.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/signup_page.dart';
-import 'package:move_mates_android/ui/login_and_signup/validation_button_widget.dart';
+import 'package:move_mates_android/ui/auth/login/login_page.dart';
+import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
+import 'package:move_mates_android/ui/auth/validation_button_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
 class LoginAndSignUpPage extends StatefulWidget {

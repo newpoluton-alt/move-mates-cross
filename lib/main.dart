@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/ui/login_and_signup/login/login_page.dart';
-import 'package:move_mates_android/ui/login_and_signup/login_and_signup_page.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/signup_page.dart';
+import 'package:move_mates_android/ui/auth/login/login_page.dart';
+import 'package:move_mates_android/ui/auth/auth_page.dart';
+import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
 import 'package:move_mates_android/ui/page_view/app_page_view.dart';
 import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_field_styles.dart';

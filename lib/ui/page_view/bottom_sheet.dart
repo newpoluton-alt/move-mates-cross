@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../login_and_signup/login_and_signup_page.dart';
+import '../auth/auth_page.dart';
 import '../theme/text_style.dart';
 
 class PageViewBottomSheet extends StatelessWidget {

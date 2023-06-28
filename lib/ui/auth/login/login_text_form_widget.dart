@@ -22,18 +22,24 @@ class LoginTextFormWidget extends StatelessWidget {
         key: signupFormKey,
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextFormField(
+              decoration: const InputDecoration(
                 hintText: 'Enter your name',
                 labelText: 'Имя',
               ),
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
+              validator: (value) {
+                if(value == null || value.isEmpty) {
+                  return 'Пожалуйста, введите ваше имя.';
+                }
+                return null;
+              },
             ),
             SizedBox(
               height: 21.h,
             ),
-            TextField(
+            TextFormField(
               obscureText: !isPasswordVisible,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
@@ -46,6 +52,16 @@ class LoginTextFormWidget extends StatelessWidget {
                           color: isPasswordVisible
                               ? ValidationColor.signInAndSignup
                               : ValidationColor.checkBoxGrey))),
+              validator: (value) {
+                if(value == null || value.isEmpty)
+                {
+                  return 'Пожалуйста, введите пароль.';
+                }
+                else if( value.isNotEmpty && value.length < 8) {
+                  return 'Пароль должен содержать не менее 8 символов.';
+                }
+                return null;
+              },
             )
           ],
         ));

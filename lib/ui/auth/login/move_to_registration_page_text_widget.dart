@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:move_mates_android/ui/login_and_signup/signup/signup_page.dart';
+import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
 
 import '../../theme/text_style.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/colors.dart';
@@ -9,7 +10,10 @@ class SignupCheckboxWidget extends StatelessWidget {
   final void Function() changeMind;
 
   const SignupCheckboxWidget(
-      {super.key, required this.doUserAgree, required this.changeMind});
+      {super.key,
+      required this.doUserAgree,
+      required this.changeMind,
+      });
 
   @override
   Widget build(BuildContext context) {
