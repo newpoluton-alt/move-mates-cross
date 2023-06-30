@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,9 +11,11 @@ class NavigationForwardButtonWidget extends StatelessWidget {
     super.key,
     required this.isLastPage,
     required this.pageController,
+    required this.currentPage,
   });
 
   final bool isLastPage;
+  final int currentPage;
   final PageController pageController;
 
   @override
@@ -30,16 +30,21 @@ class NavigationForwardButtonWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: Row(
-              children: List<Widget>.filled(
-                  3,
-                  Container(
-                    width: 15.r,
-                    height: 15.r,
-                    margin: EdgeInsets.only(right: 5.w),
-                    decoration: BoxDecoration(
-                        color: AppViewColor.indicator,
-                        borderRadius: BorderRadius.circular(15.r)),
-                  )),
+              children: List<int>.generate(
+                3,
+                (index) => index,
+              )
+                  .map((e) => Container(
+                        width: 15.r,
+                        height: 15.r,
+                        margin: EdgeInsets.only(right: 5.w),
+                        decoration: BoxDecoration(
+                            color: e + 1 == currentPage
+                                ? AppViewColor.indicatorSelected
+                                : AppViewColor.indicator,
+                            borderRadius: BorderRadius.circular(15.r)),
+                      ))
+                  .toList(),
             ),
           ),
           const Expanded(child: SizedBox()),
@@ -48,10 +53,10 @@ class NavigationForwardButtonWidget extends StatelessWidget {
             onPressed: () {
               isLastPage
                   ? Navigator.of(context)
-                  .pushReplacementNamed(LoginAndSignUpPage.id)
+                      .pushReplacementNamed(LoginAndSignUpPage.id)
                   : pageController.nextPage(
-                  duration: const Duration(milliseconds: 100),
-                  curve: Curves.bounceIn);
+                      duration: const Duration(milliseconds: 100),
+                      curve: Curves.bounceIn);
             },
             icon: const AssetIcon(
               path: IconPath.arrowForward,

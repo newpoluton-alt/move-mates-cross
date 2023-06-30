@@ -17,11 +17,11 @@ class PageViewBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLastPage = currentPage == 3;
-
     bool isFirstPage = currentPage == 0;
 
     return !isFirstPage
         ? NavigationForwardButtonWidget(
+      currentPage: currentPage,
             isLastPage: isLastPage,
             pageController: pageController)
         : Container(

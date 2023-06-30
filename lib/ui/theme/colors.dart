@@ -6,6 +6,7 @@ class GradientColors {
 }
 class AppViewColor{
   static const Color indicator = Color(0xffffa79a);
+  static const Color indicatorSelected = Color(0xfff8dbe1);
 }
 class ValidationColor{
   static const Color signInAndSignup = Color(0xff142000);

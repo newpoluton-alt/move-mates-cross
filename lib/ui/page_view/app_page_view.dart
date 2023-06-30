@@ -15,7 +15,7 @@ class AppPageView extends StatefulWidget {
 }
 
 class _AppPageViewState extends State<AppPageView> {
-late  final _pageController;
+late  final PageController _pageController;
 int currentPage = 0;
 @override
   void initState() {

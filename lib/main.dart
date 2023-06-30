@@ -62,7 +62,7 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
                 width: 100.w,
                 height: 139.h,
               ),
-              durationInSeconds: 2,
+              durationInSeconds: 1,
               gradientBackground: const LinearGradient(
                   colors: [GradientColors.start, GradientColors.end],
                   begin: Alignment.topLeft,
