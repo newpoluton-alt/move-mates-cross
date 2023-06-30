@@ -6,7 +6,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:move_mates_android/ui/auth/signup/asset_icon_widget.dart';
 
 import '../../theme/colors.dart';
-import '../constants.dart';
+import '../../theme/constants.dart';
 
 class TabBarElementWidget extends StatelessWidget {
   final FocusNode emailNode;

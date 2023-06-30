@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AssetIcon extends StatelessWidget {
   final String path;
   final Color color;
-
-  const AssetIcon({
+  final double size;
+   const AssetIcon({
     super.key,
+    this.size = 24,
     required this.path,
     required this.color,
+
   });
 
   @override
@@ -16,7 +18,7 @@ class AssetIcon extends StatelessWidget {
     return ImageIcon(
       AssetImage(path),
       color: color,
-      size: 24.w,
+      size: size.w,
     );
   }
 }

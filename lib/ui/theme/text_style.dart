@@ -7,6 +7,9 @@ class AppTextStyle {
   static TextStyle greeting = GoogleFonts.montserrat(
       color: Colors.white, fontWeight: FontWeight.w600, fontSize: 26.sp);
 
+  static TextStyle appSplashStyle = GoogleFonts.openSans(
+      color: Colors.white, fontWeight: FontWeight.w700, fontSize: 37.sp);
+
   static TextStyle concernName = GoogleFonts.montserrat(
     color: Colors.white,
     fontWeight: FontWeight.w600,
@@ -18,6 +21,10 @@ class AppTextStyle {
 
   static TextStyle regularFunctionalWhite = GoogleFonts.montserrat(
       color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.w600);
+  static TextStyle appViewBoldBlack = GoogleFonts.montserrat(
+      color: Colors.black, fontSize: 27.sp, fontWeight: FontWeight.w600);
+  static TextStyle appViewRegularBlack =
+      GoogleFonts.montserrat(color: Colors.black, fontSize: 20.sp);
 }
 
 class AppButtonTextStyle {
@@ -31,8 +38,8 @@ class AppButtonTextStyle {
 }
 
 class ValidationPageTextStyle {
-  static TextStyle textFieldError = GoogleFonts.montserrat(
-      fontSize: 10.sp, fontWeight: FontWeight.w500);
+  static TextStyle textFieldError =
+      GoogleFonts.montserrat(fontSize: 10.sp, fontWeight: FontWeight.w500);
   static TextStyle signupRegular = GoogleFonts.montserrat(
     color: Colors.black,
     fontSize: 14.sp,

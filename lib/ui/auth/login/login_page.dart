@@ -5,7 +5,7 @@ import 'package:move_mates_android/ui/auth/login/login_text_form_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
 import '../../theme/colors.dart';
-import '../constants.dart';
+import '../../theme/constants.dart';
 import '../validation_button_widget.dart';
 import 'move_to_registration_page_text_widget.dart';
 import 'signed_divider_widget.dart';

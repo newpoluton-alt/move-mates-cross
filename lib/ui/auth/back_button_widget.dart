@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/colors.dart';
-import 'constants.dart';
+import '../theme/constants.dart';
 import 'signup/asset_icon_widget.dart';
 
 class BackButtonWidget extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:move_mates_android/ui/auth/signup/signup_tab_bar_widget.dart';
 import 'package:move_mates_android/ui/auth/signup/tab_bar_element_widget.dart';
 
 import '../../theme/colors.dart';
-import '../constants.dart';
+import '../../theme/constants.dart';
 
 class TabViewWidget extends StatefulWidget {
   final GlobalKey<FormState> textFieldFormKey;

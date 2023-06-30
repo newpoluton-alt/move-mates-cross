@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'constants.dart';
+import '../theme/constants.dart';
 
 class ValidationButtonWidget extends StatelessWidget {
   final String name;

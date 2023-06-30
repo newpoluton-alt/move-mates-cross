@@ -4,7 +4,9 @@ class GradientColors {
   static const Color start = Color(0xFFF3B2BD);
   static const Color end = Color(0xFFfdd2cc);
 }
-
+class AppViewColor{
+  static const Color indicator = Color(0xffffa79a);
+}
 class ValidationColor{
   static const Color signInAndSignup = Color(0xff142000);
   static const Color checkBoxGrey = Color(0xff909090);
