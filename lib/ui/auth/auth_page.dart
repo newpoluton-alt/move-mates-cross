@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/bloc/bloc.dart';
+import 'package:move_mates_android/bloc/auth_bloc.dart';
 import 'package:move_mates_android/ui/auth/login/login_page.dart';
 import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
 import 'package:move_mates_android/ui/auth/validation_button_widget.dart';
@@ -23,13 +23,7 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    Authorisation()
-        .createUser(
-            name: UniqueKey().toString().substring(0, 7),
-            email: UniqueKey().toString().substring(0, 7),
-            password: UniqueKey().toString().substring(0, 7),
-            phone: UniqueKey().toString().substring(0, 7),)
-        .then((value) => debugPrint(value.toJson(value).toString()));
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
