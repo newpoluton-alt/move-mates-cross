@@ -9,12 +9,16 @@ class LoginTextFormWidget extends StatelessWidget {
   final GlobalKey<FormState> signupFormKey;
   final bool isPasswordVisible;
   final void Function() changePasswordVisibility;
+  final TextEditingController nameEditingController;
+  final TextEditingController passEditingController;
 
   const LoginTextFormWidget(
       {super.key,
       required this.signupFormKey,
       required this.isPasswordVisible,
-      required this.changePasswordVisibility});
+      required this.changePasswordVisibility,
+      required this.nameEditingController,
+      required this.passEditingController});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class LoginTextFormWidget extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              controller: nameEditingController,
               decoration: const InputDecoration(
                 hintText: 'Enter your name',
                 labelText: 'Имя',
@@ -30,7 +35,7 @@ class LoginTextFormWidget extends StatelessWidget {
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
               validator: (value) {
-                if(value == null || value.isEmpty) {
+                if (value == null || value.isEmpty) {
                   return 'Пожалуйста, введите ваше имя.';
                 }
                 return null;
@@ -40,6 +45,7 @@ class LoginTextFormWidget extends StatelessWidget {
               height: 21.h,
             ),
             TextFormField(
+              controller: passEditingController,
               obscureText: !isPasswordVisible,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
@@ -53,11 +59,9 @@ class LoginTextFormWidget extends StatelessWidget {
                               ? ValidationColor.signInAndSignup
                               : ValidationColor.checkBoxGrey))),
               validator: (value) {
-                if(value == null || value.isEmpty)
-                {
+                if (value == null || value.isEmpty) {
                   return 'Пожалуйста, введите пароль.';
-                }
-                else if( value.isNotEmpty && value.length < 8) {
+                } else if (value.isNotEmpty && value.length < 8) {
                   return 'Пароль должен содержать не менее 8 символов.';
                 }
                 return null;

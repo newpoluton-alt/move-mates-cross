@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/bloc/auth_bloc.dart';
 import 'package:move_mates_android/ui/auth/login/login_page.dart';
@@ -24,42 +25,45 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Image.asset(
-          ImagePath.imgFifth,
-          width: 1.sw,
-          height: 620.h,
-          fit: BoxFit.fitWidth,
-        ),
-        const Expanded(child: SizedBox()),
-        Padding(
-          padding: EdgeInsets.only(right: 20.w, left: 20.w, bottom: 50.h),
-          child: Column(
-            children: [
-              ValidationButtonWidget(
-                name: 'Вход',
-                textStyle: AppButtonTextStyle.regularButtonBlack,
-                onPushing: () {
-                  gotoPage(LoginPage.id);
-                },
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              ValidationButtonWidget(
-                name: 'Регистрация',
-                textStyle: AppButtonTextStyle.regularButtonWhite,
-                onPushing: () {
-                  gotoPage(SignupPage.id);
-                },
-                buttonColor: Colors.black,
-              ),
-            ],
+    return BlocProvider<AuthCubit>(
+      create: (_)=>AuthCubit(),
+        child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Image.asset(
+            ImagePath.imgFifth,
+            width: 1.sw,
+            height: 620.h,
+            fit: BoxFit.fitWidth,
           ),
-        ),
-      ]),
+          const Expanded(child: SizedBox()),
+          Padding(
+            padding: EdgeInsets.only(right: 20.w, left: 20.w, bottom: 50.h),
+            child: Column(
+              children: [
+                ValidationButtonWidget(
+                  name: 'Вход',
+                  textStyle: AppButtonTextStyle.regularButtonBlack,
+                  onPushing: () {
+                    gotoPage(LoginPage.id);
+                  },
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                ValidationButtonWidget(
+                  name: 'Регистрация',
+                  textStyle: AppButtonTextStyle.regularButtonWhite,
+                  onPushing: () {
+                    gotoPage(SignupPage.id);
+                  },
+                  buttonColor: Colors.black,
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
