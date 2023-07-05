@@ -1,5 +1,4 @@
 
-
 class LoginResponse {
   final String? token;
   final String? userName;
