@@ -5,7 +5,7 @@ class LoginRequestModel implements RequestModel{
   final String email;
   final String password;
   @override
-  Map toJson() => {'email': email, 'password': password};
+  Map<String, dynamic> toJson() => {'username': email, 'password': password};
   const LoginRequestModel({
     required this.email,
     required this.password,

@@ -60,15 +60,17 @@ class _SignupPageState extends State<SignupPage> {
     }
 
     final isValid = _textFieldFormKey.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
     if(!(_doUserAgree ?? false)) {
       setState(() {
         _doUserAgree = false;
       });
       return;
     }
+
+    if (!isValid) {
+      return;
+    }
+
     _textFieldFormKey.currentState!.save();
     context.read<AuthCubit>().createUser(SignupRequestModel(
           name: _nameEditingController.text.trim(),
@@ -131,7 +133,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   ValidationButtonWidget(
                     name: state is AuthStateLoading
-                        ? 'Загрузка'
+                        ? 'Загрузка...'
                         : 'Зарегистрироваться',
                     textStyle: AppButtonTextStyle.regularButtonWhite,
                     buttonColor: Colors.black,

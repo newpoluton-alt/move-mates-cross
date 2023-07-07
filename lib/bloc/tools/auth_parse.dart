@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 import '../models/request_model.dart';
@@ -13,17 +14,16 @@ class AuthParse {
   const AuthParse(
       {required this.model, required this.operationName, required this.role});
 
-  Future<http.Response> responseBody() async {
-    final String operation = (operationName == AuthOperationName.login)
-        ? 'login'
-        : (role == UserRole.coach)
-            ? 'coach/create'
-            : 'client/create';
-    final String body =
-        jsonEncode(model);
+  Future<http.Response> response() async {
+    final String operation =
+        (operationName == AuthOperationName.login && role == UserRole.none)
+            ? 'login'
+            : (role == UserRole.coach)
+                ? 'coach/create'
+                : 'client/create';
     final Uri url = Uri.parse(AuthBlocConstants.baseUrl + operation);
-    final response =
-        await http.post(url, headers: AuthBlocConstants.headers, body: body);
+    final response = await http.post(url,
+        headers: AuthBlocConstants.headers, body: jsonEncode(model));
 
     return response;
   }

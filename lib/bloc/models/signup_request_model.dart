@@ -1,6 +1,6 @@
 import 'request_model.dart';
 
-class SignupRequestModel implements RequestModel{
+class SignupRequestModel implements RequestModel {
   final String name;
   final String email;
   final String password;
@@ -21,11 +21,9 @@ class SignupRequestModel implements RequestModel{
         'email': email,
         'password': password,
         'phone': phone,
-        'role': (role == UserRole.coach) ? 'coach' : 'client',
+        // 'role': (role == UserRole.coach) ? 'coach' : 'client',
+        'birthDate': '2023-07-07'
       };
 }
 
-enum UserRole {
-  coach,
-  regularUser,
-}
+enum UserRole { coach, regularUser, none }

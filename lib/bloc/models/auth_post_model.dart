@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class LoginResponse {
   final String? token;
   final String? userName;
@@ -21,7 +23,7 @@ class LoginResponse {
         email: json['email']);
   }
 
-  Map<String, dynamic> toJson(LoginResponse loginResponse) {
+  Map toJson(LoginResponse loginResponse) {
     return {
       'token': loginResponse.token,
       'userName': loginResponse.userName,
@@ -33,12 +35,12 @@ class LoginResponse {
 }
 
 class UserSignupModel {
-  final String name;
-  final String email;
-  final String phone;
-  final String birthDate;
-  final String role;
-  final LoginResponse loginResponse;
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? birthDate;
+  final String? role;
+  final LoginResponse? loginResponse;
 
   const UserSignupModel({
     required this.role,
@@ -49,7 +51,7 @@ class UserSignupModel {
     required this.loginResponse,
   });
 
-  factory UserSignupModel.fromJson(Map<String, dynamic> json) {
+  factory UserSignupModel.fromJson(Map json) {
     return UserSignupModel(
         role: json['role'],
         name: json['name'],
@@ -59,14 +61,14 @@ class UserSignupModel {
         loginResponse: LoginResponse.fromJson(json['loginResponse']));
   }
 
-  Map<String, dynamic> toJson(UserSignupModel model) {
+  Map toJson(UserSignupModel model) {
     return {
       'name': model.name,
       'email': model.email,
       'phone': model.phone,
       'birthDate': model.birthDate,
       'role': model.role,
-      'loginResponse': model.loginResponse.toJson(loginResponse)
+      'loginResponse': jsonEncode(model.loginResponse)
     };
   }
 }

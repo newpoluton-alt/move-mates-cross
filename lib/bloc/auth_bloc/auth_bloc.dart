@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:move_mates_android/bloc/auth_bloc/auth_bloc_state.dart';
-import 'package:move_mates_android/bloc/tools/auth_bloc_constants.dart';
+import 'package:move_mates_android/bloc/tools/auth_parse.dart';
 
 import '../models/auth_post_model.dart';
 import '../models/login_request_model.dart';
@@ -14,20 +13,21 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthStateInitial());
 
   Future<void> loginUser(LoginRequestModel model) async {
-    try {
-      emit(AuthStateLoading());
+    emit(AuthStateLoading());
 
-      const String operationName = 'login';
-      final String body =
-          jsonEncode({'username': model.email, 'password': model.password});
-      final Uri url = Uri.parse(AuthBlocConstants.baseUrl + operationName);
-      final response =
-          await http.post(url, headers: AuthBlocConstants.headers, body: body);
-      Map<String, dynamic> decodedJson = jsonDecode(response.body);
+    final AuthParse loginParse = AuthParse(
+      model: model,
+      operationName: AuthOperationName.login,
+      role: UserRole.none,
+    );
+    try {
+      http.Response response = await loginParse.response();
 
       if (response.statusCode == 200) {
-        decodedJson.addAll({'email': model.email});
-        emit(AuthStateLoaded(LoginResponse.fromJson(decodedJson)));
+        Map<String, dynamic> body = jsonDecode(response.body);
+        body.addAll({'email': model.email});
+
+        emit(AuthStateLoaded(LoginResponse.fromJson(body)));
       } else if (response.statusCode == 401) {
         throw Exception('Пользователь не зарегистрирован');
       } else {
@@ -39,32 +39,25 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> createUser(SignupRequestModel model) async {
+    emit(AuthStateLoading());
+    final AuthParse signupParse = AuthParse(
+        model: model,
+        operationName: AuthOperationName.signup,
+        role: model.role);
     try {
-      emit(AuthStateLoading());
-      final String operationName =
-          (model.role == UserRole.regularUser) ? 'client/create' : 'coach/create';
-      final Uri url = Uri.parse(AuthBlocConstants.baseUrl + operationName);
-      final String body = jsonEncode({
-        "name": model.name,
-        "email": model.email,
-        "password": model.password,
-        "phone": model.phone,
-        "birthDate": "2023-06-30",
-      });
-      final response =
-          await http.post(url, headers: AuthBlocConstants.headers, body: body);
-      debugPrint('sign up status code: ${response.statusCode}');
+      http.Response response = await signupParse.response();
       if (response.statusCode == 200) {
         //if the server did return a 200 created response
         //then parse the JSON
-        Map<String, dynamic> decodedJson = jsonDecode(response.body);
-        emit(AuthStateLoaded(UserSignupModel.fromJson(decodedJson)));
+        Map<String, dynamic> body = jsonDecode(response.body);
+        emit(AuthStateLoaded(UserSignupModel.fromJson(body)));
       } else if (response.statusCode == 417) {
         throw Exception('Пользователь уже существует');
       } else {
         throw Exception(response.body);
       }
     } catch (e) {
+      print(e.toString());
       emit(AuthStateError(e.toString()));
     }
   }
