@@ -1,22 +1,24 @@
-
 class LoginResponse {
   final String? token;
   final String? userName;
   final int? id;
   final List? roles;
+  final String? email;
 
   const LoginResponse(
       {required this.token,
-        required this.userName,
-        required this.id,
-        required this.roles});
+      this.email,
+      required this.userName,
+      required this.id,
+      required this.roles});
 
   factory LoginResponse.fromJson(Map json) {
     return LoginResponse(
         token: json['token'],
         userName: json['userName'],
         id: json['id'],
-        roles: json['roles']);
+        roles: json['roles'],
+        email: json['email']);
   }
 
   Map<String, dynamic> toJson(LoginResponse loginResponse) {
@@ -24,7 +26,8 @@ class LoginResponse {
       'token': loginResponse.token,
       'userName': loginResponse.userName,
       'id': loginResponse.id,
-      'roles': loginResponse.roles
+      'roles': loginResponse.roles,
+      'email':loginResponse.email
     };
   }
 }
@@ -53,9 +56,9 @@ class UserSignupModel {
         email: json['email'],
         phone: json['phone'],
         birthDate: json['birthDate'],
-        loginResponse: LoginResponse.fromJson(json['loginResponse'])
-    );
+        loginResponse: LoginResponse.fromJson(json['loginResponse']));
   }
+
   Map<String, dynamic> toJson(UserSignupModel model) {
     return {
       'name': model.name,

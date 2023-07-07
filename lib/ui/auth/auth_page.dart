@@ -22,45 +22,54 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-    backgroundColor: Colors.white,
-    body: SafeArea(
-      child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Image.asset(
-          ImagePath.imgFifth,
-          width: 1.sw,
-          height: 620.h,
-          fit: BoxFit.fitWidth,
-        ),
-        const Expanded(child: SizedBox()),
-        Padding(
-          padding: EdgeInsets.only(right: 20.w, left: 20.w, bottom: 50.h),
-          child: Column(
-            children: [
-              ValidationButtonWidget(
-                name: 'Вход',
-                textStyle: AppButtonTextStyle.regularButtonBlack,
-                onPushing: () {
-                  gotoPage(LoginPage.id);
-                },
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              ValidationButtonWidget(
-                name: 'Регистрация',
-                textStyle: AppButtonTextStyle.regularButtonWhite,
-                onPushing: () {
-                  gotoPage(SignupPage.id);
-                },
-                buttonColor: Colors.black,
-              ),
-            ],
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: SizedBox(
+            height: 1.sh,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    ImagePath.imgFifth,
+                    width: 1.sw,
+                    height: 620.h,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const Expanded(child: SizedBox()),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(right: 20.w, left: 20.w, bottom: 50.h),
+                    child: Column(
+                      children: [
+                        ValidationButtonWidget(
+                          name: 'Вход',
+                          textStyle: AppButtonTextStyle.regularButtonBlack,
+                          onPushing: () {
+                            gotoPage(LoginPage.id);
+                          },
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        ValidationButtonWidget(
+                          name: 'Регистрация',
+                          textStyle: AppButtonTextStyle.regularButtonWhite,
+                          onPushing: () {
+                            gotoPage(SignupPage.id);
+                          },
+                          buttonColor: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
           ),
         ),
-      ]),
-    ),
-      );
+      ),
+    );
   }
 }

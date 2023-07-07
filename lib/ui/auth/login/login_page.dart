@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:move_mates_android/bloc/models/auth_post_model.dart';
 import 'package:move_mates_android/ui/auth/back_button_widget.dart';
 import 'package:move_mates_android/ui/auth/login/login_text_form_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
-import 'package:move_mates_android/ui/user/user_page.dart';
 
-import '../../../bloc/auth_bloc.dart';
-import '../../../bloc/auth_bloc_state.dart';
+import '../../../bloc/auth_bloc/auth_bloc.dart';
+import '../../../bloc/models/login_request_model.dart';
+import '../../../bloc/tools/auth_bloc_tools.dart';
+import '../../../bloc/auth_bloc/auth_bloc_state.dart';
 import '../../theme/colors.dart';
 import '../../theme/constants.dart';
-import '../custom_snackbar_builder.dart';
-import '../models.dart';
 import '../validation_button_widget.dart';
 import 'move_to_registration_page_text_widget.dart';
 import 'signed_divider_widget.dart';
@@ -29,17 +25,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final TextEditingController _nameEditingController;
+  late final TextEditingController _emailEditingController;
   late final TextEditingController _passEditingController;
-  late final FlutterSecureStorage storage;
   bool _isPasswordVisible = false;
   late final AuthCubit authCubit;
   final _signupFormKey = GlobalKey<FormState>();
+
   @override
   void initState() {
-    storage = const FlutterSecureStorage();
-    storage.aOptions.copyWith(encryptedSharedPreferences: true);
-    _nameEditingController = TextEditingController();
+    _emailEditingController = TextEditingController();
     _passEditingController = TextEditingController();
     super.initState();
   }
@@ -50,7 +44,11 @@ class _LoginPageState extends State<LoginPage> {
       create: (_) => AuthCubit(),
       child: Builder(builder: (context) {
         return BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-          isStateChanged(state, context);
+          AuthBlocTools.isStateChanged(
+              id: LoginPage.id,
+              state: state,
+              context: context,
+              writeCredentials: AuthBlocTools.writeCredentialsIntoStorage);
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -78,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                     LoginTextFormWidget(
                         signupFormKey: _signupFormKey,
                         isPasswordVisible: _isPasswordVisible,
-                        nameEditingController: _nameEditingController,
+                        emailEditingController: _emailEditingController,
                         passEditingController: _passEditingController,
                         changePasswordVisibility: changePasswordVisibility),
                     SizedBox(
@@ -136,41 +134,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  void writeCredentialsIntoStorage(AuthStateLoaded state) async {
-    await storage.write(
-      key: StorageKeys.id,
-      value: (state.credentials as LoginResponse).id.toString(),
-    );
-    await storage.write(
-      key: StorageKeys.userName,
-      value: (state.credentials as LoginResponse).userName,
-    );
-    await storage.write(
-      key: StorageKeys.token,
-      value: (state.credentials as LoginResponse).token,
-    );
-    await storage.write(
-      key: StorageKeys.roles,
-      value: (state.credentials as LoginResponse).roles.toString(),
-    );
-  }
-
-  void isStateChanged(AuthState state, BuildContext context) {
-    if (state is AuthStateLoaded) {
-      writeCredentialsIntoStorage(state);
-      Future.delayed(Duration.zero, () {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            UserPage.id, (Route<dynamic> route) => false);
-      });
-    }
-    if (state is AuthStateError) {
-      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(buildCustomAuthSnackBar(state.error));
-      });
-    }
-  }
-
   void _submit(BuildContext context) async {
     if (!mounted) {
       return;
@@ -180,8 +143,8 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
     _signupFormKey.currentState!.save();
-    context.read<AuthCubit>().loginUser(
-        name: _nameEditingController.text,
-        password: _passEditingController.text);
+    context.read<AuthCubit>().loginUser(LoginRequestModel(
+        email: _emailEditingController.text.trim(),
+        password: _passEditingController.text.trim()));
   }
 }

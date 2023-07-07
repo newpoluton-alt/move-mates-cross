@@ -7,11 +7,21 @@ import '../../theme/colors.dart';
 import '../../theme/constants.dart';
 
 class TabViewWidget extends StatefulWidget {
+  final void Function(int i) changeStatus;
   final GlobalKey<FormState> textFieldFormKey;
+  final TextEditingController nameEditingController;
+  final TextEditingController emailEditingController;
+  final TextEditingController numberEditingController;
+  final TextEditingController passEditingController;
 
   const TabViewWidget({
     super.key,
+    required this.changeStatus,
     required this.textFieldFormKey,
+    required this.nameEditingController,
+    required this.emailEditingController,
+    required this.numberEditingController,
+    required this.passEditingController,
   });
 
   @override
@@ -24,6 +34,7 @@ class _TabViewWidgetState extends State<TabViewWidget> {
 
   late final FocusNode _emailNode;
   late final FocusNode _numberNode;
+
 
   @override
   void initState() {
@@ -40,6 +51,7 @@ class _TabViewWidgetState extends State<TabViewWidget> {
 
   void changePage(int index) {
     setState(() {
+      widget.changeStatus(index);
       _isFirstPage = 0 == index;
     });
   }
@@ -78,6 +90,10 @@ class _TabViewWidgetState extends State<TabViewWidget> {
             numberNode: _numberNode,
             isPasswordVisible: _isPasswordVisible,
             textFieldFormKey: widget.textFieldFormKey,
+            nameEditingController: widget.nameEditingController,
+            emailEditingController: widget.emailEditingController,
+            numberEditingController: widget.numberEditingController,
+            passEditingController: widget.passEditingController,
             changePasswordVisibility: changePasswordVisibility,
             changeFocus: changeFocus),
       ]),

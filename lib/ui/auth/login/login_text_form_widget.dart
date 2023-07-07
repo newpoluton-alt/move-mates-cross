@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +10,7 @@ class LoginTextFormWidget extends StatelessWidget {
   final GlobalKey<FormState> signupFormKey;
   final bool isPasswordVisible;
   final void Function() changePasswordVisibility;
-  final TextEditingController nameEditingController;
+  final TextEditingController emailEditingController;
   final TextEditingController passEditingController;
 
   const LoginTextFormWidget(
@@ -17,7 +18,7 @@ class LoginTextFormWidget extends StatelessWidget {
       required this.signupFormKey,
       required this.isPasswordVisible,
       required this.changePasswordVisibility,
-      required this.nameEditingController,
+      required this.emailEditingController,
       required this.passEditingController});
 
   @override
@@ -27,16 +28,19 @@ class LoginTextFormWidget extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
-              controller: nameEditingController,
+              controller: emailEditingController,
               decoration: const InputDecoration(
-                hintText: 'Enter your name',
-                labelText: 'Имя',
+                labelText: 'Е-майл',
+                hintText: 'Enter your email',
               ),
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
+
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Пожалуйста, введите ваше имя.';
+                  return 'Пожалуйста, введите ваш адрес электронной почты.';
+                } else if (!EmailValidator.validate(value)) {
+                  return 'Пожалуйста, введите действительный Е-майл.';
                 }
                 return null;
               },

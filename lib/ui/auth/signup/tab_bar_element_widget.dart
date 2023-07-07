@@ -12,6 +12,10 @@ class TabBarElementWidget extends StatelessWidget {
   final FocusNode emailNode;
   final FocusNode numberNode;
   final bool isPasswordVisible;
+  final TextEditingController nameEditingController;
+  final TextEditingController emailEditingController;
+  final TextEditingController numberEditingController;
+  final TextEditingController passEditingController;
   final GlobalKey<FormState> textFieldFormKey;
   final void Function() changePasswordVisibility;
   final void Function(FocusNode focusNode) changeFocus;
@@ -23,7 +27,11 @@ class TabBarElementWidget extends StatelessWidget {
       required this.isPasswordVisible,
       required this.textFieldFormKey,
       required this.changePasswordVisibility,
-      required this.changeFocus});
+      required this.changeFocus,
+      required this.nameEditingController,
+      required this.emailEditingController,
+      required this.numberEditingController,
+      required this.passEditingController});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +40,7 @@ class TabBarElementWidget extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: nameEditingController,
             decoration: const InputDecoration(
               hintText: 'Enter your name',
               labelText: 'Имя',
@@ -39,7 +48,7 @@ class TabBarElementWidget extends StatelessWidget {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             validator: (value) {
-              if(value == null || value.isEmpty) {
+              if (value == null || value.isEmpty) {
                 return 'Пожалуйста, введите ваше имя.';
               }
               return null;
@@ -49,6 +58,7 @@ class TabBarElementWidget extends StatelessWidget {
             height: 20.h,
           ),
           TextFormField(
+            controller: emailEditingController,
             decoration: const InputDecoration(
               labelText: 'Е-майл',
               hintText: 'Enter your email',
@@ -60,10 +70,9 @@ class TabBarElementWidget extends StatelessWidget {
               changeFocus(numberNode);
             },
             validator: (value) {
-              if(value == null || value.isEmpty) {
+              if (value == null || value.isEmpty) {
                 return 'Пожалуйста, введите ваш адрес электронной почты.';
-              } 
-              else if (!EmailValidator.validate(value)) {
+              } else if (!EmailValidator.validate(value)) {
                 return 'Пожалуйста, введите действительный Е-майл.';
               }
               return null;
@@ -74,6 +83,7 @@ class TabBarElementWidget extends StatelessWidget {
           ),
           IntlPhoneField(
             focusNode: numberNode,
+            controller: numberEditingController,
             textInputAction: TextInputAction.next,
             initialCountryCode: 'KG',
             decoration: const InputDecoration(hintText: '999 999 999'),
@@ -81,6 +91,7 @@ class TabBarElementWidget extends StatelessWidget {
             pickerDialogStyle: PickerDialogStyle(backgroundColor: Colors.white),
           ),
           TextFormField(
+            controller: passEditingController,
             obscureText: !isPasswordVisible,
             keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
@@ -94,11 +105,9 @@ class TabBarElementWidget extends StatelessWidget {
                             ? ValidationColor.signInAndSignup
                             : ValidationColor.checkBoxGrey))),
             validator: (value) {
-              if(value == null || value.isEmpty)
-                {
-                  return 'Пожалуйста, введите пароль.';
-                }
-              else if( value.isNotEmpty && value.length < 8) {
+              if (value == null || value.isEmpty) {
+                return 'Пожалуйста, введите пароль.';
+              } else if (value.isNotEmpty && value.length < 8) {
                 return 'Пароль должен содержать не менее 8 символов.';
               }
               return null;

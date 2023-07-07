@@ -6,14 +6,14 @@ import '../../theme/colors.dart';
 import '../../theme/text_style.dart';
 
 class SignupCheckboxWidget extends StatelessWidget {
-  final bool doUserAgree;
-  final void Function() changeMind;
+  final bool? doUserAgree;
+  final void Function(bool? agreement) changeMind;
 
-  const SignupCheckboxWidget(
-      {super.key,
-      required this.doUserAgree,
-      required this.changeMind,
-      });
+  const SignupCheckboxWidget({
+    super.key,
+    required this.doUserAgree,
+    required this.changeMind,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,10 @@ class SignupCheckboxWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Checkbox(
-              value: doUserAgree,
+              value: (doUserAgree ?? false),
+              isError: (doUserAgree == false),
               activeColor: ValidationColor.indicatorColor,
-              onChanged: (_) {
-                changeMind();
-              }),
+              onChanged: changeMind),
           SizedBox(
             width: 0.7.sw,
             child: Text.rich(TextSpan(

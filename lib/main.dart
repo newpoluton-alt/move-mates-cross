@@ -1,6 +1,7 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:move_mates_android/ui/auth/login/login_page.dart';
@@ -13,7 +14,7 @@ import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 import 'package:move_mates_android/ui/user/user_page.dart';
 
-import 'bloc/auth_bloc.dart';
+import 'bloc/auth_bloc/auth_bloc.dart';
 import 'ui/theme/constants.dart';
 
 void main() async {
