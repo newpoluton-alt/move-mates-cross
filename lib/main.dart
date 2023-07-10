@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:move_mates_android/ui/auth/login/forgotten_password_page.dart';
 import 'package:move_mates_android/ui/auth/login/login_page.dart';
 import 'package:move_mates_android/ui/auth/auth_page.dart';
 import 'package:move_mates_android/ui/auth/models.dart';
@@ -12,7 +13,7 @@ import 'package:move_mates_android/ui/page_view/app_page_view.dart';
 import 'package:move_mates_android/ui/theme/app_theme.dart';
 import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
-import 'package:move_mates_android/ui/user/user_page.dart';
+import 'package:move_mates_android/ui/user/pages/user_page.dart';
 
 import 'bloc/auth_bloc/auth_bloc.dart';
 import 'ui/theme/constants.dart';
@@ -81,6 +82,7 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
             LoginAndSignUpPage.id: (context) => const LoginAndSignUpPage(),
             LoginPage.id: (context) => const LoginPage(),
             SignupPage.id: (context) => const SignupPage(),
+            ForgottenPasswordPage.id:(context)=> const ForgottenPasswordPage(),
           },
         );
       },

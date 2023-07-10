@@ -1,10 +1,14 @@
 class IconPath {
   static const arrowBack = 'assets/icons/arrow_back.png';
   static const arrowForward = 'assets/icons/arrow_forward.png';
-  static const dumbbellLarge = 'assets/icons/dumbbell_large.png';
-  static const meditationRound = 'assets/icons/meditation_round.png';
-  static const eye = 'assets/icons/eye.png';
-  static const google = 'assets/icons/google.png';
+  static const dumbbellLarge = 'assets/icons/auth/dumbbell_large.png';
+  static const meditationRound = 'assets/icons/auth/meditation_round.png';
+  static const eye = "assets/icons/auth/eye.png";
+  static const google = 'assets/icons/auth/google.png';
+  static const home = 'assets/icons/user/home_page.png';
+  static const client = 'assets/icons/user/client_page.png';
+  static const chat = 'assets/icons/user/chat_page.png';
+  static const calendar = 'assets/icons/user/calendar_page.png';
 }
 
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/ui/auth/back_button_widget.dart';
+import 'package:move_mates_android/ui/auth/login/forgotten_password_page.dart';
 import 'package:move_mates_android/ui/auth/login/login_text_form_widget.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 
@@ -44,6 +45,8 @@ class _LoginPageState extends State<LoginPage> {
       create: (_) => AuthCubit(),
       child: Builder(builder: (context) {
         return BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+          //if a state is changed to loaded, this function automatically will
+          //navigate to user page saving credential data
           AuthBlocTools.isStateChanged(
               id: LoginPage.id,
               state: state,
@@ -85,7 +88,10 @@ class _LoginPageState extends State<LoginPage> {
                     Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(ForgottenPasswordPage.id);
+                            },
                             child: Text(
                               'Забыли пароль?',
                               style: ValidationPageTextStyle.checkBoxMediumGrey,

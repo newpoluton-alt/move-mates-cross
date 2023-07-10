@@ -87,6 +87,8 @@ class _SignupPageState extends State<SignupPage> {
       create: (_) => AuthCubit(),
       child: Builder(builder: (context) {
         return BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+          //if a state is changed to loaded, this function automatically will
+          //navigate to user page saving credential data
           AuthBlocTools.isStateChanged(
               id: SignupPage.id, state: state, context: context);
           return Scaffold(

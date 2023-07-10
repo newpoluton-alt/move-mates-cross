@@ -15,3 +15,9 @@ class ValidationColor{
   static const Color textFieldColor = Color(0xffc6c6c6);
   static const Color errorColor = Color(0xffff4343);
 }
+class UserPageColor{
+  static const Color icon = Color(0xffFF9A8C);
+}
+class ForgottenPasswordPageColor {
+  static const grey = Color(0xffb2b2b2);
+}

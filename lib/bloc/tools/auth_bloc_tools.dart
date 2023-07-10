@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../ui/auth/custom_snackbar_builder.dart';
 import '../../ui/auth/login/login_page.dart';
 import '../../ui/auth/models.dart';
-import '../../ui/user/user_page.dart';
+import '../../ui/user/pages/user_page.dart';
 import '../auth_bloc/auth_bloc_state.dart';
 import '../models/auth_post_model.dart';
 

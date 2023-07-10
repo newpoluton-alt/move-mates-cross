@@ -15,6 +15,8 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 48.sp,
   );
+  static TextStyle appBar = GoogleFonts.montserrat(
+      color: Colors.black, fontSize: 17.sp, fontWeight: FontWeight.w600);
 
   static TextStyle regularWhite =
       GoogleFonts.montserrat(color: Colors.white, fontSize: 15.sp);
@@ -87,5 +89,34 @@ class ValidationPageTextStyle {
     color: ValidationColor.signInAndSignup,
     fontWeight: FontWeight.w600,
     fontSize: 20.sp,
+  );
+}
+
+class ForgottenPasswordPageTextStyle{
+  static TextStyle titleSemiBold = GoogleFonts.montserrat(
+    color: ValidationColor.signInAndSignup,
+    fontWeight: FontWeight.w600,
+    fontSize: 30.sp,
+  );
+
+  static TextStyle descriptionRegular = GoogleFonts.montserrat(
+    color: ValidationColor.signInAndSignup,
+    fontWeight: FontWeight.w400,
+    fontSize: 13.sp,
+  );
+  static TextStyle descriptionMediumGrey = GoogleFonts.montserrat(
+    color: ForgottenPasswordPageColor.grey,
+    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+  );
+}
+
+
+class UserPageTextStyle{
+
+  static TextStyle bottomNavigationBar = GoogleFonts.montserrat(
+    color: UserPageColor.icon,
+    fontWeight: FontWeight.w500,
+    fontSize: 10.sp,
   );
 }

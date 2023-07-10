@@ -21,7 +21,6 @@ class SignupRequestModel implements RequestModel {
         'email': email,
         'password': password,
         'phone': phone,
-        // 'role': (role == UserRole.coach) ? 'coach' : 'client',
         'birthDate': '2023-07-07'
       };
 }

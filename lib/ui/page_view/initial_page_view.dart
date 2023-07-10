@@ -48,8 +48,6 @@ class InitialPageView extends StatelessWidget {
                     'MOVE MATES',
                     style: AppTextStyle.concernName,
                   ),
-                  Text('Доступное общение между тренерами и клиентами.',
-                      style: AppTextStyle.regularWhite)
                 ],
               ),
             )),
