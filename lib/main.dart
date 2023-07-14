@@ -1,12 +1,11 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:move_mates_android/ui/auth/auth_page.dart';
 import 'package:move_mates_android/ui/auth/login/forgotten_password_page.dart';
 import 'package:move_mates_android/ui/auth/login/login_page.dart';
-import 'package:move_mates_android/ui/auth/auth_page.dart';
 import 'package:move_mates_android/ui/auth/models.dart';
 import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
 import 'package:move_mates_android/ui/page_view/app_page_view.dart';
@@ -15,7 +14,6 @@ import 'package:move_mates_android/ui/theme/colors.dart';
 import 'package:move_mates_android/ui/theme/text_style.dart';
 import 'package:move_mates_android/ui/user/pages/user_page.dart';
 
-import 'bloc/auth_bloc/auth_bloc.dart';
 import 'ui/theme/constants.dart';
 
 void main() async {
@@ -56,7 +54,6 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
       builder: (BuildContext context, Widget? _) {
         return MaterialApp(
           title: 'Move Mates',
-          supportedLocales: const [Locale('ru', 'RU'), Locale('en', 'EN')],
           theme: AppTheme.moveMatesTheme,
           home: isThereToken
               ? const UserPage()
