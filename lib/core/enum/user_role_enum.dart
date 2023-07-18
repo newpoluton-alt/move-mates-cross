@@ -1,0 +1,1 @@
+enum UserRoleEnum{client, coach}

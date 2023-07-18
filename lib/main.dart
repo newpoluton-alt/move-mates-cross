@@ -1,25 +1,27 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:move_mates_android/ui/auth/auth_page.dart';
-import 'package:move_mates_android/ui/auth/login/forgotten_password_page.dart';
-import 'package:move_mates_android/ui/auth/login/login_page.dart';
-import 'package:move_mates_android/ui/auth/models.dart';
-import 'package:move_mates_android/ui/auth/signup/signup_page.dart';
-import 'package:move_mates_android/ui/page_view/app_page_view.dart';
-import 'package:move_mates_android/ui/theme/app_theme.dart';
-import 'package:move_mates_android/ui/theme/colors.dart';
-import 'package:move_mates_android/ui/theme/text_style.dart';
-import 'package:move_mates_android/ui/user/pages/user_page.dart';
+import 'package:move_mates_android/config/theme/app_theme.dart';
+import 'package:move_mates_android/config/theme/colors.dart';
+import 'package:move_mates_android/config/theme/text_style.dart';
+import 'package:move_mates_android/core/data_source/local_data_source_checker.dart';
+import 'package:move_mates_android/features/coach/presentation/pages/coach_page.dart';
+import 'package:move_mates_android/features/user_auth/presentation/pages/auth_page.dart';
+import 'package:move_mates_android/features/user_auth/presentation/pages/forgotten_password_page.dart';
+import 'package:move_mates_android/features/user_auth/presentation/pages/login_page.dart';
+import 'package:move_mates_android/features/user_auth/presentation/pages/onboarding_page.dart';
+import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
 
-import 'ui/theme/constants.dart';
-
+import 'config/routes/assets_routes.dart';
+import 'user_auth_injection_container.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(const MoveMatesApp()));
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await di.init();
+  runApp(const MoveMatesApp());
+
 }
 
 class MoveMatesApp extends StatefulWidget {
@@ -30,22 +32,21 @@ class MoveMatesApp extends StatefulWidget {
 }
 
 class _MoveMatesAppState extends State<MoveMatesApp> {
-  late final FlutterSecureStorage _storage;
-  bool isThereToken = false;
-
-  @override
-  void initState() {
-    _storage = const FlutterSecureStorage();
-    checkUserToken();
-    super.initState();
-  }
-
-  void checkUserToken() async {
-    var token = await _storage.read(key: StorageKeys.token) ?? '';
+  bool isThereLocalData = false;
+  void checkData() async{
+    var data = await di.sl<LocalDataSourceChecker>().isDataLocated;
     setState(() {
-      isThereToken = token.isNotEmpty;
+    isThereLocalData = data;
     });
   }
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      checkData();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +56,8 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
         return MaterialApp(
           title: 'Move Mates',
           theme: AppTheme.moveMatesTheme,
-          home: isThereToken
-              ? const UserPage()
+          home:
+              isThereLocalData? const UserPage()
               : EasySplashScreen(
                   showLoader: false,
                   title: Text(
