@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/signup_specialist_tab_bar_widget.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/signup_tab_bar_widget.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/tab_bar_element_widget.dart';
 
@@ -67,7 +68,7 @@ class _TabViewWidgetState extends State<TabViewWidget> {
       length: 2,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         TabBar(
-            indicatorColor: ValidationColor.indicatorColor,
+            indicatorColor: ValidationColor.pageMainColor,
             indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: false,
             onTap: changePage,
@@ -77,10 +78,9 @@ class _TabViewWidgetState extends State<TabViewWidget> {
                 text: 'Клиент',
                 path: IconPath.meditationRound,
               ),
-              SignupTabBar(
+              SignUpSpecialistTabBar(
                 isFirstPage: !_isFirstPage,
-                text: 'Tренер',
-                path: IconPath.dumbbellLarge,
+                path: IconPath.hand,
               ),
             ]),
         SizedBox(

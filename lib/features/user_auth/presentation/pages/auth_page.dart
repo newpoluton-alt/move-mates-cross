@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/config/routes/assets_routes.dart';
+import 'package:move_mates_android/config/theme/colors.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/login_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
-import 'package:move_mates_android/config/routes/assets_routes.dart';
-import 'package:move_mates_android/config/theme/text_style.dart';
 
-class LoginAndSignUpPage extends StatefulWidget {
+import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+
+class AuthPage extends StatefulWidget {
   static const id = 'login_and_signup_page';
 
-  const LoginAndSignUpPage({super.key});
+  const AuthPage({super.key});
 
   @override
-  State<LoginAndSignUpPage> createState() => _LoginAndSignUpPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
+class _AuthPageState extends State<AuthPage> {
   void gotoPage(String id) {
     Navigator.of(context).pushNamed(id);
   }
@@ -25,7 +27,6 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        // physics: const NeverScrollableScrollPhysics(),
         child: SizedBox(
           height: 1.sh,
           child: Column(
@@ -34,6 +35,7 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
               children: [
                 Image.asset(
                   ImagePath.imgFifth,
+                  height: 0.7.sh,
                   width: 1.sw,
                   fit: BoxFit.fitWidth,
                 ),
@@ -45,7 +47,9 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
                     children: [
                       ValidationButtonWidget(
                         name: 'Вход',
-                        textStyle: AppButtonTextStyle.regularButtonBlack,
+                        buttonBorderColor:
+                            ValidationColor.pageMainColor,
+                        textStyle: AppButtonTextStyle.regularButtonPink,
                         onPushing: () {
                           gotoPage(LoginPage.id);
                         },
@@ -59,7 +63,8 @@ class _LoginAndSignUpPageState extends State<LoginAndSignUpPage> {
                         onPushing: () {
                           gotoPage(SignupPage.id);
                         },
-                        buttonColor: Colors.black,
+                        buttonColor: ValidationColor.pageMainColor,
+                        buttonBorderColor: ValidationColor.pageMainColor,
                       ),
                     ],
                   ),

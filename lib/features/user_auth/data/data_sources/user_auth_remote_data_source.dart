@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:move_mates_android/core/constants/user_auth_constants.dart';
+import 'package:move_mates_android/core/constants/user_auth/user_auth_constants.dart';
 import 'package:move_mates_android/core/enum/user_role_enum.dart';
 import 'package:move_mates_android/core/error/user_auth_exception.dart';
+import 'package:move_mates_android/core/network/request_http.dart';
 import 'package:move_mates_android/features/user_auth/data/models/user_auth_model.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_in.dart';
 
@@ -36,10 +37,10 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
   }
 
   Future<UserAuthModel> _getUserAuth(UserAuthParam params) async {
-    final response = await client.post(
-        Uri.parse(UserAuthConstants.baseUrl + paramToAuthString(params)),
-        headers: UserAuthConstants.headers,
-        body: jsonEncode(paramToJsonBody(params)));
+    final request = RequestHttpImpl(
+        client: client,
+        url: UserAuthParseConstants.baseUrl + paramToAuthString(params));
+    final response = await request.post(body: params);
 
     if (response.statusCode == 200) {
       return paramToModel(params: params, body: response.body);
@@ -61,15 +62,15 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
     }
   }
 
-  Map paramToJsonBody(UserAuthParam params) {
-    if (params is SignUpParam) {
-      return params.toJson();
-    } else if (params is SignInParam) {
-      return params.toJson();
-    } else {
-      return {'none': 'none'};
-    }
-  }
+  // Map paramToJsonBody(UserAuthParam params) {
+  //   if (params is SignUpParam) {
+  //     return params.toJson();
+  //   } else if (params is SignInParam) {
+  //     return params.toJson();
+  //   } else {
+  //     return {'none': 'none'};
+  //   }
+  // }
 
   String paramToAuthString(UserAuthParam params) {
     if (params is SignUpParam) {

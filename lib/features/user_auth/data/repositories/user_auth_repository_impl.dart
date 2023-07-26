@@ -4,6 +4,7 @@ import 'package:move_mates_android/core/network/connection_state.dart';
 import 'package:move_mates_android/core/usescases/usecase.dart';
 import 'package:move_mates_android/features/user_auth/domain/repositories/user_auth_repository.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_in.dart';
+import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_out.dart';
 
 import '../../../../core/error/user_auth_exception.dart';
 import '../../domain/usecases/user_sign_up.dart';
@@ -42,12 +43,11 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
         } else {
           final userData =
               await userAuthRemoteDataSource.signIn(params as SignInParam);
-          userAuthLocalDataSource.cacheUserData(userData).onError(
-              (error, stackTrace) => throw (CredentialsCacheFailException()));
+          await userAuthLocalDataSource.cacheUserData(userData);
           return Right(userData);
         }
-      } on CredentialsCacheFailException {
-        return Left(CredentialCacheFailure());
+      } on CredentialsCacheException {
+        return Left(CredentialsCacheFailure());
       }
       on UserAlreadyExistsException {
         return Left(UserAlreadyExistsFailure());
@@ -58,6 +58,19 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
       }
     } else {
       return Left(NoInternetConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> signOut(SignOutParam params) async{
+    try{
+      return Right(await userAuthLocalDataSource.deleteUserData());
+    }
+    on CredentialsDeleteException {
+      return Left(CredentialsDeleteFailure());
+    }
+    on CredentialsCacheException {
+      return Left(CredentialsCacheFailure());
     }
   }
 }

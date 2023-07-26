@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:move_mates_android/config/theme/text_field_styles.dart';
-import 'package:move_mates_android/config/theme/text_style.dart';
+import 'package:move_mates_android/config/theme/text_styles/user_auth/app_text_style.dart';
+import 'package:move_mates_android/config/theme/text_styles/user_auth/auth_text_style.dart';
 
 import 'colors.dart';
 
@@ -9,8 +10,9 @@ class AppTheme {
       useMaterial3: true,
       dialogBackgroundColor: Colors.white,
       primaryColor: Colors.white,
+      colorScheme:ColorScheme.fromSeed(seedColor: Colors.white),
       inputDecorationTheme: InputDecorationTheme(
-          labelStyle: ValidationPageTextStyle.textFieldUp,
+          labelStyle: ValidationTextStyle.textFieldUp,
           focusedBorder: ValidationTextFieldStyles.underLineFocusedBorder),
       textSelectionTheme: const TextSelectionThemeData(
           cursorColor: ValidationColor.indicatorColor),
@@ -25,6 +27,6 @@ class AppTheme {
         // backgroundColor: Colors.transparent,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: UserPageColor.icon,
+        selectedItemColor: CoachColor.icon,
       ));
 }

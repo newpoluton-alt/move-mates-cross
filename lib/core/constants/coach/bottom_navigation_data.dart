@@ -1,6 +1,6 @@
 
-import '../../config/routes/assets_routes.dart';
-import '../../features/coach/presentation/pages/coach_page.dart';
+import '../../../config/routes/assets_routes.dart';
+import '../../../features/coach/presentation/pages/coach_main_page.dart';
 
 class UserPageData {
   static const  List<BottomNavigationBarModel> bottomNavigationBarModelList = [

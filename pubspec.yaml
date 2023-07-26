@@ -30,6 +30,8 @@ dependencies:
   dartz: ^0.10.1
   #to check internet connection
   internet_connection_checker: ^1.0.0+1
+  #intl and localization
+  intl: ^0.18.1
 
 
 dev_dependencies:

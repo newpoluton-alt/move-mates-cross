@@ -9,6 +9,8 @@ class IconPath {
   static const client = 'assets/icons/user/client_page.png';
   static const chat = 'assets/icons/user/chat_page.png';
   static const calendar = 'assets/icons/user/calendar_page.png';
+  static const hand = 'assets/icons/auth/hand.png';
+  static const setting = 'assets/icons/user/setting.png';
 }
 
 class ImagePath{

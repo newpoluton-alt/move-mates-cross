@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit_tools.dart';
-import 'package:move_mates_android/config/theme/text_style.dart';
 import 'package:move_mates_android/core/enum/user_role_enum.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_up.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
@@ -10,9 +9,13 @@ import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/signup_checkbox_widget.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/tab_view_widget.dart';
 
+import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import '../../../../user_auth_injection_container.dart';
 import '../cubit/user_auth_state.dart';
 import '../widgets/auth/back_button_widget.dart';
+import '../widgets/auth/custom_snackbar_builder.dart';
+import 'login_page.dart';
 
 class SignupPage extends StatefulWidget {
   static const id = 'signup_page';
@@ -80,6 +83,7 @@ class _SignupPageState extends State<SignupPage> {
     }
 
     _textFieldFormKey.currentState!.save();
+    FocusScope.of(context).unfocus();
     context.read<UserAuthCubit>().onUserSignUp(SignUpParam(
           name: _nameEditingController.text.trim(),
           email: _emailEditingController.text.trim(),
@@ -99,8 +103,17 @@ class _SignupPageState extends State<SignupPage> {
             builder: (context, state) {
           //if a state is changed to loaded, this function automatically will
           //navigate to user page saving credential data
-          AuthBlocTools.isStateChanged(
-              id: SignupPage.id, state: state, context: context);
+              if (state is Loaded) {
+                Future.delayed(Duration.zero, () {
+                    Navigator.of(context).pushReplacementNamed(LoginPage.id);
+                });
+              }
+              if (state is Error) {
+                SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(buildCustomAuthSnackBar(state.error));
+                });
+              }
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -116,11 +129,11 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   Text(
                     'Создать учетную запись',
-                    style: ValidationPageTextStyle.medium,
+                    style: ValidationTextStyle.medium,
                   ),
                   Text(
                     'Создайте учетную запись, чтобы начать работу с приложением',
-                    style: ValidationPageTextStyle.regular,
+                    style: ValidationTextStyle.regular,
                   ),
                   SizedBox(
                     height: 15.h,

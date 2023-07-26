@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/forgotten_pass_text_style.dart';
 
 SnackBar buildCustomAuthSnackBar(String error) {
   return SnackBar(
@@ -21,7 +22,7 @@ SnackBar buildCustomAuthSnackBar(String error) {
           children: [
             Text(
               error,
-              style: ValidationPageTextStyle.signupRegular,
+              style: ValidationTextStyle.signupRegular,
             )
           ],
         ),

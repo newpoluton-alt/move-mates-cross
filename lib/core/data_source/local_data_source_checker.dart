@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:move_mates_android/core/constants/flutter_secure_storage_constants.dart';
+import 'package:move_mates_android/core/constants/user_auth/flutter_secure_storage_constants.dart';
 
 abstract class LocalDataSourceChecker {
   Future<bool> get isDataLocated;

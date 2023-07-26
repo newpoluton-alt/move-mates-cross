@@ -5,10 +5,10 @@ import 'package:move_mates_android/features/user_auth/domain/enteties/user_auth_
 
 import '../repositories/user_auth_repository.dart';
 
-class UserSignInUseCase implements UseCase<UserAuthEntity, SignInParam> {
+class UserSignInCase implements UseCase<UserAuthEntity, SignInParam> {
   final UserAuthRepository userAuthRepository;
 
-  UserSignInUseCase({required this.userAuthRepository});
+  UserSignInCase({required this.userAuthRepository});
 
   @override
   Future<Either<Failure, UserAuthEntity>> call(SignInParam params) async {

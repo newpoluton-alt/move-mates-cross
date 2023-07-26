@@ -9,6 +9,7 @@ import 'package:move_mates_android/features/user_auth/data/data_sources/user_aut
 import 'package:move_mates_android/features/user_auth/data/repositories/user_auth_repository_impl.dart';
 import 'package:move_mates_android/features/user_auth/domain/repositories/user_auth_repository.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_in.dart';
+import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_out.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
 
 import 'features/user_auth/domain/usecases/user_sign_up.dart';
@@ -24,11 +25,13 @@ Future<void> init() async {
   sl.registerFactory(() => UserAuthCubit(
         userSignInUseCase: sl(),
         userSignUpUseCase: sl(),
+        userSignOutUseCase: sl(),
       ));
 
   //use cases
-  sl.registerLazySingleton(() => UserSignInUseCase(userAuthRepository: sl()));
-  sl.registerLazySingleton(() => UserSignUpUseCase(userAuthRepository: sl()));
+  sl.registerLazySingleton(()=>UserSignOutCase(userAuthRepository: sl()));
+  sl.registerLazySingleton(() => UserSignInCase(userAuthRepository: sl()));
+  sl.registerLazySingleton(() => UserSignUpCase(userAuthRepository: sl()));
 
   //repository
   sl.registerLazySingleton<UserAuthRepository>(() => UserAuthRepositoryImpl(

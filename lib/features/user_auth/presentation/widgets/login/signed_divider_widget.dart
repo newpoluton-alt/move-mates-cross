@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/colors.dart';
-import '../../../../../config/theme/text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 
 class SignedDividerWidget extends StatelessWidget {
   const SignedDividerWidget({
@@ -23,7 +23,7 @@ class SignedDividerWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 2.w),
           child: Text(
             'или',
-            style: ValidationPageTextStyle.checkBoxMediumGrey,
+            style: ValidationTextStyle.checkBoxMediumGrey,
           ),
         ),
         Expanded(

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
 
-import '../../../../../config/theme/colors.dart';
-import '../../../../../config/theme/text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 
 class InitialPageView extends StatelessWidget {
   const InitialPageView({
@@ -18,19 +17,7 @@ class InitialPageView extends StatelessWidget {
           ImagePath.imgFirst,
           height: 1.sh,
           width: 1.sw,
-          fit: BoxFit.fitHeight,
-        ),
-        Opacity(
-          opacity: 0.8,
-          child: Container(
-            width: 1.sw,
-            height: 1.sh,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [GradientColors.start, GradientColors.end],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight)),
-          ),
+          fit: BoxFit.cover,
         ),
         Container(
             margin: EdgeInsets.only(bottom: 80.h),

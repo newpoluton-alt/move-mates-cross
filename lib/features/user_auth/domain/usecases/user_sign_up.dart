@@ -6,10 +6,10 @@ import '../../../../core/enum/user_role_enum.dart';
 import '../../../../core/error/user_auth_failure.dart';
 import '../enteties/user_auth_entity.dart';
 
-class UserSignUpUseCase implements UseCase<UserAuthEntity, SignUpParam> {
+class UserSignUpCase implements UseCase<UserAuthEntity, SignUpParam> {
   final UserAuthRepository userAuthRepository;
 
-  UserSignUpUseCase({required this.userAuthRepository});
+  UserSignUpCase({required this.userAuthRepository});
 
   @override
   Future<Either<Failure, UserAuthEntity>> call(SignUpParam params) async {

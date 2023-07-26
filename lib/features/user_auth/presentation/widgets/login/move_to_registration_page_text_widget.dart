@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
 
-import '../../../../../config/theme/text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 
 class RegistrationTextMoveWidget extends StatelessWidget {
   const RegistrationTextMoveWidget({
@@ -17,7 +17,7 @@ class RegistrationTextMoveWidget extends StatelessWidget {
       children: [
         Text(
           'Нет аккаунта?',
-          style: ValidationPageTextStyle.signupRegular,
+          style: ValidationTextStyle.signupRegular,
         ),
         TextButton(
             onPressed: () {
@@ -25,7 +25,7 @@ class RegistrationTextMoveWidget extends StatelessWidget {
             },
             child: Text(
               'Зарегистрируйтесь',
-              style: ValidationPageTextStyle.signupSemiBold,
+              style: ValidationTextStyle.signupSemiBold,
             ))
       ],
     );

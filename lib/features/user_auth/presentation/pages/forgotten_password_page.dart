@@ -1,9 +1,11 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/config/theme/text_styles/user_auth/forgotten_pass_text_style.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/back_button_widget.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
-import 'package:move_mates_android/config/theme/text_style.dart';
+
+import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 
 class ForgottenPasswordPage extends StatefulWidget {
   static const String id = 'forgotten_password_page';
@@ -49,7 +51,7 @@ void _submit(){
                   SizedBox(height:30.h,),
                   Text(
                     'Забыли пароль?',
-                    style: ForgottenPasswordPageTextStyle.titleSemiBold,
+                    style: ForgottenPasswordTextStyle.titleSemiBold,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -58,7 +60,7 @@ void _submit(){
                     'Пожалуйста, введите свой адрес электронной почты'
                     ' и мы вышлeм вам инструкции по сбросу пароля.',
                     textAlign: TextAlign.center,
-                    style: ForgottenPasswordPageTextStyle.descriptionRegular,
+                    style: ForgottenPasswordTextStyle.descriptionRegular,
                   ),
                   SizedBox(
                     height: 60.h,
@@ -99,7 +101,7 @@ void _submit(){
                     'По любым '
                     'вопросам обращайтесь по номеру +996 123 456 789',
                     textAlign: TextAlign.center,
-                    style: ForgottenPasswordPageTextStyle.descriptionMediumGrey,
+                    style: ForgottenPasswordTextStyle.descriptionMediumGrey,
                   )
                 ],
               ),

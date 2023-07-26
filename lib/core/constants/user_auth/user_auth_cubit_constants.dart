@@ -4,4 +4,7 @@ class UserAuthCubitConstants{
   static const String noInternetConnectionMessage = 'Нету интернет соединения';
   static const String problemsWithServerMessage = 'Проблемы со сервером';
   static const String unexpectedErrorMessage = 'Неизвестная ошибка';
+  static const String userCredentialsCacheErrorMessage = 'Ошибка сохранения данных';
+  static const String userCredentialsDeleteErrorMessage = 'Ошибка удаления данных';
+  static const String userCredentialsReadErrorMessage = 'Ошибка чтения данных';
 }

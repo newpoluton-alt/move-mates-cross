@@ -17,9 +17,9 @@ class Loading extends UserAuthState{
 }
 
 class Loaded extends UserAuthState{
-  final UserAuthEntity userAuthEntity;
+  final Object entity;
 
-  const Loaded({required this.userAuthEntity});
+  const Loaded({required this.entity});
   @override
   List<Object?> get props => [];
 }

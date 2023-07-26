@@ -53,7 +53,7 @@ class NavigationForwardButtonWidget extends StatelessWidget {
             onPressed: () {
               isLastPage
                   ? Navigator.of(context)
-                      .pushReplacementNamed(LoginAndSignUpPage.id)
+                      .pushReplacementNamed(AuthPage.id)
                   : pageController.nextPage(
                       duration: const Duration(milliseconds: 100),
                       curve: Curves.bounceIn);

@@ -17,7 +17,7 @@ class UserSignUpEntity extends UserAuthEntity{
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         email,
         phone,
