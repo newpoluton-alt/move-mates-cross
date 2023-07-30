@@ -49,4 +49,5 @@ flutter:
     - assets/images/
     - assets/icons/auth/
     - assets/icons/user/
+    - assets/images/user/
 

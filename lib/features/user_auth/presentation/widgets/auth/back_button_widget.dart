@@ -17,7 +17,7 @@ class BackButtonWidget extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pop();
         },
-        icon: const AssetIcon(
+        icon: AssetIcon(
           path: IconPath.arrowBack,
           color: ValidationColor.signInAndSignup,
         ));

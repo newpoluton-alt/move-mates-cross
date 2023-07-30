@@ -58,7 +58,7 @@ class NavigationForwardButtonWidget extends StatelessWidget {
                       duration: const Duration(milliseconds: 100),
                       curve: Curves.bounceIn);
             },
-            icon: const AssetIcon(
+            icon: AssetIcon(
               path: IconPath.arrowForward,
               color: Colors.black,
               size: 49,

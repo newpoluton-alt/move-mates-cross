@@ -16,7 +16,7 @@ class ValidationColor{
   static const Color errorColor = Color(0xffff4343);
   static const Color pageMainColor = Color(0xFFF4B3BD);
 }
-class CoachColor{
+class  CoachColor{
   static const Color calendarBar = Color(0xffFBB9B0);
   static const Color actionBarSelected = Color(0xffF8CAC5);
   static const Color actionBarBackground =Color(0xffFAF3F1);
@@ -25,6 +25,11 @@ class CoachColor{
   static const Color beginButtonBackground = Color(0xff272D37);
   static const Color addNewScheduleButtonBackground = Color(0xffFF9BAC);
   static const Color settingIcon = Color(0xff1C274C);
+  static const Color copyIcon = Color(0xffF7CBC4);
+  static const Color trainingSessionIcon = Color(0xffEB996E);
+  static const Color scaffoldBackground = Color(0xffF9F9F9);
+  static const Color workingHoursTitle = Color(0xFF454C52);
+
 
 }
 class ForgottenPasswordPageColor {

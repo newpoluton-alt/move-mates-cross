@@ -36,41 +36,59 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
   Future<Either<Failure, UserAuthModel>> _getUserCredentials(
     UserAuthParam params,
   ) async {
-    if (await connectionState.isConnected) {
-      try {
-        if (params is SignUpParam) {
-          return Right(await userAuthRemoteDataSource.signUp(params));
-        } else {
-          final userData =
-              await userAuthRemoteDataSource.signIn(params as SignInParam);
-          await userAuthLocalDataSource.cacheUserData(userData);
-          return Right(userData);
-        }
-      } on CredentialsCacheException {
-        return Left(CredentialsCacheFailure());
-      }
-      on UserAlreadyExistsException {
-        return Left(UserAlreadyExistsFailure());
-      } on UserNotExistsException {
-        return Left(UserNotExistsFailure());
-      } catch (e) {
-        return Left(AuthFailure());
-      }
-    } else {
+    if (!(await connectionState.isConnected)) {
       return Left(NoInternetConnectionFailure());
+    }
+
+    try {
+      if (params is SignUpParam) {
+        return Right(await userAuthRemoteDataSource.signUp(params));
+      } else {
+        final userData =
+            await userAuthRemoteDataSource.signIn(params as SignInParam);
+
+        await userAuthLocalDataSource.cacheUserData(userData);
+
+        return Right(userData);
+      }
+    } catch (e) {
+      return Left(_userSignInToException(e));
     }
   }
 
   @override
-  Future<Either<Failure, void>> signOut(SignOutParam params) async{
-    try{
+  Future<Either<Failure, void>> signOut(SignOutParam params) async {
+    try {
       return Right(await userAuthLocalDataSource.deleteUserData());
+    } catch (e) {
+      return Left(_userSignOutToException(e));
     }
-    on CredentialsDeleteException {
-      return Left(CredentialsDeleteFailure());
-    }
-    on CredentialsCacheException {
-      return Left(CredentialsCacheFailure());
-    }
+  }
+}
+
+Failure _userSignInToException(Object exception) {
+  switch (exception.runtimeType) {
+    case CredentialsCacheException:
+      return CredentialsCacheFailure();
+
+    case UserAlreadyExistsException:
+      return UserAlreadyExistsFailure();
+
+    case UserNotExistsException:
+      return UserNotExistsFailure();
+
+    default:
+      return AuthFailure();
+  }
+}
+
+Failure _userSignOutToException(Object exception) {
+  switch (exception.runtimeType) {
+
+    case CredentialsDeleteException:
+      return CredentialsDeleteFailure();
+
+    default:
+      return CredentialsCacheFailure();
   }
 }

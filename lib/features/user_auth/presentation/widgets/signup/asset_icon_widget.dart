@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AssetIcon extends StatelessWidget {
   final String path;
-  final Color color;
+  Color? color;
   final double size;
-   const AssetIcon({
+
+  AssetIcon({
     super.key,
     this.size = 24,
+    this.color,
     required this.path,
-    required this.color,
-
   });
 
   @override

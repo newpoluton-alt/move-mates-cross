@@ -42,15 +42,19 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
         url: UserAuthParseConstants.baseUrl + paramToAuthString(params));
     final response = await request.post(body: params);
 
-    if (response.statusCode == 200) {
-      return paramToModel(params: params, body: response.body);
-    } else if (response.statusCode == 401) {
+    if (response.statusCode == 401) {
       throw UserNotExistsException();
-    } else if (response.statusCode == 417) {
+    }
+
+    if (response.statusCode == 417) {
       throw UserAlreadyExistsException();
-    } else {
+    }
+
+    if(response.statusCode != 200){
       throw AuthException();
     }
+
+    return paramToModel(params: params, body: response.body);
   }
 
   UserAuthModel paramToModel(

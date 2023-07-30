@@ -11,6 +11,11 @@ class IconPath {
   static const calendar = 'assets/icons/user/calendar_page.png';
   static const hand = 'assets/icons/auth/hand.png';
   static const setting = 'assets/icons/user/setting.png';
+  static const copy = 'assets/icons/user/copy.png';
+  static const backButton = 'assets/icons/user/back_button.png';
+  static const individualTraining = 'assets/icons/user/individual_training.png';
+  static const groupTraining = 'assets/icons/user/group_training.png';
+  static const forwardArrow = 'assets/icons/user/forward_arrow.png';
 }
 
 class ImagePath{
@@ -20,4 +25,5 @@ class ImagePath{
   static const imgThird = 'assets/images/img_third.png';
   static const imgFourth = 'assets/images/img_fourth.png';
   static const imgFifth = 'assets/images/img_fifth.png';
+  static const userActionBegin = 'assets/images/user/user_action_begin.png';
 }
