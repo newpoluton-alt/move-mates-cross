@@ -10,10 +10,37 @@ class CoachHomeTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 20.sp,
   );
+  static TextStyle clientNameTrainingCard = GoogleFonts.montserrat(
+      color: Colors.black,
+      fontSize: 18.19.sp,
+      fontWeight: FontWeight.w500,
+  );
+  static TextStyle trainingCardBeginSession = GoogleFonts.montserrat(
+    color: Colors.white,
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w600,
+
+  );
+  static TextStyle subtitleTrainingCard = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle calendarBarCurrent = GoogleFonts.montserrat(
     color: Colors.white,
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,
+  );
+
+  static TextStyle connectionState = GoogleFonts.montserrat(
+    color: CoachColor.additionInfoTitle,
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle trainingTime = GoogleFonts.montserrat(
+    color: CoachColor.additionInfoTitle,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
   );
   static TextStyle calendarBarAnother = GoogleFonts.montserrat(
     color: CoachColor.calendarBar,

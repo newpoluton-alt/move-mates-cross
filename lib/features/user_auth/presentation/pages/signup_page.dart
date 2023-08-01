@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/core/enum/user_role_enum.dart';
+import 'package:move_mates_android/core/constants/user_auth/user_role_enum.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_up.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
@@ -11,7 +11,7 @@ import 'package:move_mates_android/features/user_auth/presentation/widgets/signu
 
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
-import '../../../../user_auth_injection_container.dart';
+import '../../user_auth_injection_container.dart';
 import '../cubit/user_auth_state.dart';
 import '../widgets/auth/back_button_widget.dart';
 import '../widgets/auth/custom_snackbar_builder.dart';
@@ -103,12 +103,12 @@ class _SignupPageState extends State<SignupPage> {
             builder: (context, state) {
           //if a state is changed to loaded, this function automatically will
           //navigate to user page saving credential data
-              if (state is Loaded) {
+              if (state is UserAuthLoaded) {
                 Future.delayed(Duration.zero, () {
                     Navigator.of(context).pushReplacementNamed(LoginPage.id);
                 });
               }
-              if (state is Error) {
+              if (state is UserAuthError) {
                 SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(buildCustomAuthSnackBar(state.error));
@@ -158,7 +158,7 @@ class _SignupPageState extends State<SignupPage> {
                     height: 30.h,
                   ),
                   ValidationButtonWidget(
-                    name: state is Loading
+                    name: state is UserAuthLoading
                         ? 'Загрузка...'
                         : 'Зарегистрироваться',
                     textStyle: AppButtonTextStyle.regularButtonWhite,

@@ -10,6 +10,8 @@ class ValidationButtonWidget extends StatelessWidget {
   Color? buttonBorderColor;
   String? iconPath;
   void Function()? onPushing;
+  double width;
+  double height;
   final TextStyle textStyle;
 
   ValidationButtonWidget({
@@ -17,6 +19,8 @@ class ValidationButtonWidget extends StatelessWidget {
     this.buttonColor,
     this.onPushing,
     this.iconPath,
+    this.width = 370,
+    this.height = 60,
     this.buttonBorderColor,
     required this.name,
     required this.textStyle,
@@ -27,8 +31,8 @@ class ValidationButtonWidget extends StatelessWidget {
     return MaterialButton(
       elevation: 0.0,
       color: buttonColor ?? Colors.white,
-      minWidth: 370.w,
-      height: 60.h,
+      minWidth: width.w,
+      height: height.h,
       shape: RoundedRectangleBorder(
           side: BorderSide(color: buttonBorderColor ?? Colors.black),
           borderRadius: BorderRadius.circular(10.r)),

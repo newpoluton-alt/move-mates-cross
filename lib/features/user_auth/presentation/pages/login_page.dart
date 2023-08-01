@@ -11,7 +11,7 @@ import '../../../../config/routes/assets_routes.dart';
 import '../../../../config/theme/colors.dart';
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
-import '../../../../user_auth_injection_container.dart';
+import '../../user_auth_injection_container.dart';
 import '../../../coach/presentation/pages/coach_main_page.dart';
 import '../../domain/usecases/user_sign_in.dart';
 import '../cubit/user_auth_state.dart';
@@ -51,13 +51,13 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context, state) {
           //if a state is changed to loaded, this function automatically will
           //navigate to user page saving credential data
-          if (state is Loaded) {
+          if (state is UserAuthLoaded) {
             Future.delayed(Duration.zero, () {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   UserPage.id, (Route<dynamic> route) => false);
             });
           }
-          if (state is Error) {
+          if (state is UserAuthError) {
             SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(buildCustomAuthSnackBar(state.error));
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 130.h,
                     ),
                     ValidationButtonWidget(
-                      name: state is Loading ? 'Загрузка...' : 'Войти',
+                      name: state is UserAuthLoading ? 'Загрузка...' : 'Войти',
                       textStyle: AppButtonTextStyle.regularButtonWhite,
                       buttonColor: Colors.black,
                       onPushing: () {

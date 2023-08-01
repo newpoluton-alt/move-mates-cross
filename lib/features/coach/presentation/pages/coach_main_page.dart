@@ -9,7 +9,7 @@ import 'package:move_mates_android/features/user_auth/presentation/pages/auth_pa
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/asset_icon_widget.dart';
 
 import '../../../../core/constants/coach/bottom_navigation_data.dart';
-import '../../../../user_auth_injection_container.dart';
+import '../../../user_auth/user_auth_injection_container.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -37,7 +37,7 @@ class _UserPageState extends State<UserPage> {
       create: (_) => sl<UserAuthCubit>(),
       child:
           BlocBuilder<UserAuthCubit, UserAuthState>(builder: (context, state) {
-            if (state is Loaded) {
+            if (state is UserAuthLoaded) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacementNamed(AuthPage.id);
             });
@@ -46,7 +46,7 @@ class _UserPageState extends State<UserPage> {
         return Scaffold(
           appBar: AppBar(
             title: Center(
-              child: Text(state is Loading ? 'Выход...' : 'Главная',
+              child: Text(state is UserAuthLoading ? 'Выход...' : 'Главная',
                   textAlign: TextAlign.center),
             ),
             actions: [

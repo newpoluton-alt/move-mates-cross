@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:move_mates_android/core/error/user_auth_failure.dart';
 import 'package:move_mates_android/core/usescases/usecase.dart';
 import 'package:move_mates_android/features/user_auth/domain/repositories/user_auth_repository.dart';
+
+import '../../../../core/error/failure.dart';
 
 class UserSignOutCase implements UseCase<void, SignOutParam> {
   final UserAuthRepository userAuthRepository;
@@ -14,7 +15,7 @@ class UserSignOutCase implements UseCase<void, SignOutParam> {
   }
 }
 
-class SignOutParam extends UserAuthParam {
+class SignOutParam extends Param {
   SignOutParam();
   @override
   List<Object?> get props => [];

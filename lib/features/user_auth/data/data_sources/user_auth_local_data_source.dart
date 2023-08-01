@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:move_mates_android/core/constants/user_auth/flutter_secure_storage_constants.dart';
-import 'package:move_mates_android/core/error/user_auth_exception.dart';
 
+import '../../../../core/error/user_auth_error/user_auth_exception.dart';
 import '../models/user_auth_model.dart';
 import '../models/user_sign_in_model.dart';
 

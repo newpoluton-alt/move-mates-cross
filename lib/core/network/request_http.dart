@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-
-import '../constants/user_auth/user_auth_constants.dart';
+import 'package:move_mates_android/core/constants/constants.dart';
 
 abstract class RequestHttp {
   Future<Response> post({required Object body});
 
-  Future<Response> get();
+  Future<Response> get({required Map<String, String> headers});
 
   const RequestHttp();
 }
@@ -20,10 +19,10 @@ class RequestHttpImpl implements RequestHttp {
   RequestHttpImpl({required this.client, required this.url});
 
   @override
-  Future<Response> get() async {
+  Future<Response> get({required Map<String, String> headers}) async {
     return await client.get(
       Uri.parse(url),
-      headers: UserAuthParseConstants.headers,
+      headers: headers,
     );
   }
 
@@ -31,7 +30,7 @@ class RequestHttpImpl implements RequestHttp {
   Future<Response> post({required Object body}) async {
     return await client.post(
       Uri.parse(url),
-      headers: UserAuthParseConstants.headers,
+      headers: CommonConstants.headers,
       body: jsonEncode(body)
     );
   }

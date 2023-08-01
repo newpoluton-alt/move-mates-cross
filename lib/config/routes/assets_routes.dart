@@ -16,6 +16,8 @@ class IconPath {
   static const individualTraining = 'assets/icons/user/individual_training.png';
   static const groupTraining = 'assets/icons/user/group_training.png';
   static const forwardArrow = 'assets/icons/user/forward_arrow.png';
+  static const clock = 'assets/icons/user/clock.png';
+  static const done = 'assets/icons/user/done.png';
 }
 
 class ImagePath{

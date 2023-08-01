@@ -24,7 +24,7 @@ class UserSignInModel extends UserSignInEntity implements UserAuthModel{
     return {
       'username': email,
       'id': id,
-      'toke': token,
+      'token': token,
       'roles': roles,
     };
   }

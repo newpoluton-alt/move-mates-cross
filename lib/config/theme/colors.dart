@@ -29,8 +29,10 @@ class  CoachColor{
   static const Color trainingSessionIcon = Color(0xffEB996E);
   static const Color scaffoldBackground = Color(0xffF9F9F9);
   static const Color workingHoursTitle = Color(0xFF454C52);
-
-
+  static const Color additionInfoTitle = Color(0xFFEF6078);
+  static const Color trainingBeginSession = Color(0xff70D397);
+  static const Color doneColor = Color(0xffF39AA9);
+  static const Color decorationPoint = Color(0xff343434);
 }
 class ForgottenPasswordPageColor {
   static const grey = Color(0xffb2b2b2);

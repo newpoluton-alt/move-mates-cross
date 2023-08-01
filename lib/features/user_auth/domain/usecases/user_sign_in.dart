@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:move_mates_android/core/error/user_auth_failure.dart';
 import 'package:move_mates_android/core/usescases/usecase.dart';
 import 'package:move_mates_android/features/user_auth/domain/enteties/user_auth_entity.dart';
 
+import '../../../../core/error/failure.dart';
 import '../repositories/user_auth_repository.dart';
 
 class UserSignInCase implements UseCase<UserAuthEntity, SignInParam> {
@@ -16,7 +16,7 @@ class UserSignInCase implements UseCase<UserAuthEntity, SignInParam> {
   }
 }
 
-class SignInParam extends UserAuthParam{
+class SignInParam extends Param{
   final String email;
   final String password;
 

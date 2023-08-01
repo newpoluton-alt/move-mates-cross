@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:move_mates_android/core/constants/constants.dart';
 import 'package:move_mates_android/core/constants/user_auth/user_auth_constants.dart';
-import 'package:move_mates_android/core/enum/user_role_enum.dart';
-import 'package:move_mates_android/core/error/user_auth_exception.dart';
+import 'package:move_mates_android/core/constants/user_auth/user_role_enum.dart';
 import 'package:move_mates_android/core/network/request_http.dart';
 import 'package:move_mates_android/features/user_auth/data/models/user_auth_model.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_in.dart';
 
+import '../../../../core/error/user_auth_error/user_auth_exception.dart';
 import '../../../../core/usescases/usecase.dart';
 import '../../domain/usecases/user_sign_up.dart';
 import '../models/user_sign_in_model.dart';
@@ -36,10 +37,13 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
     return await _getUserAuth(params);
   }
 
-  Future<UserAuthModel> _getUserAuth(UserAuthParam params) async {
+  Future<UserAuthModel> _getUserAuth(Param params) async {
     final request = RequestHttpImpl(
         client: client,
-        url: UserAuthParseConstants.baseUrl + paramToAuthString(params));
+        url: CommonConstants.baseUrl +
+            UserAuthConstants.urlTag +
+            paramToAuthString(params));
+
     final response = await request.post(body: params);
 
     if (response.statusCode == 401) {
@@ -50,15 +54,14 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
       throw UserAlreadyExistsException();
     }
 
-    if(response.statusCode != 200){
+    if (response.statusCode != 200) {
       throw AuthException();
     }
 
     return paramToModel(params: params, body: response.body);
   }
 
-  UserAuthModel paramToModel(
-      {required UserAuthParam params, required String body}) {
+  UserAuthModel paramToModel({required Param params, required String body}) {
     if (params is SignUpParam) {
       return UserSignUpModel.fromJson(jsonDecode(body));
     } else {
@@ -66,17 +69,7 @@ class UserAuthRemoteDataSourceImpl implements UserAuthRemoteDataSource {
     }
   }
 
-  // Map paramToJsonBody(UserAuthParam params) {
-  //   if (params is SignUpParam) {
-  //     return params.toJson();
-  //   } else if (params is SignInParam) {
-  //     return params.toJson();
-  //   } else {
-  //     return {'none': 'none'};
-  //   }
-  // }
-
-  String paramToAuthString(UserAuthParam params) {
+  String paramToAuthString(Param params) {
     if (params is SignUpParam) {
       return roleToSignUpString(params.role);
     } else if (params is SignInParam) {

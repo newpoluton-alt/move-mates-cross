@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:move_mates_android/core/error/user_auth_failure.dart';
 import 'package:move_mates_android/core/network/connection_state.dart';
 import 'package:move_mates_android/core/usescases/usecase.dart';
 import 'package:move_mates_android/features/user_auth/domain/repositories/user_auth_repository.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_in.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_out.dart';
 
-import '../../../../core/error/user_auth_exception.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/error/user_auth_error/user_auth_exception.dart';
+import '../../../../core/error/user_auth_error/user_auth_failure.dart';
 import '../../domain/usecases/user_sign_up.dart';
 import '../data_sources/user_auth_local_data_source.dart';
 import '../data_sources/user_auth_remote_data_source.dart';
@@ -34,10 +35,10 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
   }
 
   Future<Either<Failure, UserAuthModel>> _getUserCredentials(
-    UserAuthParam params,
+    Param params,
   ) async {
     if (!(await connectionState.isConnected)) {
-      return Left(NoInternetConnectionFailure());
+      throw NoInternetConnectionException();
     }
 
     try {
@@ -77,6 +78,9 @@ Failure _userSignInToException(Object exception) {
     case UserNotExistsException:
       return UserNotExistsFailure();
 
+    case NoInternetConnectionException:
+      return NoInternetConnectionFailure();
+
     default:
       return AuthFailure();
   }
@@ -84,7 +88,6 @@ Failure _userSignInToException(Object exception) {
 
 Failure _userSignOutToException(Object exception) {
   switch (exception.runtimeType) {
-
     case CredentialsDeleteException:
       return CredentialsDeleteFailure();
 

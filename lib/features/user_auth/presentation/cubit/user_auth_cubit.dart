@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_mates_android/core/constants/user_auth/user_auth_cubit_constants.dart';
+import 'package:move_mates_android/core/constants/cubit_constants.dart';
 
-import '../../../../core/error/user_auth_failure.dart';
+import '../../../../core/error/failure.dart';
+import '../../../../core/error/user_auth_error/user_auth_failure.dart';
 import '../../domain/enteties/user_auth_entity.dart';
 import '../../domain/usecases/user_sign_in.dart';
 import '../../domain/usecases/user_sign_out.dart';
@@ -18,54 +19,54 @@ class UserAuthCubit extends Cubit<UserAuthState> {
     required this.userSignInUseCase,
     required this.userSignUpUseCase,
     required this.userSignOutUseCase,
-  }) : super(Empty());
+  }) : super(UserAuthEmpty());
 
   void onUserSignUp(SignUpParam params) async {
-    emit(Loading());
+    emit(UserAuthLoading());
     final failureOrUserAuth = await userSignUpUseCase(params);
     _eitherFailureOrUserAuthEntity(failureOrUserAuth);
   }
 
   void onUserSignIn(SignInParam params) async {
-    emit(Loading());
+    emit(UserAuthLoading());
     final failureOrUserAuth = await userSignInUseCase(params);
     _eitherFailureOrUserAuthEntity(failureOrUserAuth);
   }
 
   void onUserSignOut(SignOutParam params) async {
-    emit(Loading());
+    emit(UserAuthLoading());
     final userSignOutOrFail = await userSignOutUseCase(params);
     userSignOutOrFail.fold(
-        (failure) => emit(Error(error: _failureToString(failure))),
-        (userSignOut) => emit(Loaded(entity: params)));
+        (failure) => emit(UserAuthError(error: _failureToString(failure))),
+        (userSignOut) => emit(UserAuthLoaded(entity: params)));
   }
 
   void _eitherFailureOrUserAuthEntity(
       Either<Failure, UserAuthEntity> failureOrUserAuth) async {
-    emit(Loading());
+    emit(UserAuthLoading());
     failureOrUserAuth.fold(
-        (failure) => emit(Error(error: _failureToString(failure))),
-        (userAuthEntity) => emit(Loaded(entity: userAuthEntity)));
+        (failure) => emit(UserAuthError(error: _failureToString(failure))),
+        (userAuthEntity) => emit(UserAuthLoaded(entity: userAuthEntity)));
   }
 
   String _failureToString(Failure failure) {
     switch (failure.runtimeType) {
       case UserNotExistsFailure:
-        return UserAuthCubitConstants.userNotExistsMessage;
+        return CubitConstants.userNotExistsMessage;
       case UserAlreadyExistsFailure:
-        return UserAuthCubitConstants.userAlreadyExistsMessage;
+        return CubitConstants.userAlreadyExistsMessage;
       case NoInternetConnectionFailure:
-        return UserAuthCubitConstants.noInternetConnectionMessage;
+        return CubitConstants.noInternetConnectionMessage;
       case AuthFailure:
-        return UserAuthCubitConstants.problemsWithServerMessage;
+        return CubitConstants.problemsWithServerMessage;
       case CredentialsCacheFailure:
-        return UserAuthCubitConstants.userCredentialsCacheErrorMessage;
+        return CubitConstants.userCredentialsCacheErrorMessage;
       case CredentialsDeleteFailure:
-        return UserAuthCubitConstants.userCredentialsDeleteErrorMessage;
+        return CubitConstants.userCredentialsDeleteErrorMessage;
       case CredentialsReadFailure:
-        return UserAuthCubitConstants.userCredentialsReadErrorMessage;
+        return CubitConstants.userCredentialsReadErrorMessage;
       default:
-        return UserAuthCubitConstants.unexpectedErrorMessage;
+        return CubitConstants.unexpectedErrorMessage;
     }
   }
 }

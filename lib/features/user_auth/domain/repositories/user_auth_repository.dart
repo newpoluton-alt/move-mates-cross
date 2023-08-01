@@ -3,7 +3,7 @@ import 'package:move_mates_android/features/user_auth/domain/enteties/user_auth_
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_out.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_up.dart';
 
-import '../../../../core/error/user_auth_failure.dart';
+import '../../../../core/error/failure.dart';
 import '../usecases/user_sign_in.dart';
 
 abstract class UserAuthRepository {

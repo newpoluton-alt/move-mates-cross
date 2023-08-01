@@ -1,4 +1,4 @@
-class UserAuthCubitConstants{
+class CubitConstants{
   static const String userNotExistsMessage = 'Пользователь не заригестрирован';
   static const String userAlreadyExistsMessage = 'Пользователь уже сущесвует';
   static const String noInternetConnectionMessage = 'Нету интернет соединения';
@@ -7,4 +7,5 @@ class UserAuthCubitConstants{
   static const String userCredentialsCacheErrorMessage = 'Ошибка сохранения данных';
   static const String userCredentialsDeleteErrorMessage = 'Ошибка удаления данных';
   static const String userCredentialsReadErrorMessage = 'Ошибка чтения данных';
+  static const String noDataInCacheErrorMessage = 'Нету сохраненных данных';
 }

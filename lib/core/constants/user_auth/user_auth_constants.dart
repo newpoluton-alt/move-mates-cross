@@ -1,10 +1,6 @@
-class UserAuthParseConstants {
-  static const String baseUrl = 'http://172.16.0.229:8086/auth/';
-  // static const String baseUrl = 'http://192.168.0.103:8086/auth/';
+class UserAuthConstants {
+  static const String urlTag = 'auth/';
 
-  static const Map<String, String> headers = {
-    'Content-Type': 'application/json'
-  };
 }
 class UserAuthWidgetConstants {
   static const  List<String> authDropDownItemData = ['Тренер', 'Психолог'];

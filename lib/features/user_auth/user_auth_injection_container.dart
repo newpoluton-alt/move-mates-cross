@@ -1,8 +1,7 @@
-import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:move_mates_android/core/data_source/local_data_source_checker.dart';
 import 'package:move_mates_android/core/network/connection_state.dart';
 import 'package:move_mates_android/features/user_auth/data/data_sources/user_auth_local_data_source.dart';
 import 'package:move_mates_android/features/user_auth/data/data_sources/user_auth_remote_data_source.dart';
@@ -12,14 +11,11 @@ import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_out.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
 
-import 'features/user_auth/domain/usecases/user_sign_up.dart';
+import 'domain/usecases/user_sign_up.dart';
 
 final sl = GetIt.instance;
 
-Future<void> init() async {
-  //core main
-  sl.registerLazySingleton<LocalDataSourceChecker>(
-      () => LocalDataSourceCheckerImpl(flutterSecureStorage: sl()));
+Future<void> initUserAuthDI() async {
 
   //state management Cubit-BLoC
   sl.registerFactory(() => UserAuthCubit(

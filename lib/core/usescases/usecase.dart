@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-import '../error/user_auth_failure.dart';
+import '../error/failure.dart';
 
-abstract class UseCase<T, P extends UserAuthParam>{
+abstract class UseCase<T, P extends Param>{
   Future<Either<Failure, T>>call(P params);
 }
-abstract class UserAuthParam extends Equatable{
+abstract class Param extends Equatable{
   Map toJson();
 }

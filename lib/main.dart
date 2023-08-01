@@ -7,16 +7,16 @@ import 'package:move_mates_android/config/theme/app_theme.dart';
 import 'package:move_mates_android/config/theme/colors.dart';
 import 'package:move_mates_android/core/data_source/local_data_source_checker.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/coach_main_page.dart';
+import 'package:move_mates_android/features/injection_container.dart' as di;
 import 'package:move_mates_android/features/user_auth/presentation/pages/onboarding_page.dart';
 
 import 'config/routes/assets_routes.dart';
 import 'config/theme/text_styles/user_auth/app_text_style.dart';
-import 'user_auth_injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  await di.init();
+  await di.initDI();
   runApp(const MoveMatesApp());
 }
 

@@ -1,33 +1,31 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/enteties/user_auth_entity.dart';
-
 abstract class UserAuthState extends Equatable{
   const UserAuthState();
 }
 
-class Empty extends UserAuthState{
+class UserAuthEmpty extends UserAuthState{
   @override
   List<Object?> get props => [];
 }
 
-class Loading extends UserAuthState{
+class UserAuthLoading extends UserAuthState{
   @override
   List<Object?> get props => [];
 }
 
-class Loaded extends UserAuthState{
+class UserAuthLoaded extends UserAuthState{
   final Object entity;
 
-  const Loaded({required this.entity});
+  const UserAuthLoaded({required this.entity});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [entity];
 }
 
-class Error extends UserAuthState{
+class UserAuthError extends UserAuthState{
   final String error;
 
-  const Error({required this.error});
+  const UserAuthError({required this.error});
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }
