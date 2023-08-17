@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
 import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 
 class SignedDividerWidget extends StatelessWidget {
@@ -17,7 +17,7 @@ class SignedDividerWidget extends StatelessWidget {
             child: Container(
               height: 1.h,
               decoration: const BoxDecoration(
-                  color: ValidationColor.textFieldColor),
+                  color: GreyColor.g3),
             )),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 2.w),
@@ -30,7 +30,7 @@ class SignedDividerWidget extends StatelessWidget {
             child: Container(
               height: 1.h,
               decoration: const BoxDecoration(
-                  color: ValidationColor.textFieldColor),
+                  color: GreyColor.g3),
             )),
       ],
     );

@@ -35,7 +35,6 @@ void _submit(){
 }
   @override
   Widget build(BuildContext context) {
-    print(1.sh - buildAppBar().preferredSize.height);
     return SizedBox(
       height: 1.sh,
       child: Scaffold(

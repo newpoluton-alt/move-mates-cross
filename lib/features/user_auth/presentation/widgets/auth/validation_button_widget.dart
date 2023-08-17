@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/routes/assets_routes.dart';
 
-//ignore: must-be-immutable
+// ignore: must_be_immutable
 class ValidationButtonWidget extends StatelessWidget {
   final String name;
   Color? buttonColor;

@@ -1,16 +1,16 @@
-import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/pages_routes.dart';
-import 'package:move_mates_android/config/theme/app_theme.dart';
-import 'package:move_mates_android/config/theme/colors.dart';
+import 'package:move_mates_android/config/theme/app_theme/app_theme.dart';
+import 'package:move_mates_android/features/injection_container.dart' as di;
 import 'package:move_mates_android/core/data_source/local_data_source_checker.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/coach_main_page.dart';
-import 'package:move_mates_android/features/injection_container.dart' as di;
 import 'package:move_mates_android/features/user_auth/presentation/pages/onboarding_page.dart';
 
 import 'config/routes/assets_routes.dart';
+import 'config/theme/colors/pink_color.dart';
 import 'config/theme/text_styles/user_auth/app_text_style.dart';
 
 void main() async {
@@ -52,7 +52,7 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
 Widget showBody(AsyncSnapshot<bool> snapshot) {
   if (snapshot.hasData) {
     if (snapshot.data!) {
-      return const UserPage();
+      return const CoachMainPage();
     } else {
       return EasySplashScreen(
           showLoader: false,
@@ -67,7 +67,7 @@ Widget showBody(AsyncSnapshot<bool> snapshot) {
           ),
           durationInSeconds: 1,
           gradientBackground: const LinearGradient(
-              colors: [GradientColors.start, GradientColors.end],
+              colors: [PinkColor.p1, PinkColor.p2],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           navigator: const AppPageView());

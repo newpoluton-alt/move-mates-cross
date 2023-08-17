@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../config/theme/colors.dart';
 import '../../../../../config/routes/assets_routes.dart';
+import '../../../../../config/theme/colors/green_color.dart';
 import '../signup/asset_icon_widget.dart';
 
 class BackButtonWidget extends StatelessWidget {
@@ -19,7 +19,7 @@ class BackButtonWidget extends StatelessWidget {
         },
         icon: AssetIcon(
           path: IconPath.arrowBack,
-          color: ValidationColor.signInAndSignup,
+          color: GreenColor.g1,
         ));
   }
 }

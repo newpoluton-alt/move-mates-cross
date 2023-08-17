@@ -4,8 +4,8 @@ import 'package:move_mates_android/features/user_auth/presentation/widgets/signu
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/signup_tab_bar_widget.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/tab_bar_element_widget.dart';
 
-import '../../../../../config/theme/colors.dart';
 import '../../../../../config/routes/assets_routes.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 
 class TabViewWidget extends StatefulWidget {
   final void Function(int i) changeStatus;
@@ -68,7 +68,7 @@ class _TabViewWidgetState extends State<TabViewWidget> {
       length: 2,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         TabBar(
-            indicatorColor: ValidationColor.pageMainColor,
+            indicatorColor: PinkColor.p4,
             indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: false,
             onTap: changePage,

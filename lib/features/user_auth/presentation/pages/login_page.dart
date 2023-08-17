@@ -8,7 +8,7 @@ import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/
 import 'package:move_mates_android/features/user_auth/presentation/widgets/login/login_text_form_widget.dart';
 
 import '../../../../config/routes/assets_routes.dart';
-import '../../../../config/theme/colors.dart';
+import '../../../../config/theme/colors/grey_color.dart';
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import '../../user_auth_injection_container.dart';
@@ -54,13 +54,13 @@ class _LoginPageState extends State<LoginPage> {
           if (state is UserAuthLoaded) {
             Future.delayed(Duration.zero, () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                  UserPage.id, (Route<dynamic> route) => false);
+                  CoachMainPage.id, (Route<dynamic> route) => false);
             });
           }
           if (state is UserAuthError) {
             SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(buildCustomAuthSnackBar(state.error));
+                  .showSnackBar(buildCustomSnackBar(state.error));
             });
           }
           return Scaffold(
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                       name: 'Google',
                       textStyle: AppButtonTextStyle.regularButtonBlackMedium,
                       iconPath: IconPath.google,
-                      buttonBorderColor: ValidationColor.textFieldColor,
+                      buttonBorderColor: GreyColor.g3,
                     ),
                     SizedBox(
                       height: 20.h,

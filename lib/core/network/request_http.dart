@@ -1,25 +1,25 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
-import 'package:move_mates_android/core/constants/constants.dart';
+import 'package:http/http.dart' as http;
+import 'package:move_mates_android/core/constants/common_constants.dart';
 
 abstract class RequestHttp {
-  Future<Response> post({required Object body});
+  Future<http.Response> post({required Object body});
 
-  Future<Response> get({required Map<String, String> headers});
+  Future<http.Response> get({required Map<String, String> headers});
 
   const RequestHttp();
 }
 
 class RequestHttpImpl implements RequestHttp {
-  final Client client;
+  final http.Client client;
   final String url;
 
 
   RequestHttpImpl({required this.client, required this.url});
 
   @override
-  Future<Response> get({required Map<String, String> headers}) async {
+  Future<http.Response> get({required Map<String, String> headers}) async {
     return await client.get(
       Uri.parse(url),
       headers: headers,
@@ -27,10 +27,10 @@ class RequestHttpImpl implements RequestHttp {
   }
 
   @override
-  Future<Response> post({required Object body}) async {
+  Future<http.Response> post({required Object body}) async {
     return await client.post(
       Uri.parse(url),
-      headers: CommonConstants.headers,
+      headers: CommonConstants.baseHeaders,
       body: jsonEncode(body)
     );
   }

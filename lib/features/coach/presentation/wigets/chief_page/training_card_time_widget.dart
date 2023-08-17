@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/coach/coach_home_text_style.dart';
 import '../../../../user_auth/presentation/widgets/signup/asset_icon_widget.dart';
 
@@ -23,7 +23,7 @@ class TrainingCardTimeWidget extends StatelessWidget {
       height: 35.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          border: Border.all(color: GradientColors.start)),
+          border: Border.all(color: PinkColor.p1)),
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Row(
@@ -33,7 +33,7 @@ class TrainingCardTimeWidget extends StatelessWidget {
             AssetIcon(
               path: iconPath,
               size: 14,
-              color: CoachColor.additionInfoTitle,
+              color: PinkColor.p10,
             ),
             Text(
               title,

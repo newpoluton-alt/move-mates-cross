@@ -2,8 +2,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
 import '../../../../../config/routes/assets_routes.dart';
+import '../../../../../config/theme/colors/green_color.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
 import '../signup/asset_icon_widget.dart';
 
 class LoginTextFormWidget extends StatelessWidget {
@@ -60,8 +61,8 @@ class LoginTextFormWidget extends StatelessWidget {
                       icon: AssetIcon(
                           path: IconPath.eye,
                           color: isPasswordVisible
-                              ? ValidationColor.signInAndSignup
-                              : ValidationColor.checkBoxGrey))),
+                              ? GreenColor.g1
+                              : GreyColor.g2))),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Пожалуйста, введите пароль.';

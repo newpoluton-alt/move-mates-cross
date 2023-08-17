@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/core/constants/user_auth/user_auth_constants.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import 'asset_icon_widget.dart';
 
@@ -10,7 +10,7 @@ class SignUpSpecialistTabBar extends StatefulWidget {
   final bool isFirstPage;
   final String path;
 
-  const SignUpSpecialistTabBar({
+  const   SignUpSpecialistTabBar({
     super.key,
     required this.isFirstPage,
     required this.path,
@@ -55,7 +55,7 @@ void changeOrderOfItems(String? value) {
           AssetIcon(
               path: widget.path,
               color:
-                  widget.isFirstPage ? ValidationColor.pageMainColor : Colors.black),
+                  widget.isFirstPage ? PinkColor.p4 : Colors.black),
           SizedBox(
             width: 10.w,
           ),
@@ -69,7 +69,7 @@ void changeOrderOfItems(String? value) {
             borderRadius: BorderRadius.circular(7.r),
             icon: Icon(
               Icons.keyboard_arrow_up,
-              color: widget.isFirstPage ? ValidationColor.pageMainColor : Colors.black,
+              color: widget.isFirstPage ? PinkColor.p4 : Colors.black,
             ),
             items: !widget.isFirstPage?null: items
                 .map((e) => DropdownMenuItem(
@@ -88,3 +88,5 @@ void changeOrderOfItems(String? value) {
     );
   }
 }
+
+

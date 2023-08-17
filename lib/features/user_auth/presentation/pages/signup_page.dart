@@ -111,7 +111,7 @@ class _SignupPageState extends State<SignupPage> {
               if (state is UserAuthError) {
                 SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                   ScaffoldMessenger.of(context)
-                      .showSnackBar(buildCustomAuthSnackBar(state.error));
+                      .showSnackBar(buildCustomSnackBar(state.error));
                 });
               }
           return Scaffold(

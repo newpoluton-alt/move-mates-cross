@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
-import '../../../../../config/theme/text_styles/user_auth/forgotten_pass_text_style.dart';
 
-SnackBar buildCustomAuthSnackBar(String error) {
+SnackBar buildCustomSnackBar(String error) {
   return SnackBar(
       width: 0.7.sw,
       backgroundColor: Colors.white,

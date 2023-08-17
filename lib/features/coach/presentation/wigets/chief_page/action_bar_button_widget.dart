@@ -4,7 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/coach/coach_home_text_style.dart';
 
 class ActionBarButtonWidget extends StatelessWidget {
@@ -30,8 +31,8 @@ class ActionBarButtonWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.r)),
           onPressed: isFirstAction ? () {} : changeAction,
           color: isFirstAction
-              ? CoachColor.actionBarSelected
-              : CoachColor.actionBarBackground,
+              ? PinkColor.p6
+              : GreyColor.g5,
           child: Text(
             text,
             style: isFirstAction

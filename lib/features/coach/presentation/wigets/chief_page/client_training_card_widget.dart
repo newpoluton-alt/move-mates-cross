@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../config/routes/assets_routes.dart';
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
+import '../../../../../config/theme/colors/green_color.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/coach/coach_home_text_style.dart';
 import '../../../../user_auth/presentation/widgets/auth/validation_button_widget.dart';
 import '../../../../user_auth/presentation/widgets/signup/asset_icon_widget.dart';
@@ -32,7 +34,7 @@ class ClientTrainingCardWidget extends StatelessWidget {
     return Container(
       width: 350.w,
       height: 161.h,
-      margin: EdgeInsets.only(top: 25.h),
+      margin: EdgeInsets.only(bottom: 25.h),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [BoxShadow(
@@ -56,53 +58,53 @@ class ClientTrainingCardWidget extends StatelessWidget {
                 height: 54.r,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(54.r),
-                    color: CoachColor.actionBarSelected),
+                    color: PinkColor.p6),
               ),
               SizedBox(
                 width: 5.w,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'ID ${contentEntity.clientId}',
-                        overflow: TextOverflow.fade,
+              SizedBox(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 185.w,
+                      child: Text(
+                        'Client ID ${contentEntity.clientId}',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: CoachHomeTextStyle.clientNameTrainingCard,
                       ),
-                      SizedBox(width: 65.w),
-                      AssetIcon(
-                        path: IconPath.done,
-                        color: CoachColor.doneColor,
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        contentEntity.type,
-                        style: CoachHomeTextStyle.subtitleTrainingCard,
-                      ),
-                      Container(
-                        width: 3.r,
-                        height: 3.r,
-                        margin: EdgeInsets.symmetric(horizontal: 5.w),
-                        decoration: BoxDecoration(
-                            color: CoachColor.decorationPoint,
-                            borderRadius: BorderRadius.circular(3.r)),
-                      ),
-                      Text(
-                        'Онлайн',
-                        style: CoachHomeTextStyle.connectionState,
-                      )
-                    ],
-                  ),
-                ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          contentEntity.type,
+                          style: CoachHomeTextStyle.subtitleTrainingCard,
+                        ),
+                        Container(
+                          width: 3.r,
+                          height: 3.r,
+                          margin: EdgeInsets.symmetric(horizontal: 5.w),
+                          decoration: BoxDecoration(
+                              color: GreyColor.g10,
+                              borderRadius: BorderRadius.circular(3.r)),
+                        ),
+                        Text(
+                          'Онлайн',
+                          style: CoachHomeTextStyle.connectionState,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              AssetIcon(
+                path: IconPath.done,
+                color: PinkColor.p11,
               )
             ],
           ),
@@ -116,9 +118,9 @@ class ClientTrainingCardWidget extends StatelessWidget {
               TrainingCardTimeWidget(
                 iconPath: IconPath.calendar,
                 title:
-                '${weekFormat.format(DateTime.parse(contentEntity.endOfAppointment))}, '
-                    '${dayFormat.format(DateTime.parse(contentEntity.endOfAppointment))}'
-                    ' ${monthFormat.format(DateTime.parse(contentEntity.endOfAppointment))}',
+                '${weekFormat.format(DateTime.parse(contentEntity.startOfAppointment))}, '
+                    '${dayFormat.format(DateTime.parse(contentEntity.startOfAppointment))}'
+                    ' ${monthFormat.format(DateTime.parse(contentEntity.startOfAppointment))}',
               ),
               SizedBox(width: 5.w),
               const TrainingCardTimeWidget(
@@ -135,7 +137,7 @@ class ClientTrainingCardWidget extends StatelessWidget {
               name: 'Начать тренировку',
               height: 40,
               textStyle: CoachHomeTextStyle.trainingCardBeginSession,
-              buttonColor: CoachColor.trainingBeginSession,
+              buttonColor: GreenColor.g2,
             ),
           )
         ],

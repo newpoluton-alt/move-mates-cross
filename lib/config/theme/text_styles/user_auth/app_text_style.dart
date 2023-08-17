@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../colors.dart';
+import '../../colors/pink_color.dart';
 
 class AppTextStyle {
   static TextStyle greeting = GoogleFonts.montserrat(
@@ -37,7 +37,7 @@ class AppButtonTextStyle {
   static TextStyle regularButtonBlack = GoogleFonts.montserrat(
       color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w700);
   static TextStyle regularButtonPink = GoogleFonts.montserrat(
-      color: ValidationColor.pageMainColor,
+      color: PinkColor.p4,
       fontSize: 16.sp,
       fontWeight: FontWeight.w700);
   static TextStyle regularButtonBlackMedium = GoogleFonts.montserrat(

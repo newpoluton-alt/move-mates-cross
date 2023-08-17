@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
-import 'package:move_mates_android/config/theme/colors.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/login_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
 
+import '../../../../config/theme/colors/pink_color.dart';
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 
 class AuthPage extends StatefulWidget {
@@ -48,7 +48,7 @@ class _AuthPageState extends State<AuthPage> {
                       ValidationButtonWidget(
                         name: 'Вход',
                         buttonBorderColor:
-                            ValidationColor.pageMainColor,
+                            PinkColor.p4,
                         textStyle: AppButtonTextStyle.regularButtonPink,
                         onPushing: () {
                           gotoPage(LoginPage.id);
@@ -63,8 +63,8 @@ class _AuthPageState extends State<AuthPage> {
                         onPushing: () {
                           gotoPage(SignupPage.id);
                         },
-                        buttonColor: ValidationColor.pageMainColor,
-                        buttonBorderColor: ValidationColor.pageMainColor,
+                        buttonColor: PinkColor.p4,
+                        buttonBorderColor: PinkColor.p4,
                       ),
                     ],
                   ),

@@ -1,6 +1,6 @@
 class IconPath {
-  static const arrowBack = 'assets/icons/arrow_back.png';
-  static const arrowForward = 'assets/icons/arrow_forward.png';
+  static const arrowBack = 'assets/icons/auth/arrow_back.png';
+  static const arrowForward = 'assets/icons/auth/arrow_forward.png';
   static const dumbbellLarge = 'assets/icons/auth/dumbbell_large.png';
   static const meditationRound = 'assets/icons/auth/meditation_round.png';
   static const eye = "assets/icons/auth/eye.png";
@@ -18,9 +18,15 @@ class IconPath {
   static const forwardArrow = 'assets/icons/user/forward_arrow.png';
   static const clock = 'assets/icons/user/clock.png';
   static const done = 'assets/icons/user/done.png';
+  static const search = 'assets/icons/user/search.png';
+  static const add = 'assets/icons/user/add.png';
+  static const trash = 'assets/icons/user/trash.png';
+  static const buttonForward = 'assets/icons/user/button_forward.png';
+  static const rightArrowCalendar =
+      'assets/icons/user/right_arrow_calendar.png';
 }
 
-class ImagePath{
+class ImagePath {
   static const logo = 'assets/logos/move_mates_logo.png';
   static const imgFirst = 'assets/images/img_first.png';
   static const imgSecond = 'assets/images/img_second.png';

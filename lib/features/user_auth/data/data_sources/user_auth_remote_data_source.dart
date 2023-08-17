@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:move_mates_android/core/constants/constants.dart';
+import 'package:move_mates_android/core/constants/common_constants.dart';
 import 'package:move_mates_android/core/constants/user_auth/user_auth_constants.dart';
 import 'package:move_mates_android/core/constants/user_auth/user_role_enum.dart';
 import 'package:move_mates_android/core/network/request_http.dart';

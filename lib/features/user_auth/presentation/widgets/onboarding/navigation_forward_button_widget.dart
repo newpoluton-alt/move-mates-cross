@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/config/theme/colors/pink_color.dart';
 
 import '../../pages/auth_page.dart';
 import '../signup/asset_icon_widget.dart';
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
 import '../../../../../config/routes/assets_routes.dart';
 
 class NavigationForwardButtonWidget extends StatelessWidget {
@@ -40,8 +41,8 @@ class NavigationForwardButtonWidget extends StatelessWidget {
                         margin: EdgeInsets.only(right: 5.w),
                         decoration: BoxDecoration(
                             color: e + 1 == currentPage
-                                ? AppViewColor.indicatorSelected
-                                : AppViewColor.indicator,
+                                ? PinkColor.p3
+                                : GreyColor.g4,
                             borderRadius: BorderRadius.circular(15.r)),
                       ))
                   .toList(),

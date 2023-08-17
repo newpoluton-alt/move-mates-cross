@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_mates_android/core/constants/cubit_constants.dart';
+import 'package:move_mates_android/core/constants/common_cubit_constants.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/user_auth_error/user_auth_failure.dart';

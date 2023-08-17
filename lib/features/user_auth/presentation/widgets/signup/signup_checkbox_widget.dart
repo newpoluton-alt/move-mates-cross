@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 
 class SignupCheckboxWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class SignupCheckboxWidget extends StatelessWidget {
           Checkbox(
               value: (doUserAgree ?? false),
               isError: (doUserAgree == false),
-              activeColor: ValidationColor.pageMainColor,
+              activeColor: PinkColor.p4,
               onChanged: changeMind),
           SizedBox(
             width: 0.7.sw,

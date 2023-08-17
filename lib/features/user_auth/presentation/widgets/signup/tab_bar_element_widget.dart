@@ -5,8 +5,9 @@ import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/asset_icon_widget.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
 import '../../../../../config/routes/assets_routes.dart';
+import '../../../../../config/theme/colors/green_color.dart';
 
 class TabBarElementWidget extends StatelessWidget {
   final FocusNode emailNode;
@@ -106,8 +107,8 @@ class TabBarElementWidget extends StatelessWidget {
                     icon: AssetIcon(
                         path: IconPath.eye,
                         color: isPasswordVisible
-                            ? ValidationColor.signInAndSignup
-                            : ValidationColor.checkBoxGrey))),
+                            ? GreenColor.g1
+                            : GreyColor.g2))),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Пожалуйста, введите пароль.';

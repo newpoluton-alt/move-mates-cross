@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:move_mates_android/features/coach/data/models/coach_up_coming_model.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/custom_snackbar_builder.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/coach/coach_home_text_style.dart';
 import '../../../domain/entities/coach_up_coming_content_entity.dart';
 import '../../cubit/coach_cubit.dart';
 import '../../cubit/coach_state.dart';
-import '../../pages/training_session_creation_page.dart';
+import '../../pages/choose_your_training_page.dart';
 import 'client_training_card_widget.dart';
 
 class TrainingActionWidget extends StatefulWidget {
-  const TrainingActionWidget({super.key});
+  const TrainingActionWidget(
+      {super.key,
+      required this.currentDate,
+      required this.coachCustomDateFormat});
+
+  final String currentDate;
+  final DateFormat coachCustomDateFormat;
 
   @override
   State<TrainingActionWidget> createState() => _TrainingActionWidgetState();
@@ -42,68 +47,51 @@ class _TrainingActionWidgetState extends State<TrainingActionWidget> {
     super.dispose();
   }
 
+  bool doesEventsExist(String currentDate, String eventDate) =>
+      currentDate == eventDate;
+
+  List<CoachUpComingContentEntity> filterEventsByCurrentDate
+      ({required CoachUpComingModel model}) {
+    List<CoachUpComingContentEntity> tempContentList = [];
+
+    for (int i = 0; i < model.content.length; i++) {
+      var modelContentEvent = model.content.elementAt(i);
+      DateTime eventDateNotFormatted = widget.coachCustomDateFormat
+          .parse(modelContentEvent.startOfAppointment);
+      if (doesEventsExist(widget.currentDate,
+          widget.coachCustomDateFormat.format(eventDateNotFormatted))) {
+        tempContentList.add(modelContentEvent);
+      }
+    }
+    return tempContentList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CoachCubit, CoachState>(builder: (context, state) {
-      if (state is CoachStateError) {
-        SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-          buildCustomAuthSnackBar(state.error);
-        });
-      }
+
       if (state is CoachStateLoaded) {
-        _trainingActionNotifier
-            .addTrainings((state.model as CoachUpComingModel).content);
+        _trainingActionNotifier.addTrainings(filterEventsByCurrentDate(
+            model: (state.model as CoachUpComingModel)));
       }
 
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          MaterialButton(
-            elevation: 0,
-            height: 70.h,
-            onPressed: () {
-              Navigator.of(context).pushNamed(TrainingSessionCreationPage.id);
-            },
-            color: CoachColor.actionBarBackground,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                side: const BorderSide(color: CoachColor.actionBarSelected)),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Создать свое расписание',
-                  style: CoachHomeTextStyle.addNewSchedule,
-                ),
-                SizedBox(width: 20.w),
-                Container(
-                  height: 40.r,
-                  width: 40.r,
-                  decoration: BoxDecoration(
-                      color: CoachColor.addNewScheduleButtonBackground,
-                      borderRadius: BorderRadius.circular(40.r)),
-                  child: const FittedBox(
-                      child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  )),
-                ),
-              ],
-            ),
-          ),
           ValueListenableBuilder<List<CoachUpComingContentEntity>?>(
               valueListenable: _trainingActionNotifier.trainings,
               builder: (context, value, _) {
                 if (value == null || value.isEmpty) {
-                  return Padding(
-                    padding: EdgeInsets.only(top: 129.h),
-                    child: Text(
-                      (state is CoachStateLoading)
-                          ? 'Загрузка...'
-                          : 'У вас пока нету тренировок',
-                      style: CoachHomeTextStyle.noTraining,
+                  return Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 129.h),
+                      child: Text(
+                        (state is CoachStateLoading)
+                            ? 'Загрузка...'
+                            : 'У вас пока нету тренировок',
+                        style: CoachHomeTextStyle.noTraining,
+                      ),
                     ),
                   );
                 } else {
@@ -112,7 +100,7 @@ class _TrainingActionWidgetState extends State<TrainingActionWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: value
                         .map((e) => ClientTrainingCardWidget(
-                              contentEntity: value.first,
+                              contentEntity: e,
                               dayFormat: dayFormat,
                               weekFormat: weekFormat,
                               monthFormat: monthFormat,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/asset_icon_widget.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 
 class SignupTabBar extends StatelessWidget {
@@ -27,7 +27,7 @@ class SignupTabBar extends StatelessWidget {
         children: [
           AssetIcon(
               path: path,
-              color: isFirstPage ? ValidationColor.pageMainColor : Colors.black),
+              color: isFirstPage ? PinkColor.p4 : Colors.black),
           SizedBox(width: 10.w,),
           Text(
             text,

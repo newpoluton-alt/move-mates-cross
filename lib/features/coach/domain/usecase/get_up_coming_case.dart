@@ -1,19 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:move_mates_android/core/error/failure.dart';
 import 'package:move_mates_android/core/usescases/usecase.dart';
-import 'package:move_mates_android/features/coach/domain/entities/coach_up_coming_entity.dart';
 
+import '../entities/coach_entity.dart';
 import '../repository/coach_repository.dart';
 
-class GetUpComingCase
-    implements UseCase<CoachUpComingEntity, UpComingParam> {
-
+class GetUpComingCase implements UseCase<CoachEntity, UpComingParam> {
   final CoachRepository coachRepository;
 
   GetUpComingCase({required this.coachRepository});
 
   @override
-  Future<Either<Failure, CoachUpComingEntity>> call(
+  Future<Either<Failure, CoachEntity>> call(
       UpComingParam params) async {
     return await coachRepository.getUpComingEvents(params);
   }
@@ -45,4 +43,7 @@ class UpComingParam extends Param {
       'page': page,
     };
   }
+
+  String fieldsToUrlParam() =>
+      '?from=${fromDate}T06%3A18%3A03.000Z&size=$size&page=$page';
 }

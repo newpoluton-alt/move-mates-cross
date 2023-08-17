@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../config/theme/colors.dart';
+import '../../../../../config/theme/colors/grey_color.dart';
 import 'action_bar_button_widget.dart';
 
 class ActionBarWidget extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ActionBarWidgetState extends State<ActionBarWidget> {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: CoachColor.actionBarBackground,
+                color: GreyColor.g5,
                 borderRadius: BorderRadius.circular(8.r)),
           ),
           Row(

@@ -3,6 +3,7 @@ import 'package:move_mates_android/features/coach/data/data_sources/coach_local_
 import 'package:move_mates_android/features/coach/data/data_sources/coach_remote_data_source.dart';
 import 'package:move_mates_android/features/coach/data/repository/coach_repository_impl.dart';
 import 'package:move_mates_android/features/coach/domain/repository/coach_repository.dart';
+import 'package:move_mates_android/features/coach/domain/usecase/get_clients_list_case.dart';
 import 'package:move_mates_android/features/coach/domain/usecase/get_up_coming_case.dart';
 import 'package:move_mates_android/features/coach/presentation/cubit/coach_cubit.dart';
 
@@ -10,10 +11,14 @@ final sl = GetIt.instance;
 
 Future<void> initCoachDI() async {
   // state management BloC (Cubit)
-  sl.registerFactory(() => CoachCubit(getUpComingCase: sl()));
+  sl.registerFactory(() => CoachCubit(
+        getUpComingCase: sl(),
+        getClientListCase: sl(),
+      ));
 
   //use cases
   sl.registerLazySingleton(() => GetUpComingCase(coachRepository: sl()));
+  sl.registerLazySingleton(() => GetClientListCase(coachRepository: sl()));
 
   //repository implementation
   sl.registerLazySingleton<CoachRepository>(
@@ -28,5 +33,4 @@ Future<void> initCoachDI() async {
       () => CoachRemoteDataSourceImpl(client: sl()));
   sl.registerLazySingleton<CoachLocalDataSource>(
       () => CoachLocalDataSourceImpl(flutterSecureStorage: sl()));
-
 }
