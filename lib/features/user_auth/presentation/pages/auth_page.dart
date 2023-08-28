@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/login_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
 
 import '../../../../config/theme/colors/pink_color.dart';
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../widgets/auth_page/auth_page_validation_button_widget.dart';
 
 class AuthPage extends StatefulWidget {
   static const id = 'login_and_signup_page';
@@ -45,7 +45,7 @@ class _AuthPageState extends State<AuthPage> {
                       EdgeInsets.only(right: 20.w, left: 20.w, bottom: 50.h),
                   child: Column(
                     children: [
-                      ValidationButtonWidget(
+                      AuthPageValidationButtonWidget(
                         name: 'Вход',
                         buttonBorderColor:
                             PinkColor.p4,
@@ -57,7 +57,7 @@ class _AuthPageState extends State<AuthPage> {
                       SizedBox(
                         height: 15.h,
                       ),
-                      ValidationButtonWidget(
+                      AuthPageValidationButtonWidget(
                         name: 'Регистрация',
                         textStyle: AppButtonTextStyle.regularButtonWhite,
                         onPushing: () {

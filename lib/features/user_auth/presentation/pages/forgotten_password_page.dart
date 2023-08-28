@@ -2,10 +2,10 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/theme/text_styles/user_auth/forgotten_pass_text_style.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/back_button_widget.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
 
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../widgets/auth_page/auth_page_back_button_widget.dart';
+import '../widgets/auth_page/auth_page_validation_button_widget.dart';
 
 class ForgottenPasswordPage extends StatefulWidget {
   static const String id = 'forgotten_password_page';
@@ -87,7 +87,7 @@ void _submit(){
                   SizedBox(
                     height: 50.h,
                   ),
-                  ValidationButtonWidget(
+                  AuthPageValidationButtonWidget(
                     name: 'Отправить инструкцию',
                     textStyle: AppButtonTextStyle.regularButtonWhite,
                     buttonColor: Colors.black,
@@ -114,7 +114,7 @@ void _submit(){
   AppBar buildAppBar() {
     return AppBar(
         title: const Text('Восстановление пароля'),
-        leading: const BackButtonWidget(),
+        leading: const AuthPageBackButtonWidget(),
       );
   }
 }

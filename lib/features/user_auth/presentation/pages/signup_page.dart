@@ -5,16 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/core/constants/user_auth/user_role_enum.dart';
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_up.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/validation_button_widget.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/signup_checkbox_widget.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/signup/tab_view_widget.dart';
 
 import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import '../../user_auth_injection_container.dart';
 import '../cubit/user_auth_state.dart';
-import '../widgets/auth/back_button_widget.dart';
-import '../widgets/auth/custom_snackbar_builder.dart';
+import '../widgets/auth_page/auth_page_back_button_widget.dart';
+import '../widgets/auth_page/auth_page_custom_snackbar_builder.dart';
+import '../widgets/auth_page/auth_page_validation_button_widget.dart';
+import '../widgets/signup_page/signup_page_checkbox_widget.dart';
+import '../widgets/signup_page/signup_page_tab_view_widget.dart';
 import 'login_page.dart';
 
 class SignupPage extends StatefulWidget {
@@ -111,13 +111,13 @@ class _SignupPageState extends State<SignupPage> {
               if (state is UserAuthError) {
                 SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                   ScaffoldMessenger.of(context)
-                      .showSnackBar(buildCustomSnackBar(state.error));
+                      .showSnackBar(buildAuthPageCustomSnackBar(state.error));
                 });
               }
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              leading: const BackButtonWidget(),
+              leading: const AuthPageBackButtonWidget(),
             ),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -138,7 +138,7 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 15.h,
                   ),
-                  TabViewWidget(
+                  SignupPageTabViewWidget(
                     changeStatus: changeStatus,
                     textFieldFormKey: _textFieldFormKey,
                     nameEditingController: _nameEditingController,
@@ -150,14 +150,14 @@ class _SignupPageState extends State<SignupPage> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  SignupCheckboxWidget(
+                  SignupPageCheckboxWidget(
                     doUserAgree: _doUserAgree,
                     changeMind: changeMind,
                   ),
                   SizedBox(
                     height: 30.h,
                   ),
-                  ValidationButtonWidget(
+                  AuthPageValidationButtonWidget(
                     name: state is UserAuthLoading
                         ? 'Загрузка...'
                         : 'Зарегистрироваться',

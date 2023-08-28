@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:move_mates_android/core/constants/coach/coach_constants.dart';
 import 'package:move_mates_android/core/error/coach_error/coach_exception.dart';
 import 'package:move_mates_android/core/error/coach_error/coach_failure.dart';
 import 'package:move_mates_android/core/error/failure.dart';
@@ -8,6 +7,7 @@ import 'package:move_mates_android/features/coach/data/data_sources/coach_remote
 import 'package:move_mates_android/features/coach/domain/usecase/get_clients_list_case.dart';
 import 'package:move_mates_android/features/coach/domain/usecase/get_up_coming_case.dart';
 
+import '../../../../core/constants/coach/coach_parse_constants.dart';
 import '../../../../core/network/connection_state.dart';
 import '../../../../core/usescases/usecase.dart';
 import '../../domain/entities/coach_entity.dart';

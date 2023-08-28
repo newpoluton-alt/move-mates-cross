@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/onboarding/bottom_sheet_widget.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/onboarding/initial_page_view_widget.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
 
-import '../widgets/onboarding/page_view_element_widget.dart';
+import '../widgets/onboarding_page/onboarding_page_bottom_sheet_widget.dart';
+import '../widgets/onboarding_page/onboarding_page_initial_page_view_widget.dart';
+import '../widgets/onboarding_page/onboarding_page_view_element_widget.dart';
+
 
 class AppPageView extends StatefulWidget {
   const AppPageView({
@@ -40,25 +41,25 @@ void changeCurrentPage(int value) {
         controller: _pageController,
         onPageChanged: changeCurrentPage,
         children: const [
-          InitialPageView(),
-          PageViewElementWidget(
+          OnboardingPageInitialPageView(),
+          OnboardingPageViewElementWidget(
             imagePath: ImagePath.imgSecond,
           firstText: 'Удобное общение между тренерами и клиентами',
           secondText: 'Соединяйтесь. Достигайте. Процветайте.',
           ),
-          PageViewElementWidget(
+          OnboardingPageViewElementWidget(
             imagePath: ImagePath.imgThird,
           firstText: 'Платежи в приложении',
           secondText: 'Быстрые транзакции, мгновенные результаты.',
           ),
-          PageViewElementWidget(
+          OnboardingPageViewElementWidget(
             imagePath: ImagePath.imgFourth,
           firstText: 'Онлайн/офлайн тренировки',
           secondText: 'Занимайтесь спортом вне зависимости от места или ограничений времени.',
           ),
         ],
       ),
-      bottomSheet: PageViewBottomSheet(
+      bottomSheet: OnboardingPageViewBottomSheet(
         currentPage: currentPage,
         pageController: _pageController,
       ),

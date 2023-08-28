@@ -1,12 +1,12 @@
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/pages_routes.dart';
 import 'package:move_mates_android/config/theme/app_theme/app_theme.dart';
-import 'package:move_mates_android/features/injection_container.dart' as di;
 import 'package:move_mates_android/core/data_source/local_data_source_checker.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/coach_main_page.dart';
+import 'package:move_mates_android/features/injection_container.dart' as di;
 import 'package:move_mates_android/features/user_auth/presentation/pages/onboarding_page.dart';
 
 import 'config/routes/assets_routes.dart';
@@ -36,10 +36,16 @@ class _MoveMatesAppState extends State<MoveMatesApp> {
         return MaterialApp(
           title: 'Move Mates',
           theme: AppTheme.moveMatesTheme,
+          builder: (context, child) {
+            return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(alwaysUse24HourFormat: true),
+                child: child!);
+          },
           home: FutureBuilder<bool>(
             future: di.sl<LocalDataSourceChecker>().isDataLocated,
             builder: (context, AsyncSnapshot<bool> snapshot) {
-             return showBody(snapshot);
+              return showBody(snapshot);
             },
           ),
           routes: PagesRoutes.routes,

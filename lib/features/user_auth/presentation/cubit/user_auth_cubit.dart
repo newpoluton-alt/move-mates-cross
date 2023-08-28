@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_mates_android/core/constants/common_cubit_constants.dart';
 
+import '../../../../core/constants/error_messages.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/error/user_auth_error/user_auth_failure.dart';
 import '../../domain/enteties/user_auth_entity.dart';
@@ -52,21 +52,21 @@ class UserAuthCubit extends Cubit<UserAuthState> {
   String _failureToString(Failure failure) {
     switch (failure.runtimeType) {
       case UserNotExistsFailure:
-        return CubitConstants.userNotExistsMessage;
+        return ErrorMessages.userNotExistsMessage;
       case UserAlreadyExistsFailure:
-        return CubitConstants.userAlreadyExistsMessage;
+        return ErrorMessages.userAlreadyExistsMessage;
       case NoInternetConnectionFailure:
-        return CubitConstants.noInternetConnectionMessage;
+        return ErrorMessages.noInternetConnectionMessage;
       case AuthFailure:
-        return CubitConstants.problemsWithServerMessage;
+        return ErrorMessages.problemsWithServerMessage;
       case CredentialsCacheFailure:
-        return CubitConstants.userCredentialsCacheErrorMessage;
+        return ErrorMessages.userCredentialsCacheErrorMessage;
       case CredentialsDeleteFailure:
-        return CubitConstants.userCredentialsDeleteErrorMessage;
+        return ErrorMessages.userCredentialsDeleteErrorMessage;
       case CredentialsReadFailure:
-        return CubitConstants.userCredentialsReadErrorMessage;
+        return ErrorMessages.userCredentialsReadErrorMessage;
       default:
-        return CubitConstants.unexpectedErrorMessage;
+        return ErrorMessages.unexpectedErrorMessage;
     }
   }
 }

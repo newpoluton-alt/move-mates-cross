@@ -24,6 +24,12 @@ class IconPath {
   static const buttonForward = 'assets/icons/user/button_forward.png';
   static const rightArrowCalendar =
       'assets/icons/user/right_arrow_calendar.png';
+  static const addButton = 'assets/icons/user/add_button.png';
+  static const leftChevron = 'assets/icons/user/left_chevron.png';
+  static const rightChevron = 'assets/icons/user/right_chevron.png';
+  static const subscription = 'assets/icons/user/subscription.png';
+  static const notification = 'assets/icons/user/notification.png';
+  static const payments = 'assets/icons/user/payments.png';
 }
 
 class ImagePath {
@@ -34,4 +40,5 @@ class ImagePath {
   static const imgFourth = 'assets/images/img_fourth.png';
   static const imgFifth = 'assets/images/img_fifth.png';
   static const userActionBegin = 'assets/images/user/user_action_begin.png';
+  static const imageCloud = 'assets/images/user/image_cloud.png';
 }

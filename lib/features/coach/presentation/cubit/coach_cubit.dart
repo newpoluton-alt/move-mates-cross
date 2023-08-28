@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:move_mates_android/core/constants/common_cubit_constants.dart';
 import 'package:move_mates_android/core/error/coach_error/coach_failure.dart';
-import 'package:move_mates_android/features/coach/domain/usecase/get_clients_list_case.dart';
 
+import '../../../../core/constants/error_messages.dart';
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/coach_entity.dart';
 import '../../domain/usecase/get_up_coming_case.dart';
@@ -11,9 +10,8 @@ import 'coach_state.dart';
 
 class CoachCubit extends Cubit<CoachState> {
   final GetUpComingCase getUpComingCase;
-  final GetClientListCase getClientListCase;
 
-  CoachCubit({required this.getUpComingCase, required this.getClientListCase})
+  CoachCubit({required this.getUpComingCase})
       : super(CoachStateEmpty());
 
   void onGetUpComings(UpComingParam param) async {
@@ -22,11 +20,6 @@ class CoachCubit extends Cubit<CoachState> {
     _failureOrSuccess(failureOrCoachModel: failureOrCoachUpComingModel);
   }
 
-  void onGetClientsList(ClientsListParam param) async {
-    emit(CoachStateLoading());
-    final failureOrCoachClientsModel = await getClientListCase(param);
-    _failureOrSuccess(failureOrCoachModel: failureOrCoachClientsModel);
-  }
 
   void _failureOrSuccess(
       {required Either<Failure, CoachEntity> failureOrCoachModel}) {
@@ -39,19 +32,19 @@ class CoachCubit extends Cubit<CoachState> {
   String _coachFailureToString(Failure failure) {
     switch (failure.runtimeType) {
       case CoachNoInternetConnectionFailure:
-        return CubitConstants.noInternetConnectionMessage;
+        return ErrorMessages.noInternetConnectionMessage;
 
       case CoachNoDataFailure:
-        return CubitConstants.noDataInCacheErrorMessage;
+        return ErrorMessages.noDataInCacheErrorMessage;
 
       case CoachCacheReadFailure:
-        return CubitConstants.userCredentialsReadErrorMessage;
+        return ErrorMessages.userCredentialsReadErrorMessage;
 
       case CoachServerFailure:
-        return CubitConstants.problemsWithServerMessage;
+        return ErrorMessages.problemsWithServerMessage;
 
       default:
-        return CubitConstants.unexpectedErrorMessage;
+        return ErrorMessages.unexpectedErrorMessage;
     }
   }
 }

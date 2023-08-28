@@ -29,6 +29,12 @@ class GreyColor {
   static const Color g26 = Color(0xFF707070);
   static const Color g27 = Color(0xF9F9F9F0);
   static const Color g28 = Color(0xFFBEBEBE);
-
+  static const Color g29 = Color(0xFFDADADA);
+  static const Color g30 = Color(0xFFFBFAFA);
+  static const Color g31 = Color(0xFFBAB7B7);
+  static const Color g32 = Color(0xFFCBCBCB);
+  static const Color g33 = Color(0xFFB9B9BB);
+  static const Color g34 = Color(0xFF636363);
+  static const Color g35 = Color(0xFFCFCFCF);
 
 }

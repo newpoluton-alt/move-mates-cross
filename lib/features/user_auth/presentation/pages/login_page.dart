@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
 import 'package:move_mates_android/features/user_auth/presentation/pages/forgotten_password_page.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/auth/back_button_widget.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/login/login_text_form_widget.dart';
 
 import '../../../../config/routes/assets_routes.dart';
 import '../../../../config/theme/colors/grey_color.dart';
@@ -15,10 +13,12 @@ import '../../user_auth_injection_container.dart';
 import '../../../coach/presentation/pages/coach_main_page.dart';
 import '../../domain/usecases/user_sign_in.dart';
 import '../cubit/user_auth_state.dart';
-import '../widgets/auth/custom_snackbar_builder.dart';
-import '../widgets/auth/validation_button_widget.dart';
-import '../widgets/login/move_to_registration_page_text_widget.dart';
-import '../widgets/login/signed_divider_widget.dart';
+import '../widgets/auth_page/auth_page_back_button_widget.dart';
+import '../widgets/auth_page/auth_page_custom_snackbar_builder.dart';
+import '../widgets/auth_page/auth_page_validation_button_widget.dart';
+import '../widgets/login_page/login_page_move_to_registration_page_text_widget.dart';
+import '../widgets/login_page/login_page_signed_divider_widget.dart';
+import '../widgets/login_page/login_page_text_form_widget.dart';
 
 class LoginPage extends StatefulWidget {
   static const id = 'login_page';
@@ -60,13 +60,13 @@ class _LoginPageState extends State<LoginPage> {
           if (state is UserAuthError) {
             SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
               ScaffoldMessenger.of(context)
-                  .showSnackBar(buildCustomSnackBar(state.error));
+                  .showSnackBar(buildAuthPageCustomSnackBar(state.error));
             });
           }
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-              leading: const BackButtonWidget(),
+              leading: const AuthPageBackButtonWidget(),
             ),
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 36.h,
                     ),
-                    LoginTextFormWidget(
+                    LoginPageTextFormWidget(
                         signupFormKey: _signupFormKey,
                         isPasswordVisible: _isPasswordVisible,
                         emailEditingController: _emailEditingController,
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 130.h,
                     ),
-                    ValidationButtonWidget(
+                    AuthPageValidationButtonWidget(
                       name: state is UserAuthLoading ? 'Загрузка...' : 'Войти',
                       textStyle: AppButtonTextStyle.regularButtonWhite,
                       buttonColor: Colors.black,
@@ -121,11 +121,11 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    const SignedDividerWidget(),
+                    const LoginPageSignedDividerWidget(),
                     SizedBox(
                       height: 20.h,
                     ),
-                    ValidationButtonWidget(
+                    AuthPageValidationButtonWidget(
                       name: 'Google',
                       textStyle: AppButtonTextStyle.regularButtonBlackMedium,
                       iconPath: IconPath.google,
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    const RegistrationTextMoveWidget()
+                    const LoginPageRegistrationTextMoveWidget()
                   ],
                 ),
               ),
