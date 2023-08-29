@@ -38,25 +38,25 @@ class ChiefPage extends StatefulWidget implements CoachPage {
 }
 
 class _ChiefPageState extends State<ChiefPage> {
-  late DateFormat dayFormat;
-  late DateFormat dMYFormat;
-  late DateFormat weekDayFormat;
-  late List<DateTime> temp;
-  late bool isFirstAction;
-  late String currentDate;
-  late DateFormat coachCustomDateFormat;
+  late DateFormat _dayFormat;
+  late DateFormat _dMYFormat;
+  late DateFormat _weekDayFormat;
+  late List<DateTime> _dateTimeList;
+  late bool _isFirstAction;
+  late String _currentDate;
+  late DateFormat _coachCustomDateFormat;
 
   @override
   void initState() {
     initializeDateFormatting();
-    coachCustomDateFormat = DateFormat('yyyy-MM-dd', 'ru');
-    weekDayFormat = DateFormat.E('ru');
-    dayFormat = DateFormat.d('ru');
-    dMYFormat = DateFormat.yMEd('ru');
-    currentDate = coachCustomDateFormat.format(DateTime.now());
-    temp =
+    _coachCustomDateFormat = DateFormat('yyyy-MM-dd', 'ru');
+    _weekDayFormat = DateFormat.E('ru');
+    _dayFormat = DateFormat.d('ru');
+    _dMYFormat = DateFormat.yMEd('ru');
+    _currentDate = _coachCustomDateFormat.format(DateTime.now());
+    _dateTimeList =
         List.generate(30, (index) => DateTime.now().add(Duration(days: index)));
-    isFirstAction = true;
+    _isFirstAction = true;
     super.initState();
   }
 
@@ -67,23 +67,19 @@ class _ChiefPageState extends State<ChiefPage> {
     super.dispose();
   }
 
-  bool get isFirstActionValue => isFirstAction;
-
-  int get actionWidgetIndex => isFirstActionValue ? 0 : 1;
-
-  String get currentDateValue => currentDate;
-
-  set putNewCurrentDate(String newCurrentDate) => currentDate = newCurrentDate;
+  bool get _isFirstActionValue => _isFirstAction;
+  String get _currentDateValue => _currentDate;
+  set _putNewCurrentDate(String newCurrentDate) => _currentDate = newCurrentDate;
 
   void changeCurrentDate(String newCurrentDate) {
     setState(() {
-      putNewCurrentDate = newCurrentDate;
+      _putNewCurrentDate = newCurrentDate;
     });
   }
 
   void changeAction() {
     setState(() {
-      isFirstAction = !isFirstAction;
+      _isFirstAction = !_isFirstAction;
     });
   }
 
@@ -95,7 +91,7 @@ class _ChiefPageState extends State<ChiefPage> {
           create: (_) => sl<CoachCubit>()
             ..onGetUpComings(
               UpComingParam(
-                fromDate: currentDateValue,
+                fromDate: _currentDateValue,
                 size: 999,
                 page: 0,
               ),
@@ -145,23 +141,23 @@ class _ChiefPageState extends State<ChiefPage> {
                   height: 10.h,
                 ),
                 ChiefPageCalendarTabWidget(
-                  temp: temp,
+                  temp: _dateTimeList,
                   changeCurrentDate: changeCurrentDate,
-                  coachCustomDateFormat: coachCustomDateFormat,
-                  currentDate: currentDateValue,
-                  weekDayFormat: weekDayFormat,
-                  dayFormat: dayFormat,
-                  dMYFormat: dMYFormat,
+                  coachCustomDateFormat: _coachCustomDateFormat,
+                  currentDate: _currentDateValue,
+                  weekDayFormat: _weekDayFormat,
+                  dayFormat: _dayFormat,
+                  dMYFormat: _dMYFormat,
                 ),
                 SizedBox(height: 22.h),
                 ChiefPageActionBarWidget(
-                    isFirstAction: isFirstActionValue,
+                    isFirstAction: _isFirstActionValue,
                     changeAction: changeAction),
                 SizedBox(height: 25.h),
-                isFirstAction
+                _isFirstAction
                     ? ChiefPageTrainingActionWidget(
-                        currentDate: currentDate,
-                        coachCustomDateFormat: coachCustomDateFormat,
+                        currentDate: _currentDate,
+                        coachCustomDateFormat: _coachCustomDateFormat,
                       )
                     : const ChiefPageDeeplinkAndFillProfileWidget(),
               ],

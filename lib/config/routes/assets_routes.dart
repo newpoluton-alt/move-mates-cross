@@ -30,6 +30,9 @@ class IconPath {
   static const subscription = 'assets/icons/user/subscription.png';
   static const notification = 'assets/icons/user/notification.png';
   static const payments = 'assets/icons/user/payments.png';
+  static const location = 'assets/icons/user/location.png';
+  static const price = 'assets/icons/user/price.png';
+  static const clientChatting = 'assets/icons/user/client_chatting.png';
 }
 
 class ImagePath {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:move_mates_android/features/coach/presentation/pages/chief/about_training_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
 
 import '../../../../../config/routes/assets_routes.dart';
@@ -44,103 +45,115 @@ class ChiefPageClientTrainingCardWidget extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(20.r),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
+      child: Material(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20.r),
+          onTap: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) =>
+                    AboutTrainingPage(coachUpComingContentEntity: contentEntity),
+              ),
+            );
+          },
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 54.r,
-                height: 54.r,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(54.r),
-                    color: PinkColor.p6),
-              ),
-              SizedBox(
-                width: 5.w,
-              ),
-              SizedBox(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 185.w,
-                      child: Text(
-                        'Client ID ${contentEntity.clientId}',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: CoachHomeTextStyle.clientNameTrainingCard,
-                      ),
-                    ),
-                    Row(
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 54.r,
+                    height: 54.r,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(54.r),
+                        color: PinkColor.p6),
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  SizedBox(
+                    child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          contentEntity.type,
-                          style: CoachHomeTextStyle.subtitleTrainingCard,
+                        SizedBox(
+                          width: 185.w,
+                          child: Text(
+                            'Client ID ${contentEntity.clientId}',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: CoachHomeTextStyle.clientNameTrainingCard,
+                          ),
                         ),
-                        Container(
-                          width: 3.r,
-                          height: 3.r,
-                          margin: EdgeInsets.symmetric(horizontal: 5.w),
-                          decoration: BoxDecoration(
-                              color: GreyColor.g10,
-                              borderRadius: BorderRadius.circular(3.r)),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              contentEntity.type,
+                              style: CoachHomeTextStyle.subtitleTrainingCard,
+                            ),
+                            Container(
+                              width: 3.r,
+                              height: 3.r,
+                              margin: EdgeInsets.symmetric(horizontal: 5.w),
+                              decoration: BoxDecoration(
+                                  color: GreyColor.g10,
+                                  borderRadius: BorderRadius.circular(3.r)),
+                            ),
+                            Text(
+                              'Онлайн',
+                              style: CoachHomeTextStyle.connectionState,
+                            )
+                          ],
                         ),
-                        Text(
-                          'Онлайн',
-                          style: CoachHomeTextStyle.connectionState,
-                        )
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  SignupPageAssetIconWidget(
+                    path: IconPath.done,
+                    color: PinkColor.p11,
+                  )
+                ],
               ),
-              SignupPageAssetIconWidget(
-                path: IconPath.done,
-                color: PinkColor.p11,
+              SizedBox(
+                height: 5.h,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ChiefPageTrainingCardTimeWidget(
+                    iconPath: IconPath.calendar,
+                    title: customDateFormat
+                        .format(DateTime.parse(contentEntity.startOfAppointment)),
+                  ),
+                  SizedBox(width: 5.w),
+                  ChiefPageTrainingCardTimeWidget(
+                    title:
+                        '${_getParsedTime(contentEntity.startOfAppointment, context)}-'
+                        '${_getParsedTime(contentEntity.endOfAppointment, context)}',
+                    iconPath: IconPath.clock,
+                  ),
+                ],
+              ),
+              SizedBox(height: 6.h),
+              SizedBox(
+                width: 257.w,
+                child: AuthPageValidationButtonWidget(
+                  buttonBorderColor: Colors.transparent,
+                  name: 'Начать тренировку',
+                  height: 40.h,
+                  textStyle: CoachHomeTextStyle.trainingCardBeginSession,
+                  buttonColor: GreenColor.g2,
+                ),
               )
             ],
           ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ChiefPageTrainingCardTimeWidget(
-                iconPath: IconPath.calendar,
-                title: customDateFormat
-                    .format(DateTime.parse(contentEntity.startOfAppointment)),
-              ),
-              SizedBox(width: 5.w),
-             ChiefPageTrainingCardTimeWidget(
-                title:
-                    '${_getParsedTime(contentEntity.startOfAppointment, context)}-'
-                        '${_getParsedTime(contentEntity.endOfAppointment,
-                        context)}',
-                iconPath: IconPath.clock,
-              ),
-            ],
-          ),
-          SizedBox(height: 6.h),
-          SizedBox(
-            width: 257.w,
-            child: AuthPageValidationButtonWidget(
-              buttonBorderColor: Colors.transparent,
-              name: 'Начать тренировку',
-              height: 40,
-              textStyle: CoachHomeTextStyle.trainingCardBeginSession,
-              buttonColor: GreenColor.g2,
-            ),
-          )
-        ],
+        ),
       ),
     );
   }

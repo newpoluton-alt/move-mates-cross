@@ -22,4 +22,7 @@ class PinkColor {
   static const Color p19 = Color(0xFFFFCEBE);
   static const Color p20 = Color(0xFFFF0D0D);
   static const Color p21 = Color(0xFFFF97A8);
+  static const Color p22 = Color(0xFFFDF6F3);
+  static const Color p23 = Color(0xFFFF7171);
+  static const Color p24 = Color(0xFFF38C9D);
 }
