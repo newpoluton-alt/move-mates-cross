@@ -45,6 +45,7 @@ class _AboutTrainingPageBottomSheetModalCalendarWidgetState
           });
           widget.rescheduleAppointmentDate(focus);
         },
+
         headerStyle: TableCalendarStyle.headerStyle,
         calendarStyle: TableCalendarStyle.calendarStyle,
         daysOfWeekStyle: TableCalendarStyle.daysOfWeekStyle,
