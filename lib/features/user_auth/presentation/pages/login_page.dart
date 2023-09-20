@@ -7,7 +7,7 @@ import 'package:move_mates_android/features/user_auth/presentation/pages/forgott
 
 import '../../../../config/routes/assets_routes.dart';
 import '../../../../config/theme/colors/grey_color.dart';
-import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../../../../config/theme/text_styles/user_auth/main_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import '../../user_auth_injection_container.dart';
 import '../../../coach/presentation/pages/coach_main_page.dart';

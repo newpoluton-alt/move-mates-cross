@@ -50,7 +50,7 @@ class SignupPageTabBarElementWidget extends StatelessWidget {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if ((value?? '').trim().isEmpty) {
                 return 'Пожалуйста, введите ваше имя.';
               }
               return null;
@@ -72,7 +72,7 @@ class SignupPageTabBarElementWidget extends StatelessWidget {
               changeFocus(numberNode);
             },
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if (value == null || (value).trim().isEmpty) {
                 return 'Пожалуйста, введите ваш адрес электронной почты.';
               } else if (!EmailValidator.validate(value)) {
                 return 'Пожалуйста, введите действительный Е-майл.';
@@ -110,7 +110,7 @@ class SignupPageTabBarElementWidget extends StatelessWidget {
                             ? GreenColor.g1
                             : GreyColor.g2))),
             validator: (value) {
-              if (value == null || value.isEmpty) {
+              if (value == null || (value).trim().isEmpty) {
                 return 'Пожалуйста, введите пароль.';
               } else if (value.isNotEmpty && value.length < 8) {
                 return 'Пароль должен содержать не менее 8 символов.';

@@ -5,7 +5,7 @@ import 'package:move_mates_android/features/user_auth/presentation/pages/login_p
 import 'package:move_mates_android/features/user_auth/presentation/pages/signup_page.dart';
 
 import '../../../../config/theme/colors/pink_color.dart';
-import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../../../../config/theme/text_styles/user_auth/main_text_style.dart';
 import '../widgets/auth_page/auth_page_validation_button_widget.dart';
 
 class AuthPage extends StatefulWidget {
@@ -33,11 +33,13 @@ class _AuthPageState extends State<AuthPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(
-                  ImagePath.imgFifth,
-                  height: 0.7.sh,
-                  width: 1.sw,
-                  fit: BoxFit.fitWidth,
+                SizedBox(
+                  child: Image.asset(
+                    ImagePath.imgFifth,
+                    width: 1.sw,
+                    height: 0.70.sh,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 const Expanded(child: SizedBox()),
                 Padding(

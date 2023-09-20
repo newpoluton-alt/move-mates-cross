@@ -8,13 +8,13 @@ import 'package:move_mates_android/features/coach/data/models/coach_clients_mode
 import 'package:move_mates_android/features/coach/domain/entities/coach_clients_content_entity.dart';
 import 'package:move_mates_android/features/coach/presentation/cubit/coach_get_client_list_cubit.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/coach_main_page.dart';
-import 'package:move_mates_android/features/coach/presentation/wigets/chief_page/chief_page_deeplink_widget.dart';
-import 'package:move_mates_android/features/coach/presentation/wigets/client_list_page/client_list_page_element_widget.dart';
 
 import '../../../../injection_container.dart';
 import '../../../../user_auth/presentation/widgets/auth_page/auth_page_custom_snackbar_builder.dart';
 import '../../../domain/usecase/get_clients_list_case.dart';
-import '../../wigets/client_list_page/client_list_page_search_text_field_widget.dart';
+import '../../widgets/chief_page/chief_page_deeplink_widget.dart';
+import '../../widgets/client_list_page/client_list_page_element_widget.dart';
+import '../../widgets/client_list_page/client_list_page_search_text_field_widget.dart';
 
 class ClientListPage extends StatefulWidget implements CoachPage {
   const ClientListPage({super.key});

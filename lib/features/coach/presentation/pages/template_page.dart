@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/theme/colors/grey_color.dart';
-import '../wigets/qualification_page/qualification_page_app_bar_back_button.dart';
+import '../widgets/qualification_page/qualification_page_app_bar_back_button.dart';
 
 class Page extends StatefulWidget {
   static const String id = 'page';
@@ -27,7 +27,7 @@ class _PageState extends State<Page> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(children: []),
         ),
       ),

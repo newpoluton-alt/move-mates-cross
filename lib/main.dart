@@ -11,7 +11,7 @@ import 'package:move_mates_android/features/user_auth/presentation/pages/onboard
 
 import 'config/routes/assets_routes.dart';
 import 'config/theme/colors/pink_color.dart';
-import 'config/theme/text_styles/user_auth/app_text_style.dart';
+import 'config/theme/text_styles/user_auth/main_text_style.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

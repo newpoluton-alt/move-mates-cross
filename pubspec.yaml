@@ -24,6 +24,7 @@ dependencies:
   #to compare models
   equatable: ^2.0.5
   #state management
+  provider: ^6.0.5
   flutter_bloc: ^8.1.3
   #local cache
   flutter_secure_storage: ^8.0.0
@@ -50,7 +51,6 @@ flutter:
     - assets/icons/
     - assets/logos/
     - assets/images/
-    - assets/icons/auth/
-    - assets/icons/user/
+    - assets/icons/
     - assets/images/user/
 

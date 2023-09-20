@@ -4,7 +4,7 @@ class CoachUpComingContentEntity extends Equatable {
   final String startOfAppointment;
   final String endOfAppointment;
   final int clientId;
-  final String type;
+  final String? type;
   final String description;
 
   const CoachUpComingContentEntity(

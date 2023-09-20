@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
 
-import '../../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../../../../../config/theme/text_styles/user_auth/main_text_style.dart';
 
 class OnboardingPageInitialPageView extends StatelessWidget {
   const OnboardingPageInitialPageView({

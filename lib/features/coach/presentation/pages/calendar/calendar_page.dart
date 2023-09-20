@@ -12,15 +12,18 @@ import 'package:move_mates_android/features/coach/data/models/coach_up_coming_mo
 import 'package:move_mates_android/features/coach/domain/entities/coach_up_coming_content_entity.dart';
 import 'package:move_mates_android/features/coach/domain/usecase/get_up_coming_case.dart';
 import 'package:move_mates_android/features/coach/presentation/cubit/coach_cubit.dart';
-import 'package:move_mates_android/features/coach/presentation/pages/chief/specialisation_page.dart';
-import 'package:move_mates_android/features/coach/presentation/wigets/calendar_page/calendar_page_coach_calendar_widget.dart';
-import 'package:move_mates_android/features/coach/presentation/wigets/chief_page/chief_page_training_action_widget.dart';
+import 'package:move_mates_android/features/coach/presentation/pages/calendar/training_creation_page.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
+
 import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../user_auth/presentation/widgets/auth_page/auth_page_custom_snackbar_builder.dart';
 import '../../cubit/coach_state.dart';
-import '../../wigets/calendar_page/calendar_page_calendar_event_list_widget.dart';
+import '../../widgets/calendar_page/calendar_page_calendar_event_list_widget.dart';
+import '../../widgets/calendar_page/calendar_page_coach_calendar_widget.dart';
+import '../../widgets/calendar_page/calendar_page_create_training_button.dart';
+import '../../widgets/chief_page/chief_page_training_action_widget.dart';
 import '../coach_main_page.dart';
+import '../main/specialisation_page.dart';
 
 class CalendarPage extends StatefulWidget implements CoachPage {
   @override
@@ -104,7 +107,7 @@ class _CalendarPageState extends State<CalendarPage> {
       create: (_) => di.sl<CoachCubit>()
         ..onGetUpComings(UpComingParam(
             fromDate: coachCustomParseDateFormat.format(DateTime.now()),
-            size: 999,
+            size: 50,
             page: 0)),
       child: BlocBuilder<CoachCubit, CoachState>(builder: (context, state) {
         if (state is CoachStateLoaded) {
@@ -131,32 +134,7 @@ class _CalendarPageState extends State<CalendarPage> {
               upComingEvents: coachUpComingContentList,
             ),
             SizedBox(height: 11.h),
-            MaterialButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(SpecialisationPage.id);
-              },
-              color: Colors.transparent,
-              elevation: 0,
-              minWidth: 350.w,
-              height: 56.h,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                    color: GreyColor.g19),
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Добавить тренировку',
-                    style: CoachCalendarTextStyle.calendarAddTrainingTitle,
-                  ),
-                  SizedBox(width: 70.w),
-                  SignupPageAssetIconWidget(path: IconPath.add, size: 30)
-                ],
-              ),
-            ),
+            const CalendarPageCreateTrainingButton(),
             SizedBox(height: 15.h),
             CalendarPageCoachCalendarEventListWidget(
                 state: state,
@@ -168,5 +146,4 @@ class _CalendarPageState extends State<CalendarPage> {
     );
   }
 }
-
 

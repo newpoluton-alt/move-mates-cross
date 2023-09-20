@@ -6,7 +6,7 @@ import 'package:move_mates_android/core/constants/user_auth/user_role_enum.dart'
 import 'package:move_mates_android/features/user_auth/domain/usecases/user_sign_up.dart';
 import 'package:move_mates_android/features/user_auth/presentation/cubit/user_auth_cubit.dart';
 
-import '../../../../config/theme/text_styles/user_auth/app_text_style.dart';
+import '../../../../config/theme/text_styles/user_auth/main_text_style.dart';
 import '../../../../config/theme/text_styles/user_auth/auth_text_style.dart';
 import '../../user_auth_injection_container.dart';
 import '../cubit/user_auth_state.dart';

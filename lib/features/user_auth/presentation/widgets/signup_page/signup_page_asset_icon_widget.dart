@@ -19,7 +19,7 @@ class SignupPageAssetIconWidget extends StatelessWidget {
     return ImageIcon(
       AssetImage(path),
       color: color,
-      size: size.w,
+      size: size.r,
     );
   }
 }

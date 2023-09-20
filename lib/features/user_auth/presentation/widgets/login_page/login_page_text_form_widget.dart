@@ -38,7 +38,7 @@ class LoginPageTextFormWidget extends StatelessWidget {
               textInputAction: TextInputAction.next,
 
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null || (value).trim().isEmpty) {
                   return 'Пожалуйста, введите ваш адрес электронной почты.';
                 } else if (!EmailValidator.validate(value)) {
                   return 'Пожалуйста, введите действительный Е-майл.';
@@ -64,7 +64,7 @@ class LoginPageTextFormWidget extends StatelessWidget {
                               ? GreenColor.g1
                               : GreyColor.g2))),
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null || (value).trim().isEmpty) {
                   return 'Пожалуйста, введите пароль.';
                 } else if (value.isNotEmpty && value.length < 8) {
                   return 'Пароль должен содержать не менее 8 символов.';

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:move_mates_android/core/constants/coach/coach_constants.dart';
 import 'package:move_mates_android/core/error/coach_error/coach_exception.dart';
 
 import '../../../../core/constants/coach/coach_parse_constants.dart';
