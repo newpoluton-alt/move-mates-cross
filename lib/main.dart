@@ -64,7 +64,7 @@ Widget showBody(AsyncSnapshot<bool> snapshot) {
           showLoader: false,
           title: Text(
             'MOVE MATES',
-            style: AppTextStyle.appSplashStyle,
+            style: MMTextStyle.appSplashStyle,
           ),
           logo: Image.asset(
             ImagePath.logo,

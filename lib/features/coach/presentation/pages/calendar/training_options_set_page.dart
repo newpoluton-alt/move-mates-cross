@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:move_mates_android/config/routes/assets_routes.dart';
 import 'package:move_mates_android/config/theme/text_styles/app_text_style.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/calendar/training_clients_choose_page.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/calendar/training_creation_page.dart';
 import 'package:move_mates_android/features/coach/presentation/pages/calendar/training_date_time_set_page.dart';
-import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
 
 import '../../../../../config/theme/colors/grey_color.dart';
 import '../../widgets/qualification_page/qualification_page_app_bar_back_button.dart';
+import '../../widgets/training_options_set_page/training_options_set_page_move_to_next_page_widget.dart';
 import '../../widgets/training_options_set_page/training_options_set_page_training_type_dropdown_widget.dart';
 
 class TrainingOptionsSetPage extends StatefulWidget {
   final TrainingType trainingCountType;
-
 
   const TrainingOptionsSetPage({
     super.key,
@@ -25,16 +23,34 @@ class TrainingOptionsSetPage extends StatefulWidget {
 }
 
 class _TrainingOptionsSetPageState extends State<TrainingOptionsSetPage> {
+
+  String? _clients;
   String? _trainingType;
   String? _trainingDateTime;
-  String? _clients;
+  late DateTime _selectedDateTime;
 
+
+  @override
+  void initState() {
+    _selectedDateTime =  DateTime.now().copyWith(
+      minute: 0,
+    );
+    super.initState();
+  }
+  DateTime _acquireSelectedDateTime() =>
+      _selectedDateTime;
 
   String? _acquireTrainingType() => _trainingType;
 
   String? _acquireTrainingDateTime() => _trainingDateTime;
 
   String? _acquireClients() => _clients;
+
+  void _updateSelectedDateTime(DateTime dateTime) {
+    setState(() {
+      _selectedDateTime = dateTime.copyWith(minute: 0);
+    });
+  }
 
   void _updateTrainingType(String? value) {
     if (value == null) return;
@@ -57,15 +73,13 @@ class _TrainingOptionsSetPageState extends State<TrainingOptionsSetPage> {
     });
   }
 
-
   bool get _isIndividualTraining =>
       widget.trainingCountType == TrainingType.individual;
 
   String get _determinePageTitleDueTrainingType =>
       _isIndividualTraining ? 'Индивидуальная' : 'Группа';
 
-  TextStyle get _labelTextStyle =>
-      AppTextStyle.medium(
+  TextStyle get _labelTextStyle => AppTextStyle.medium(
         fontSize: 15.sp,
         color: GreyColor.g9,
       );
@@ -93,75 +107,31 @@ class _TrainingOptionsSetPageState extends State<TrainingOptionsSetPage> {
               TrainingOptionsSetPageTrainingTypeDropdownWidget(
                   trainingTypeValue: _acquireTrainingType,
                   updateTrainingType: _updateTrainingType),
-
               SizedBox(height: 25.h),
-              Text('Специализация', style: _labelTextStyle),
+              Text('Дата и время', style: _labelTextStyle),
               SizedBox(height: 8.h),
               TrainingOptionsSetPageMoveToNextPageWidget(
-                nextPage: const TrainingDateTimeSetPage(),
-                updateTitleValue: _updateTrainingDateTime,
-                acquireTitleValue: _acquireTrainingDateTime,),
-
-              SizedBox(height: 25.h),
-              Text('Специализация', style: _labelTextStyle),
-              SizedBox(height: 8.h),
-              TrainingOptionsSetPageMoveToNextPageWidget(
-                nextPage: const TrainingClientsChoosePage(),
-                updateTitleValue: _updateClients,
-                acquireTitleValue: _acquireClients,),
-
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class TrainingOptionsSetPageMoveToNextPageWidget extends StatelessWidget {
-  final Widget nextPage;
-  final String? Function() acquireTitleValue;
-  final void Function(String value) updateTitleValue;
-
-  const TrainingOptionsSetPageMoveToNextPageWidget({
-    super.key,
-    required this.nextPage,
-    required this.updateTitleValue,
-    required this.acquireTitleValue,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8.r),
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => nextPage),);
-        },
-        child: Container(
-          height: 56.h,
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(
-            horizontal: 15.w,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(color: GreyColor.g19),
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                acquireTitleValue() ?? 'Выбрать',
-                style: AppTextStyle.normal(
-                  fontSize: 18.sp,
-                  color: Colors.black,
+                nextPage: TrainingDateTimeSetPage(
+                  obtainDateTime: _acquireSelectedDateTime,
+                  updateDateTime: _updateSelectedDateTime,
+                  trainingDateTimeValue: _acquireTrainingDateTime,
+                  updateTrainingDateTime: _updateTrainingDateTime,
                 ),
+                updateTitleValue: _updateTrainingDateTime,
+                acquireTitleValue: _acquireTrainingDateTime,
               ),
-              SignupPageAssetIconWidget(path: IconPath.forwardArrow,color: Colors.black,),
+              SizedBox(height: 25.h),
+              Text('Клиент', style: _labelTextStyle),
+              SizedBox(height: 8.h),
+              TrainingOptionsSetPageMoveToNextPageWidget(
+                nextPage: TrainingClientsChoosePage(
+                  updateClients: _updateClients,
+                  clientsValue: _acquireClients,
+                  trainingType: widget.trainingCountType,
+                ),
+                updateTitleValue: _updateClients,
+                acquireTitleValue: _acquireClients,
+              ),
             ],
           ),
         ),

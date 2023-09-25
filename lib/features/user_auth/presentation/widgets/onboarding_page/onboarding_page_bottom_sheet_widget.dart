@@ -46,7 +46,7 @@ class OnboardingPageViewBottomSheet extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Начать', style: AppTextStyle.regularFunctionalWhite),
+        Text('Начать', style: MMTextStyle.regularFunctionalWhite),
         Icon(
           Icons.arrow_forward_ios,
           size: 30.r,

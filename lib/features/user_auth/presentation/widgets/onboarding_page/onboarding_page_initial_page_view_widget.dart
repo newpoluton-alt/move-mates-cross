@@ -29,11 +29,11 @@ class OnboardingPageInitialPageView extends StatelessWidget {
                 children: [
                   Text(
                     'Добро пожаловать 👋',
-                    style: AppTextStyle.greeting,
+                    style: MMTextStyle.greeting,
                   ),
                   Text(
                     'MOVE MATES',
-                    style: AppTextStyle.concernName,
+                    style: MMTextStyle.concernName,
                   ),
                 ],
               ),

@@ -38,9 +38,9 @@ class OnboardingPageViewElementWidget extends StatelessWidget {
               children: [
                 Text(
                   firstText,
-                  style: AppTextStyle.appViewBoldBlack,
+                  style: MMTextStyle.appViewBoldBlack,
                 ),
-                Text(secondText, style: AppTextStyle.appViewRegularBlack),
+                Text(secondText, style: MMTextStyle.appViewRegularBlack),
               ],
             ),
           )

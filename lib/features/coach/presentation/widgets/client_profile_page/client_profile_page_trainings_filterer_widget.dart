@@ -71,7 +71,7 @@ class TrainingCardWidget extends StatelessWidget {
       width: 1.w,
       color: PinkColor.p9,
       height: 21.h,
-      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      margin: EdgeInsets.symmetric(horizontal: 5.w),
     );
   }
 
@@ -118,19 +118,23 @@ class TrainingCardWidget extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 _formattedDate,
+                overflow: TextOverflow.ellipsis,
                 style: _trainingDescriptionStyle,
               ),
               _buildDivider(),
               Text(
                 _formattedTimeOfDay(context),
+                overflow: TextOverflow.ellipsis,
                 style: _trainingDescriptionStyle,
               ),
               _buildDivider(),
               Text(
                 model.place,
+                overflow: TextOverflow.ellipsis,
                 style: _trainingDescriptionStyle,
               )
             ],

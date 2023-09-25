@@ -26,6 +26,7 @@ class CoachPageConstants {
   //coach's calendar page constants
   static const List<String> typesOfTraining =
       CoachCalendarPageConstants.typesOfTrainingData;
+  static const List<int> trainingHoursFormats = CoachCalendarPageConstants.trainingHoursFormatsData;
 
   //chief page constants
   static const List<String> daysOfWeek = ChiefPageConstants.daysOfWeekData;

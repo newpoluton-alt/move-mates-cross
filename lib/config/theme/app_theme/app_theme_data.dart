@@ -32,7 +32,7 @@ class AppThemeData {
   );
 
   static AppBarTheme appBarTheme = AppBarTheme(
-    titleTextStyle: AppTextStyle.appBar,
+    titleTextStyle: MMTextStyle.appBar,
     backgroundColor: Colors.white,
     foregroundColor: GreenColor.g1,
     elevation: 0,

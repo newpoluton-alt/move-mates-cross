@@ -37,7 +37,7 @@ class _AboutTrainingPageBottomSheetModalCalendarWidgetState
       ),
       child: TableCalendar(
         locale: 'ru',
-        rowHeight: 47.r,
+        rowHeight: 55.r,
         focusedDay: _focusedDay,
         onDaySelected: (curr, focus) {
           setState(() {
@@ -45,7 +45,6 @@ class _AboutTrainingPageBottomSheetModalCalendarWidgetState
           });
           widget.rescheduleAppointmentDate(focus);
         },
-
         headerStyle: TableCalendarStyle.headerStyle,
         calendarStyle: TableCalendarStyle.calendarStyle,
         daysOfWeekStyle: TableCalendarStyle.daysOfWeekStyle,

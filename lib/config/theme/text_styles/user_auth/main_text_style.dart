@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../colors/pink_color.dart';
 
-class AppTextStyle {
+class MMTextStyle {
   static TextStyle greeting = GoogleFonts.montserrat(
       color: Colors.white, fontWeight: FontWeight.w600, fontSize: 26.sp);
 

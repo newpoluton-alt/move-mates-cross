@@ -38,6 +38,7 @@ class TableCalendarStyle{
   static CalendarStyle get calendarStyle => CalendarStyle(
     outsideDaysVisible: false,
     todayTextStyle: _todayTextStyle,
+    disabledTextStyle: _daysOfMonthTextStyle,
     defaultTextStyle: _daysOfMonthTextStyle,
     weekendTextStyle: _daysOfMonthTextStyle,
     selectedTextStyle: _daysOfMonthTextStyle,

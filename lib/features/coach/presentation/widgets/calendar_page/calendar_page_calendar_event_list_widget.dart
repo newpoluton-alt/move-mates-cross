@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -38,11 +37,10 @@ class CalendarPageCoachCalendarEventListWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: SizedBox(
                 height: 230.h,
-                child: ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) => CalendarPageCalendarEventWidget(
-                      coachCustomDateFormat: coachCustomDateFormat,
-                      coachUpComingContentEntity: value.elementAt(index)),
+                child: Column(children: value.map((e) =>
+                    CalendarPageCalendarEventWidget(
+                        coachCustomDateFormat: coachCustomDateFormat,
+                        coachUpComingContentEntity: e),).toList(),
                 ),
               ),
             );
