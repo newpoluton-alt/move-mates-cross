@@ -50,8 +50,14 @@ class _AboutTrainingPageDropdownButtonWidgetState
             modelNotifier.defineAboutTrainingPageDropdownElementModel);
       }
       else {
-        return Text(value.title, style: AppTextStyle.semiBold(
-            fontSize: 11.sp, color: value.textColor),
+        return SizedBox(
+          width: 67.w,
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(value.title, style: AppTextStyle.semiBold(
+                fontSize: 11.sp, color: value.textColor),
+            ),
+          ),
         );
       }
     });
@@ -61,7 +67,7 @@ class _AboutTrainingPageDropdownButtonWidgetState
       ValueChanged<AboutTrainingPageDropdownElementModel> defineModel) {
     return Container(
       height: 23.h,
-      width: 77.w,
+      width: 65.w,
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: PinkColor.p23, borderRadius: BorderRadius.circular(5.r)),
@@ -72,9 +78,11 @@ class _AboutTrainingPageDropdownButtonWidgetState
         underline: const SizedBox(),
         alignment: Alignment.center,
         borderRadius: BorderRadius.circular(5.r),
-        hint: Text(
-          'Изменить',
-          style: AppTextStyle.medium(fontSize: 12.sp, color: Colors.white),
+        hint: FittedBox(
+          child: Text(
+            'Изменить',
+            style: AppTextStyle.medium(fontSize: 12.sp, color: Colors.white),
+          ),
         ),
         isDense: true,
         items: CoachPageConstants.aboutTrainingPageDropdownButtonItemList

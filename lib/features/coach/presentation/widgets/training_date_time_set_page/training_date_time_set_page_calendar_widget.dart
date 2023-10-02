@@ -28,7 +28,8 @@ class TrainingDateTimeSetPageCalendarWidget extends StatelessWidget {
                   top: BorderSide(color: GreyColor.g25))),
           child: TableCalendar(
             locale: 'ru',
-            rowHeight: 55.r,
+            daysOfWeekHeight: 20.sp,
+            rowHeight: 57.spMin,
             focusedDay: obtainSelectedDateTime()!,
             onDaySelected: (curr, focus) {
               setState((){});

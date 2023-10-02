@@ -5,7 +5,14 @@ import 'package:move_mates_android/config/theme/text_styles/app_text_style.dart'
 import '../../../../../config/theme/colors/grey_color.dart';
 
 class ProfilePageJoinedTextFields extends StatelessWidget {
-  const ProfilePageJoinedTextFields({super.key});
+  final TextEditingController nameEditingController;
+  final TextEditingController lastnameEditingController;
+
+  const ProfilePageJoinedTextFields({
+    super.key,
+    required this.nameEditingController,
+    required this.lastnameEditingController,
+  });
 
   InputBorder _noneTextFieldBorder() =>
       const UnderlineInputBorder(borderSide: BorderSide.none);
@@ -31,7 +38,7 @@ class ProfilePageJoinedTextFields extends StatelessWidget {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           TextFormField(
             keyboardType: TextInputType.name,
-            controller: TextEditingController(text: 'Kirill'),
+            controller: nameEditingController,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
               hintText: 'Имя',
@@ -42,8 +49,11 @@ class ProfilePageJoinedTextFields extends StatelessWidget {
               errorBorder: _errorTextFieldBorder(),
               errorStyle: const TextStyle(fontSize: 0),
             ),
+            onFieldSubmitted: (value) {
+
+            },
             validator: (value) {
-              if ((value?? '').trim().isEmpty) {
+              if ((value ?? '').trim().isEmpty) {
                 return '';
               } else {
                 return null;
@@ -52,6 +62,7 @@ class ProfilePageJoinedTextFields extends StatelessWidget {
           ),
           TextFormField(
               keyboardType: TextInputType.name,
+              controller: lastnameEditingController,
               decoration: InputDecoration(
                 hintText: 'Фамилия',
                 hintStyle: _hintTextStyle,
@@ -63,7 +74,7 @@ class ProfilePageJoinedTextFields extends StatelessWidget {
                 errorStyle: const TextStyle(fontSize: 0),
               ),
               validator: (value) {
-                if ((value?? '').trim().isEmpty) {
+                if ((value ?? '').trim().isEmpty) {
                   return '';
                 } else {
                   return null;

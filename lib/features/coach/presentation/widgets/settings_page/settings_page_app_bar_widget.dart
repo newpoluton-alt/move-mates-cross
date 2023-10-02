@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:move_mates_android/features/coach/domain/usecase/get_coach_profile_info_case.dart';
+import 'package:move_mates_android/features/coach/presentation/cubit/coach_profile_state.dart';
+import 'package:move_mates_android/features/injection_container.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
 
 import '../../../../../config/routes/assets_routes.dart';
@@ -9,7 +12,8 @@ import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/app_text_style.dart';
 import '../../pages/main/profile_page.dart';
 
-class SettingsPageAppBar extends StatelessWidget implements PreferredSizeWidget{
+class SettingsPageAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   const SettingsPageAppBar({
     super.key,
   });
@@ -45,7 +49,10 @@ class SettingsPageAppBar extends StatelessWidget implements PreferredSizeWidget{
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(ProfilePage.id);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => BlocProvider<CoachProfileCubit>(
+                  create: (_) =>sl<CoachProfileCubit>()..onGettingCoachProfile(CoachProfileEmptyParam()),
+                    child: const ProfilePage())));
           },
           child: Text(
             'Edit',

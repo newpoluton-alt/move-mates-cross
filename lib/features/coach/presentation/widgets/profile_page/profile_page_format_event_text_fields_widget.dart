@@ -6,7 +6,14 @@ import '../../../../../config/theme/colors/pink_color.dart';
 import '../../../../../config/theme/text_styles/app_text_style.dart';
 
 class ProfilePageFormatEventTextFields extends StatelessWidget {
-  const ProfilePageFormatEventTextFields({super.key});
+  final TextEditingController offlineNameController;
+  final TextEditingController offlineLocationController;
+
+  const ProfilePageFormatEventTextFields({
+    super.key,
+    required this.offlineNameController,
+    required this.offlineLocationController,
+  });
 
   InputBorder _offlineTextFieldsDecoration({required Color borderColor}) =>
       OutlineInputBorder(
@@ -33,6 +40,7 @@ class ProfilePageFormatEventTextFields extends StatelessWidget {
       children: [
         TextFormField(
           keyboardType: TextInputType.text,
+          controller: offlineNameController,
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
@@ -48,7 +56,7 @@ class ProfilePageFormatEventTextFields extends StatelessWidget {
                 _offlineTextFieldsDecoration(borderColor: Colors.red),
           ),
           validator: (value) {
-            if ((value?? '').trim().isEmpty) {
+            if ((value ?? '').trim().isEmpty) {
               return 'Название места';
             } else {
               return null;
@@ -57,6 +65,7 @@ class ProfilePageFormatEventTextFields extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
         TextFormField(
+          controller: offlineLocationController,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               filled: true,
@@ -75,7 +84,7 @@ class ProfilePageFormatEventTextFields extends StatelessWidget {
                   _offlineTextFieldsDecoration(borderColor: Colors.red),
               helperText: _addressTextFieldString),
           validator: (value) {
-            if ((value?? '').trim().isEmpty) {
+            if ((value ?? '').trim().isEmpty) {
               return _addressTextFieldString;
             } else {
               return null;

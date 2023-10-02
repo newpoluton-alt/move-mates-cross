@@ -35,13 +35,12 @@ class CalendarPageCoachCalendarEventListWidget extends StatelessWidget {
           } else {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: SizedBox(
-                height: 230.h,
-                child: Column(children: value.map((e) =>
-                    CalendarPageCalendarEventWidget(
-                        coachCustomDateFormat: coachCustomDateFormat,
-                        coachUpComingContentEntity: e),).toList(),
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: value.map((e) =>
+                  CalendarPageCalendarEventWidget(
+                      coachCustomDateFormat: coachCustomDateFormat,
+                      coachUpComingContentEntity: e),).toList(),
               ),
             );
           }

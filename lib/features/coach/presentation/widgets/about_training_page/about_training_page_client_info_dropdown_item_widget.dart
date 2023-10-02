@@ -25,11 +25,13 @@ class AboutTrainingPageClientInfoDropdownItemWidget extends StatelessWidget {
         width: double.infinity,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Text(
-            model.text,
-            style: AppTextStyle.medium(
-              fontSize: 13.sp,
-              color: model.textColor,
+          child: FittedBox(
+            child: Text(
+              model.text,
+              style: AppTextStyle.medium(
+                fontSize: 13.sp,
+                color: model.textColor,
+              ),
             ),
           ),
         ),

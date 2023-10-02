@@ -37,7 +37,8 @@ class _AboutTrainingPageBottomSheetModalCalendarWidgetState
       ),
       child: TableCalendar(
         locale: 'ru',
-        rowHeight: 55.r,
+        rowHeight: 49.spMin,
+        daysOfWeekHeight: 20.sp,
         focusedDay: _focusedDay,
         onDaySelected: (curr, focus) {
           setState(() {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:move_mates_android/config/routes/assets_routes.dart';
+import 'package:move_mates_android/config/theme/styles/table_calendar_style.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -62,7 +63,7 @@ class CalendarPageCoachCalendarWidget extends StatelessWidget {
       focusedDay: focusedDate,
       onDaySelected: onChangeCurrentDay,
       selectedDayPredicate: (date) => isDatesSame(focusedDate, date),
-      rowHeight: 70.h,
+      rowHeight: 57.spMin,
       daysOfWeekHeight: 25.h,
       startingDayOfWeek: StartingDayOfWeek.monday,
       //load currentEvents
@@ -75,37 +76,33 @@ class CalendarPageCoachCalendarWidget extends StatelessWidget {
         dowTextFormatter: _dayOfWeekFormatter,
         decoration: const BoxDecoration(
             color: GreyColor.g16,
-            border: Border(
-                bottom: BorderSide(color: GreyColor.g15))),
+            border: Border(bottom: BorderSide(color: GreyColor.g15))),
       ),
       headerStyle: HeaderStyle(
           formatButtonVisible: false,
-          leftChevronVisible: false,
           titleTextFormatter: _headerTitleFormatter,
-          headerPadding: EdgeInsets.only(left: 20.w),
-          rightChevronMargin: EdgeInsets.only(right: 210.w),
+          leftChevronIcon: SignupPageAssetIconWidget(
+            size: 22,
+            path: IconPath.leftChevron,
+            color: PinkColor.p16,
+          ),
           rightChevronIcon: SignupPageAssetIconWidget(
-            path: IconPath.rightArrowCalendar,
+            size: 22,
+            path: IconPath.rightChevron,
             color: PinkColor.p16,
           ),
           titleTextStyle: CoachCalendarTextStyle.coachCalendarHeader,
-          decoration:
-          const BoxDecoration(color: GreyColor.g16)),
-      calendarStyle: CalendarStyle(
+          decoration: const BoxDecoration(color: GreyColor.g16)),
+      calendarStyle:
+      CalendarStyle(
         markersMaxCount: 1,
-        markerSize: 8.r,
-        markerMargin: EdgeInsets.only(top: 10.h),
+        markersAlignment: Alignment.center,
+        markersAnchor: 1.45,
+        // markerSize: 8.r,
         markerDecoration: BoxDecoration(
             color: GreyColor.g18,
             borderRadius: BorderRadius.circular(100.r)),
-        cellAlignment: Alignment.topCenter,
-        cellPadding: EdgeInsets.only(top: 2.h),
-        cellMargin: EdgeInsets.only(
-          top: 11.5.h,
-          bottom: 30.h,
-          left: 13.w,
-          right: 13.w,
-        ),
+        cellAlignment: Alignment.center,
         weekendTextStyle: CoachCalendarTextStyle.coachCalendarDisabled,
         disabledDecoration: const BoxDecoration(shape: BoxShape.rectangle),
         weekendDecoration: const BoxDecoration(shape: BoxShape.rectangle),

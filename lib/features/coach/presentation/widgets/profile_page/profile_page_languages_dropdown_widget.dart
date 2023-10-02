@@ -97,6 +97,7 @@ class ProfilePageLanguagesDropdownWidget extends StatelessWidget {
       items: coachLanguages
           .map((e) => DropdownMenuItem(
         value: e,
+        enabled: false,
         child: ProfilePageDropdownMenuItemContentWidget(
           selectedCoachLanguages: selectedCoachLanguages,
           removeLanguage: removeLanguage,

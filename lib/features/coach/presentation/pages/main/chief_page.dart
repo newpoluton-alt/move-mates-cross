@@ -16,6 +16,7 @@ import 'package:move_mates_android/features/user_auth/presentation/widgets/signu
 import '../../../../../config/theme/colors/blue_color.dart';
 import '../../../../user_auth/presentation/widgets/auth_page/auth_page_custom_snackbar_builder.dart';
 import '../../cubit/coach_cubit.dart';
+import '../../cubit/coach_profile_state.dart';
 import '../../cubit/coach_state.dart';
 import '../../widgets/chief_page/chief_page_action_bar_widget.dart';
 import '../../widgets/chief_page/chief_page_calendar_tab_widget.dart';

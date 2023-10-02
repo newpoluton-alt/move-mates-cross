@@ -6,13 +6,13 @@ import '../../../../../config/theme/text_styles/app_text_style.dart';
 
 // ignore: must_be_immutable
 class ProfilePageSwitchButton extends StatelessWidget {
-  bool settingsPageSwitchBoolValue;
+  bool isFirstTrainingFree;
   void Function() refreshSwitchData;
 
   ProfilePageSwitchButton(
       {super.key,
       required this.refreshSwitchData,
-      required this.settingsPageSwitchBoolValue});
+      required this.isFirstTrainingFree});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ProfilePageSwitchButton extends StatelessWidget {
             ),
           ),
           Switch(
-              value: settingsPageSwitchBoolValue,
+              value: isFirstTrainingFree,
               onChanged: (value) {
                 refreshSwitchData();
               })

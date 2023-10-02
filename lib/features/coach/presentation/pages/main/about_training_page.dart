@@ -86,6 +86,7 @@ class _AboutTrainingPageState extends State<AboutTrainingPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 50.h)
             ],
           ),
         ),

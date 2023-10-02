@@ -60,9 +60,11 @@ class ChiefPageDeeplinkAndFillProfileWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Заполните свой профиль',
-                      style: CoachHomeTextStyle.fillYourProfileTitle,
+                    FittedBox(
+                      child: Text(
+                        'Заполните свой профиль',
+                        style: CoachHomeTextStyle.fillYourProfileTitle,
+                      ),
                     ),
                     Text(
                       'Укрепление доверия клиента: Полный и всесторонний'
@@ -78,7 +80,7 @@ class ChiefPageDeeplinkAndFillProfileWidget extends StatelessWidget {
                         },
                         padding: EdgeInsets.symmetric(
                             horizontal: 19.w, vertical: 8.h),
-                        color: BlueColor.b3,
+                        color: PinkColor.p5,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.r)),
                         child: Text(

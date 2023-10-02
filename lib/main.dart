@@ -1,6 +1,7 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/config/routes/pages_routes.dart';
 import 'package:move_mates_android/config/theme/app_theme/app_theme.dart';
@@ -12,6 +13,8 @@ import 'package:move_mates_android/features/user_auth/presentation/pages/onboard
 import 'config/routes/assets_routes.dart';
 import 'config/theme/colors/pink_color.dart';
 import 'config/theme/text_styles/user_auth/main_text_style.dart';
+import 'features/coach/presentation/cubit/coach_profile_state.dart';
+import 'features/injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

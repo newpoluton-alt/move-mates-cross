@@ -69,13 +69,21 @@ class _WorkingHoursPageHoursDisplayWidgetState
     });
   }
 
+  bool _isTimeNotAddable(TimeOfDay selectedTime) {
+    return _leftTimeOfDay.hour >= selectedTime.hour;
+  }
+
+  bool _isDayChecked() => _checkBoxValue;
+
   void _refreshRightTimeOfDay({
     required TimeOfDay selectedTimeOfDay,
   }) {
+    if (_isTimeNotAddable(selectedTimeOfDay)) return;
     setState(() {
       _rightTimeOfDay = selectedTimeOfDay;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -101,9 +109,11 @@ class _WorkingHoursPageHoursDisplayWidgetState
             ),
             SizedBox(width: 6.w),
             WorkingHoursPageHourContainerWidget(
-                isBreakContainer: false,
-                timeOfDay: _leftTimeOfDay,
-                refreshTimeOfDay: _refreshLeftTimeOfDay),
+              isBreakContainer: false,
+              timeOfDay: _leftTimeOfDay,
+              refreshTimeOfDay: _refreshLeftTimeOfDay,
+              isDayChecked: _isDayChecked,
+            ),
             Container(
               width: 10.w,
               height: 1.h,
@@ -111,12 +121,15 @@ class _WorkingHoursPageHoursDisplayWidgetState
               margin: EdgeInsets.symmetric(horizontal: 6.w),
             ),
             WorkingHoursPageHourContainerWidget(
-                isBreakContainer: false,
-                timeOfDay: _rightTimeOfDay,
-                refreshTimeOfDay: _refreshRightTimeOfDay),
+              isBreakContainer: false,
+              timeOfDay: _rightTimeOfDay,
+              isDayChecked: _isDayChecked,
+              refreshTimeOfDay: _refreshRightTimeOfDay,
+            ),
             const Expanded(child: SizedBox()),
             IconButton(
               onPressed: () {
+                if(!_checkBoxValue) return;
                 _addBreakWidget();
               },
               icon: SignupPageAssetIconWidget(path: IconPath.addButton),

@@ -25,21 +25,21 @@ class ClientProfilePage extends StatefulWidget {
 }
 
 class _ClientProfilePageState extends State<ClientProfilePage> {
-  late bool _isUpcomingPushed;
+  late bool _isUpcomingNotPushed;
 
   @override
   void initState() {
-    _isUpcomingPushed = true;
+    _isUpcomingNotPushed = false;
     super.initState();
   }
 
   void defineAlternationValue(bool value) {
     setState(() {
-      _isUpcomingPushed = value;
+      _isUpcomingNotPushed = value;
     });
   }
 
-  bool alternationValue() => _isUpcomingPushed;
+  bool alternationValue() => _isUpcomingNotPushed;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +98,7 @@ class _ClientProfilePageState extends State<ClientProfilePage> {
                 SizedBox(height: 10.h),
                 ClientProfilePageTrainingsFiltererWidget(
                     alternationValue: alternationValue),
-                SizedBox(height: 27.h),
+                SizedBox(height: 50.h),
               ],
             ),
           ),

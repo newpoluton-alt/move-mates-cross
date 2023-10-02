@@ -4,5 +4,6 @@ class CoachCalendarPageConstants {
     'силовые',
     'похудение',
   ];
+
   static const List<int> trainingHoursFormatsData = [60, 90];
 }

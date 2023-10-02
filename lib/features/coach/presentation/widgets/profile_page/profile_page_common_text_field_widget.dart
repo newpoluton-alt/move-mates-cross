@@ -13,9 +13,11 @@ class ProfilePageCommonTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   TextEditingController? textEditingController;
+  final String? Function(String?)? validator;
 
   ProfilePageCommonTextField({
     super.key,
+    this.validator,
     this.maxLines = 1,
     required this.keyboardType,
     this.textEditingController,
@@ -23,6 +25,14 @@ class ProfilePageCommonTextField extends StatelessWidget {
     required this.textFieldHintText,
     required this.textFieldHelperText,
   });
+
+  String? _defaultValidator(String? value) {
+    if ((value ?? '').trim().isEmpty) {
+      return textFieldHelperText;
+    } else {
+      return null;
+    }
+  }
 
   InputBorder get _enabledOutlineBorder => OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.r), borderSide: BorderSide.none);
@@ -53,13 +63,7 @@ class ProfilePageCommonTextField extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       controller: textEditingController,
-      validator: (value) {
-        if ((value?? '').trim().isEmpty) {
-          return textFieldHelperText;
-        } else {
-          return null;
-        }
-      },
+      validator: validator != null? validator!: _defaultValidator,
       decoration: InputDecoration(
         filled: true,
         errorMaxLines: 2,

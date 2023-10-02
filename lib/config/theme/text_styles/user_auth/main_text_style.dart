@@ -6,7 +6,7 @@ import '../../colors/pink_color.dart';
 
 class MMTextStyle {
   static TextStyle greeting = GoogleFonts.montserrat(
-      color: Colors.white, fontWeight: FontWeight.w600, fontSize: 26.sp);
+      color: Colors.white, fontWeight: FontWeight.w600, fontSize: 22.sp);
 
   static TextStyle appSplashStyle = GoogleFonts.openSans(
       color: Colors.white, fontWeight: FontWeight.w700, fontSize: 37.sp);
@@ -14,7 +14,7 @@ class MMTextStyle {
   static TextStyle concernName = GoogleFonts.montserrat(
     color: Colors.white,
     fontWeight: FontWeight.w600,
-    fontSize: 48.sp,
+    fontSize: 36.sp,
   );
   static TextStyle appBar = GoogleFonts.montserrat(
       color: Colors.black, fontSize: 17.sp, fontWeight: FontWeight.w600);
@@ -25,7 +25,7 @@ class MMTextStyle {
   static TextStyle regularFunctionalWhite = GoogleFonts.montserrat(
       color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.w600);
   static TextStyle appViewBoldBlack = GoogleFonts.montserrat(
-      color: Colors.black, fontSize: 27.sp, fontWeight: FontWeight.w600);
+      color: Colors.black, fontSize: 21.sp, fontWeight: FontWeight.w600);
   static TextStyle appViewRegularBlack =
   GoogleFonts.montserrat(color: Colors.black, fontSize: 20.sp);
 }

@@ -6,15 +6,15 @@ import '../../../../../config/theme/text_styles/app_text_style.dart';
 
 // ignore: must_be_immutable
 class ProfilePageRoundedCheckBoxesWidget extends StatelessWidget {
-  bool firstCheckBoxBool;
-  bool secondCheckBoxBool;
+  bool isOnline;
+  bool isOffline;
   final void Function(int id) refreshData;
 
   ProfilePageRoundedCheckBoxesWidget({
     super.key,
     required this.refreshData,
-    required this.firstCheckBoxBool,
-    required this.secondCheckBoxBool,
+    required this.isOnline,
+    required this.isOffline,
   });
 
   @override
@@ -33,13 +33,13 @@ class ProfilePageRoundedCheckBoxesWidget extends StatelessWidget {
           _customCheckBox(
             checkBoxId: 0,
             title: 'Онлайн',
-            isTrue: firstCheckBoxBool,
+            isTrue: isOnline,
           ),
           SizedBox(width: 15.w),
           _customCheckBox(
             checkBoxId: 1,
             title: 'Оффлайн',
-            isTrue: secondCheckBoxBool,
+            isTrue: isOffline,
           )
         ],
       ),
@@ -52,30 +52,34 @@ class ProfilePageRoundedCheckBoxesWidget extends StatelessWidget {
     required int checkBoxId,
   }) {
     return StatefulBuilder(builder: (context, setState) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Checkbox(
-            value: isTrue,
-            activeColor: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.r),
-                side: const BorderSide(color: GreyColor.g19)),
-            onChanged: (value) {
-              refreshData(checkBoxId);
-              setState(() {
-                isTrue = value ?? false;
-              });
-            },
-          ),
-          Text(
-            title,
-            style: AppTextStyle.medium(
-              fontSize: 16.sp,
-              color: Colors.black,
+      return InkWell(
+        onTap: () {
+          refreshData(checkBoxId);
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Checkbox(
+              value: isTrue,
+              activeColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.r),
+                  side: const BorderSide(color: GreyColor.g19)),
+
+              onChanged: (value) {
+                refreshData(checkBoxId);
+
+              },
             ),
-          )
-        ],
+            Text(
+              title,
+              style: AppTextStyle.medium(
+                fontSize: 16.sp,
+                color: Colors.black,
+              ),
+            )
+          ],
+        ),
       );
     });
   }

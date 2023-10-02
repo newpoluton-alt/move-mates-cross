@@ -63,7 +63,7 @@ class ChiefPageConstants {
     'ВС'
   ];
   static const List<AboutTrainingPageDropdownButtonItemModel>
-  aboutTrainingPageDropdownButtonItemListData = [
+      aboutTrainingPageDropdownButtonItemListData = [
     AboutTrainingPageDropdownButtonItemModel(
         text: 'Перенести',
         textColor: GreenColor.g3,

@@ -32,9 +32,7 @@ class ProfilePageAppBarWidget extends StatelessWidget
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              settingsPageSubmit();
-            },
+            onPressed: settingsPageSubmit,
             child: Text(
               'Готово',
               style: AppTextStyle.medium(

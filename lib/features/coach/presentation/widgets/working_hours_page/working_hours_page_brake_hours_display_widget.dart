@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:move_mates_android/features/user_auth/presentation/widgets/signup_page/signup_page_asset_icon_widget.dart';
@@ -33,6 +31,11 @@ class _WorkingHoursPageBrakeDisplayWidgetState
   }) {
     setState(() {
       _leftTimeOfDay = selectedTimeOfDay;
+
+      _rightTimeOfDay = TimeOfDay(
+        hour: selectedTimeOfDay.hour + 1,
+        minute: selectedTimeOfDay.minute,
+      );
     });
   }
 
@@ -65,9 +68,10 @@ class _WorkingHoursPageBrakeDisplayWidgetState
               )),
           SizedBox(width: 6.w),
           WorkingHoursPageHourContainerWidget(
-              isBreakContainer: true,
-              timeOfDay: _leftTimeOfDay,
-              refreshTimeOfDay: _refreshLeftTimeOfDay),
+            isBreakContainer: true,
+            timeOfDay: _leftTimeOfDay,
+            refreshTimeOfDay: _refreshLeftTimeOfDay,
+          ),
           Container(
             width: 10.w,
             height: 1.h,
@@ -75,9 +79,10 @@ class _WorkingHoursPageBrakeDisplayWidgetState
             margin: EdgeInsets.symmetric(horizontal: 8.w),
           ),
           WorkingHoursPageHourContainerWidget(
-              isBreakContainer: true,
-              timeOfDay: _rightTimeOfDay,
-              refreshTimeOfDay: _refreshRightTimeOfDay),
+            isBreakContainer: true,
+            timeOfDay: _rightTimeOfDay,
+            refreshTimeOfDay: _refreshRightTimeOfDay,
+          ),
           const Expanded(child: SizedBox()),
           IconButton(
             onPressed: () {

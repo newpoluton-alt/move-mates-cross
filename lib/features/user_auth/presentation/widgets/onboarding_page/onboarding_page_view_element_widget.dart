@@ -34,7 +34,7 @@ class OnboardingPageViewElementWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.w),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   firstText,

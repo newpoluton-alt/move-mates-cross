@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,11 +9,14 @@ class WorkingHoursPageHourContainerWidget extends StatefulWidget {
   final TimeOfDay timeOfDay;
   final bool isBreakContainer;
   final void Function({
-  required TimeOfDay selectedTimeOfDay,
+    required TimeOfDay selectedTimeOfDay,
   }) refreshTimeOfDay;
+
+  final bool Function()? isDayChecked;
 
   const WorkingHoursPageHourContainerWidget({
     super.key,
+    this.isDayChecked,
     required this.timeOfDay,
     required this.isBreakContainer,
     required this.refreshTimeOfDay,
@@ -30,24 +31,29 @@ class _WorkingHoursPageHourContainerWidgetState
     extends State<WorkingHoursPageHourContainerWidget> {
   void _displayTimePicker(BuildContext context) async {
     var selectedTime = await showTimePicker(
-        context: context,
-        initialTime: widget.timeOfDay,
-        );
+      context: context,
+      initialTime: widget.timeOfDay,
+    );
     if (selectedTime != null) {
-        widget.refreshTimeOfDay(selectedTimeOfDay: selectedTime);
+      widget.refreshTimeOfDay(selectedTimeOfDay: selectedTime);
     }
   }
 
-  bool isTimeChanged() {
+  bool _isTimeChanged() {
     return widget.timeOfDay.hour != 0 || widget.timeOfDay.minute != 0;
+  }
+
+  void _showTimePicker() {
+    if (widget.isBreakContainer)_displayTimePicker(context);
+    if (widget.isDayChecked == null) return;
+    if (!widget.isDayChecked!()) return;
+    _displayTimePicker(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        _displayTimePicker(context);
-      },
+      onTap: _showTimePicker,
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
         height: 50.h,
@@ -59,7 +65,7 @@ class _WorkingHoursPageHourContainerWidgetState
         child: Center(
           child: Text(
             widget.timeOfDay.format(context),
-            style: isTimeChanged()
+            style: _isTimeChanged()
                 ? AppTextStyle.normal(fontSize: 18.sp, color: Colors.black)
                 : AppTextStyle.normal(fontSize: 18.sp, color: GreyColor.g22),
           ),

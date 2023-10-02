@@ -8,7 +8,7 @@ import '../colors/grey_color.dart';
 import '../colors/pink_color.dart';
 import '../text_styles/app_text_style.dart';
 
-class TableCalendarStyle{
+class TableCalendarStyle {
   static TextStyle get _todayTextStyle =>
       AppTextStyle.normal(fontSize: 21.sp, color: Colors.white);
 
@@ -36,36 +36,35 @@ class TableCalendarStyle{
       ));
 
   static CalendarStyle get calendarStyle => CalendarStyle(
-    outsideDaysVisible: false,
-    todayTextStyle: _todayTextStyle,
-    disabledTextStyle: _daysOfMonthTextStyle,
-    defaultTextStyle: _daysOfMonthTextStyle,
-    weekendTextStyle: _daysOfMonthTextStyle,
-    selectedTextStyle: _daysOfMonthTextStyle,
-    selectedDecoration: BoxDecoration(
-      color: PinkColor.p9,
-      shape: BoxShape.rectangle,
-      borderRadius: BorderRadius.circular(10.r),
-    ),
-    defaultDecoration: const BoxDecoration(
-      shape: BoxShape.rectangle,
-    ),
-    disabledDecoration: const BoxDecoration(
-      shape: BoxShape.rectangle,
-    ),
-    weekendDecoration: const BoxDecoration(
-      shape: BoxShape.rectangle,
-    ),
-    todayDecoration: BoxDecoration(
-      color: PinkColor.p20,
-      borderRadius: BorderRadius.circular(100.r),
-      shape: BoxShape.rectangle,
-    ),
-  );
+        outsideDaysVisible: false,
+        todayTextStyle: _todayTextStyle,
+        disabledTextStyle: _daysOfMonthTextStyle,
+        defaultTextStyle: _daysOfMonthTextStyle,
+        weekendTextStyle: _daysOfMonthTextStyle,
+        selectedTextStyle: _daysOfMonthTextStyle,
+        selectedDecoration: BoxDecoration(
+          color: PinkColor.p9,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        defaultDecoration: const BoxDecoration(
+          shape: BoxShape.rectangle,
+        ),
+        disabledDecoration: const BoxDecoration(
+          shape: BoxShape.rectangle,
+        ),
+        weekendDecoration: const BoxDecoration(
+          shape: BoxShape.rectangle,
+        ),
+        todayDecoration: BoxDecoration(
+          color: PinkColor.p20,
+          borderRadius: BorderRadius.circular(100.r),
+          shape: BoxShape.rectangle,
+        ),
+      );
 
   static DaysOfWeekStyle get daysOfWeekStyle => DaysOfWeekStyle(
-    weekdayStyle: _daysOfWeekTextStyle,
-    weekendStyle: _daysOfWeekTextStyle,
-  );
-
+        weekdayStyle: _daysOfWeekTextStyle,
+        weekendStyle: _daysOfWeekTextStyle,
+      );
 }
